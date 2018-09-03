@@ -17,9 +17,7 @@ source "$DOTFILES/bash/prompt.bash"
 
 # pyenv
 if [ -d "$HOME/.pyenv" ]; then
-    export PATH="$HOME/.pyenv/bin:$PATH"
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
+    source "$DOTFILES/bash/pyenv.bash"
 fi
 
 # added by pipsi (https://github.com/mitsuhiko/pipsi)
