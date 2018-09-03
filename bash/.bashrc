@@ -11,3 +11,6 @@ export VISUAL="$EDITOR"
 
 # General-purpose aliases
 source "$DOTFILES/bash/aliases.bash"
+
+# Fancy prompt
+source "$DOTFILES/bash/prompt.bash"

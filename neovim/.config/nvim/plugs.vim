@@ -15,6 +15,7 @@ Plug 'chrisbra/csv.vim'
 Plug 'zah/nim.vim'
 Plug 'w0rp/ale'
 Plug 'itchyny/lightline.vim'
+Plug 'Soares/base16.nvim'
 " }}}
 
 " Fugitive - Ultimate git wrapper for vim {{{
@@ -149,11 +150,6 @@ nnoremap <leader>f :NERDTreeFind<cr>
 " Show git signs too because why not?
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " }}}
-" NeoSolarized {{{
-" ================================================================
-Plug 'iCyMind/NeoSolarized'
-
-"}}}
 " Gitv - Requires fugitive - "command line gitk" {{{
 " ================================================================
 Plug 'gregsexton/gitv'
@@ -180,6 +176,25 @@ let g:lightline = {
             \ },
             \ }
 " }}}
+" YouCompleteMe - Awesome completion {{{
+" ================================================================
+
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
+" Don't ask every time
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_register_as_syntastic_checker = 0
+let g:ycm_filetype_blacklist = {
+            \ 'notes' : 1,
+            \ 'text' : 1,
+            \}
+
+" Jump to definition, else declaration (YouCompleteMe stuff)
+nnoremap <f3> :YcmCompleter<space>GoToDefinitionElseDeclaration<cr>
+nnoremap <c-g> :YcmCompleter<space>GoToReferences<cr>
+"}}}
 
 " Initialize plugin system
 call plug#end()
@@ -188,7 +203,4 @@ call plug#end()
 syntax enable
 set termguicolors
 set background=dark
-let g:neosolarized_bold = 1
-let g:neosolarized_underline = 1
-let g:neosolarized_italic = 1
-colorscheme NeoSolarized
+colorscheme darktooth
