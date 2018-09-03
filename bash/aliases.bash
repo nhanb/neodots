@@ -11,3 +11,6 @@ alias gr="git rebase"
 alias gst="git status"
 alias gd="git diff"
 alias gdc="git diff --cached"
+
+# mkdir then cd into it
+function mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
