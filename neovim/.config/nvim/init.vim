@@ -3,7 +3,6 @@ set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
 set shiftwidth=4  " number of spaces to use for autoindenting
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
-set showmatch     " set show matching parenthesis
 set ignorecase    " ignore case when searching
 set smartcase     " ignore case if search pattern is all lowercase,
                   "    case-sensitive otherwise
@@ -17,6 +16,7 @@ set wildignore=*.swp,*.bak,*.pyc,*.class
 set title                " change the terminal's title
 set noerrorbells         " don't beep
 set colorcolumn=+1       " draw colorcolumn 1 char after max textwidth
+let loaded_matchparen = 0 " matching paren highlighting is distracting
 
 " Keep temporary files in mybackupdir
 let mybackupdir=$HOME.'/.vim_backup'
