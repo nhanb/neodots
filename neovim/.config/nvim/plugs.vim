@@ -203,4 +203,4 @@ call plug#end()
 syntax enable
 set termguicolors
 set background=dark
-colorscheme darktooth
+colorscheme oceanicnext
