@@ -1,0 +1,4 @@
+augroup LOCAL_SETUP
+    " Just for demo purposes. This option is already in plugs.vim:
+    let NERDTreeShowHidden=1
+augroup end

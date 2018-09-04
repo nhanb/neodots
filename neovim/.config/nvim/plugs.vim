@@ -18,6 +18,11 @@ Plug 'itchyny/lightline.vim'
 Plug 'Soares/base16.nvim'
 " }}}
 
+" local vimrc {{{
+" ================================================================
+Plug 'MarcWeber/vim-addon-local-vimrc'
+let g:local_vimrc = {'names':['.lvimrc'],'hash_fun':'LVRHashOfFile'}
+"}}}
 " Fugitive - Ultimate git wrapper for vim {{{
 " ================================================================
 Plug 'tpope/vim-fugitive'
@@ -146,6 +151,8 @@ let NERDTreeIgnore = ['\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$',
 nnoremap <leader>d <esc>:NERDTree<cr>
 nnoremap <leader>e :NERDTreeToggle<cr>
 nnoremap <leader>f :NERDTreeFind<cr>
+
+let NERDTreeShowHidden=1
 
 " Show git signs too because why not?
 Plug 'Xuyuanp/nerdtree-git-plugin'
