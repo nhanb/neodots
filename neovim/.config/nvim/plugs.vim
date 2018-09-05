@@ -212,3 +212,4 @@ set termguicolors
 set background=dark
 colorscheme oceanicnext
 highlight Pmenu guibg=brown
+highlight ColorColumn guibg='#222222'
