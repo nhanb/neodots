@@ -17,3 +17,6 @@ alias gb="git branch"
 
 # mkdir then cd into it
 function mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
+
+# xfce-specific:
+alias nocaps='/usr/bin/setxkbmap -option "ctrl:nocaps"' # turn capslock => ctrl
