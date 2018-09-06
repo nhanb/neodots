@@ -30,3 +30,8 @@ fi
 
 # added by pipsi (https://github.com/mitsuhiko/pipsi)
 export PATH="/home/nhanb/.local/bin:$PATH"
+
+# rust
+if [ -d "$HOME/.cargo" ]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
