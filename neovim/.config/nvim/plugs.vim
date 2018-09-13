@@ -183,25 +183,18 @@ let g:lightline = {
             \ },
             \ }
 " }}}
-" YouCompleteMe - Awesome completion {{{
+" Deoplete (YCM replacement) {{{
 " ================================================================
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
 
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+let g:deoplete#enable_at_startup = 1
 
-let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
-" Don't ask every time
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_register_as_syntastic_checker = 0
-let g:ycm_filetype_blacklist = {
-            \ 'notes' : 1,
-            \ 'text' : 1,
-            \}
-
-" Jump to definition, else declaration (YouCompleteMe stuff)
-nnoremap <f3> :YcmCompleter<space>GoToDefinitionElseDeclaration<cr>
-nnoremap <c-g> :YcmCompleter<space>GoToReferences<cr>
-"}}}
+" Enable tab completion in addition to <C-n> / <C-p>
+" https://github.com/Shougo/deoplete.nvim/issues/432#issuecomment-279202235
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" }}}
 
 " Initialize plugin system
 call plug#end()
