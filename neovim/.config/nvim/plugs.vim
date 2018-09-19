@@ -204,5 +204,5 @@ syntax enable
 set termguicolors
 set background=dark
 colorscheme oceanicnext
-highlight Pmenu guibg=brown
+highlight Pmenu guibg='#444444'
 highlight ColorColumn guibg='#222222'
