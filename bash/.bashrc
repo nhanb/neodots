@@ -35,3 +35,8 @@ export PATH="/home/nhanb/.local/bin:$PATH"
 if [ -d "$HOME/.cargo" ]; then
     export PATH="$HOME/.cargo/bin:$PATH"
 fi
+
+# kitty terminal
+if [ -d "$HOME/.local/kitty.app" ]; then
+    export PATH="$HOME/.local/kitty.app/bin:$PATH"
+fi
