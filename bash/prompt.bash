@@ -15,4 +15,4 @@ virtualenv_prompt () {
     fi
 }
 
-export PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[1;38;5;220m\]\u@\h\[\033[00m\] \[\033[1;38;5;10m\]\w\[\033[00m\]\[\033[1;38;5;159m\] $(__git_ps1 " %s")\[\033[00m\] \[\033[0;38;5;222m\]$(virtualenv_prompt)\[\033[0m\]\n▶ '
+export PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[1;38;5;220m\]\u@\h\[\033[00m\] \[\033[1;38;5;10m\]\w\[\033[00m\]\[\033[1;38;5;159m\] $(__git_ps1 " %s")\[\033[00m\] \[\033[0;38;5;222m\]$(virtualenv_prompt)\[\033[0m\]\n[\j]▶ '
