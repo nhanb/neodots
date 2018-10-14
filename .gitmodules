@@ -1,0 +1,3 @@
+[submodule "tmux/.tmuxp"]
+	path = tmux/.tmuxp
+	url = git@gitlab.com:nhanb/.tmuxp.git

@@ -16,6 +16,7 @@ Plug 'zah/nim.vim'
 Plug 'w0rp/ale'
 Plug 'itchyny/lightline.vim'
 Plug 'Soares/base16.nvim'
+Plug 'christoomey/vim-tmux-navigator'
 " }}}
 
 " local vimrc {{{

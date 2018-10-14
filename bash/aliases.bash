@@ -14,9 +14,13 @@ alias gd="git diff"
 alias gdc="git diff --cached"
 alias gco="git checkout"
 alias gb="git branch"
+alias gm="git merge"
 
 # mkdir then cd into it
 function mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 
 # xfce-specific:
 alias nocaps='/usr/bin/setxkbmap -option "ctrl:nocaps"' # turn capslock => ctrl
+
+# load tmuxp session
+alias tm='tmuxp load'
