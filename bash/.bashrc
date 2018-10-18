@@ -1,3 +1,5 @@
+# shellcheck source=/dev/null
+
 export DOTFILES="$HOME/neodots"
 export PRIVATE_DOTFILES="$HOME/Dropbox/privdots"
 
@@ -39,4 +41,9 @@ fi
 # kitty terminal
 if [ -d "$HOME/.local/kitty.app" ]; then
     export PATH="$HOME/.local/kitty.app/bin:$PATH"
+fi
+
+# proper python package manager
+if [ -d "$HOME/.poetry" ]; then
+    export PATH="$HOME/.poetry/bin:$PATH"
 fi
