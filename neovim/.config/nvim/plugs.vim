@@ -21,9 +21,13 @@ Plug 'christoomey/vim-tmux-navigator'
 " No idea why the vim plugin doesn't create virtualenv & install black as said
 " in docs though.
 Plug 'ambv/black'
-Plug 'Chiel92/vim-autoformat'
 " }}}
 
+" Autoformat {{{
+" ================================================================
+Plug 'Chiel92/vim-autoformat'
+let g:formatters_python = ['black']
+"}}}
 " local vimrc {{{
 " ================================================================
 Plug 'MarcWeber/vim-addon-local-vimrc'
