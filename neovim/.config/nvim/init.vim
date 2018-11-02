@@ -38,6 +38,8 @@ set autoread
 set number
 set relativenumber
 
+" Always show gutter column so we don't have jumping text when inserting text
+set signcolumn=yes
 
 " ================================================================
 " HERE COME KEYBINDINGS

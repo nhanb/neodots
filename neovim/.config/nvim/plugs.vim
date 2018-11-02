@@ -14,7 +14,6 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'chrisbra/csv.vim'
 Plug 'zah/nim.vim'
 Plug 'w0rp/ale'
-Plug 'itchyny/lightline.vim'
 Plug 'Soares/base16.nvim'
 Plug 'christoomey/vim-tmux-navigator'
 " On ubuntu, install black with `pip3 install --user black`
@@ -178,20 +177,12 @@ nmap <leader>gv :Gitv --all<cr>
 nmap <leader>gV :Gitv! --all<cr>
 vmap <leader>gV :Gitv! --all<cr>
 " }}}
-" Lightline {{{
+" Airline {{{
 " ================================================================
-Plug 'itchyny/lightline.vim'
-Plug 'itchyny/vim-gitbranch'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
-let g:lightline = {
-            \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-            \ },
-            \ 'component_function': {
-            \   'gitbranch': 'gitbranch#name'
-            \ },
-            \ }
+let g:airline_theme='powerlineish'
 " }}}
 " Deoplete (YCM replacement) {{{
 " ================================================================
