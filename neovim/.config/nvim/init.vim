@@ -152,7 +152,7 @@ nnoremap <space> zz
 nnoremap <leader><space> zt
 
 " Close quickfix
-nnoremap <leader>x :cclose<cr>:lclose<cr>
+nnoremap <leader>x :cclose<cr>:lclose<cr>:pc<cr>
 
 " Remap Y to 'yank till end of line' to make it consistent with C, D
 map Y y$
