@@ -3,6 +3,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Straightforward stuff (no custom config) {{{
 " ================================================================
+Plug 'kana/vim-textobj-user'
+    Plug 'kana/vim-textobj-line'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
