@@ -91,10 +91,10 @@ nnoremap <leader>r :CtrlPMRU<cr>
 
 if executable('rg')
     " RipGrep - faster than Ag
-    set grepprg=rg\ --vimgrep\ --hidden\ --no-heading\ --no-messages
+    set grepprg=rg\ --vimgrep\ --hidden\ --no-heading\ --no-messages\ --ignore-file\ ~/neodots/rgignore
 
     " Fuzzy file searching
-    let g:ctrlp_user_command = 'rg --no-messages --files --no-ignore-vcs --hidden --follow --ignore-file ~/dotfiles/rgignore %s'
+    let g:ctrlp_user_command = 'rg --no-messages --files --no-ignore-vcs --hidden --follow --ignore-file ~/neodots/rgignore %s'
     let g:ctrlp_use_caching = 0
 
     " Content searching

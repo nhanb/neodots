@@ -1,0 +1,10 @@
+.git/
+node_modules/
+bower_components/
+
+__pycache__/
+.pytest_cache/
+*.egg-info/
+*.pyc
+
+*.o
