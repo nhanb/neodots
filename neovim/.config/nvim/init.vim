@@ -112,6 +112,9 @@ vnoremap ~ ygv"=TwiddleCase(@")<CR>Pgv
 nnoremap j gj
 nnoremap k gk
 
+" Actually nowrap is easier on the eye
+set nowrap
+
 " Saner new split position
 set splitbelow
 set splitright
