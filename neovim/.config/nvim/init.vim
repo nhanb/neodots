@@ -137,8 +137,10 @@ nnoremap <c-f9> <esc>:wq<cr>
 vnoremap <c-f9> <esc>:wq<cr>
 
 " Format json
-nnoremap <leader>j :%!python -m json.tool<cr>
-vnoremap <leader>j !python -m json.tool<cr>
+nnoremap <leader>jj :%!python3 -m json.tool<cr>
+vnoremap <leader>jj !python3 -m json.tool<cr>
+nnoremap <leader>js :%!python3 -m json.tool --sort-keys<cr>
+vnoremap <leader>js !python3 -m json.tool --sort-keys<cr>
 
 " Search visually selected text
 vnoremap // y/<c-r>"<cr>"
