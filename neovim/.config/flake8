@@ -1,0 +1,17 @@
+[flake8]
+ignore =
+    E501 # long line
+    E401 # multiple imports on one line
+    E126 # continuation line over-indented for hanging indent
+    E127 # continuation line over-indented for visual indent
+    E128 # continuation line under-indented for visual indent
+    E402 # module level import not at top of file
+    E261 # at least two spaces before inline comment
+    E262 # inline comment should start with '#'
+    E265 # block comment should start with '#'
+    E701 # multiple statements on one line (colon)
+    E702 # multiple statements on one line (semicolon)
+    E226 # missing whitespace around arithmetic operator
+    E302 # expected 2 blank lines, found 0
+    E123 # closing bracket does not match indentation of opening bracket’s line
+    W503 # line break before binary operator
