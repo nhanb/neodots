@@ -49,6 +49,9 @@ set signcolumn=yes
 let mapleader=","
 noremap \ <nop>
 
+" No Ex mode please
+nnoremap Q <nop>
+
 " ---- Esc alternatives ----
 inoremap jj <esc>
 " Save, stay in normal mode
@@ -83,9 +86,6 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-h> <c-w>h
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
-
-" C-w is super difficult to press, so make it <leader>w
-nmap <leader>w <c-w>
 
 " Moving around tabs using <leader>n/m
 nnoremap <leader>n <esc>:tabprevious<cr>
