@@ -8,9 +8,12 @@ source "$DOTFILES/bash/sensible.bash"
 source "$DOTFILES/bash/xubuntu.bash"
 
 # The only proper editor
-export EDITOR=vim
+export EDITOR=nvim
 export GIT_EDITOR="$EDITOR"
 export VISUAL="$EDITOR"
+alias vim=nvim
+alias vi=nvim
+
 
 # General-purpose aliases
 source "$DOTFILES/bash/aliases.bash"
