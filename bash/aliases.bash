@@ -1,3 +1,9 @@
+# python stuff
+alias py3="python3"
+alias py="python"
+alias ipy3="ipython3"
+alias ipy="ipython"
+
 # git
 alias g="git"
 alias gac="git add . && git commit"
