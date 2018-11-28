@@ -7,9 +7,9 @@ export GIT_PS1_SHOWCOLORHINTS=true
 
 # In Arch Linux the git prompt isn't sourced by default,
 # so do that if __git_ps1 isn't already defined.
-hash __git_ps1 2>/dev/null || \
-    [[ -e /usr/share/git/git-prompt.sh ]] && \
+if ! hash __git_ps1 2>/dev/null && [[ -e /usr/share/git/git-prompt.sh ]]; then
     source /usr/share/git/git-prompt.sh
+fi
 
 # 256 colors:
 # https://misc.flogisoft.com/bash/tip_colors_and_formatting
