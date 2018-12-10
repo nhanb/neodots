@@ -19,6 +19,7 @@ Plug 'cespare/vim-toml'
 Plug 'w0rp/ale'
 Plug 'Soares/base16.nvim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'justinmk/vim-sneak'
 " On ubuntu, install black with `pip3 install --user black`
 " No idea why the vim plugin doesn't create virtualenv & install black as said
 " in docs though.
