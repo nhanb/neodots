@@ -22,6 +22,9 @@ alias gco="git checkout"
 alias gb="git branch"
 alias gm="git merge"
 
+# make sure no weird TERM for ssh sessions
+alias ssh='TERM=screen-256color ssh'
+
 # mkdir then cd into it
 function mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 
