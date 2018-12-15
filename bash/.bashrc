@@ -33,6 +33,11 @@ if [ -d "$HOME/.pyenv" ]; then
     source "$DOTFILES/bash/pyenv.bash"
 fi
 
+# ruby gems
+if [ -d "$HOME/.gem/ruby/2.5.0/bin" ]; then
+    export PATH="$HOME/.gem/ruby/2.5.0/bin:$PATH"
+fi
+
 # added by pipsi (https://github.com/mitsuhiko/pipsi)
 export PATH="/home/nhanb/.local/bin:$PATH"
 
