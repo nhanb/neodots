@@ -33,8 +33,11 @@ let g:formatters_python = ['black']
 "}}}
 " local vimrc {{{
 " ================================================================
-Plug 'MarcWeber/vim-addon-local-vimrc'
-let g:local_vimrc = {'names':['.lvimrc'],'hash_fun':'LVRHashOfFile'}
+"Plug 'MarcWeber/vim-addon-local-vimrc'
+"let g:local_vimrc = {'names':['.lvimrc'],'hash_fun':'LVRHashOfFile'}
+Plug 'LucHermitte/local_vimrc'
+    Plug 'LucHermitte/lh-vim-lib'
+let g:local_vimrc = ['.lvimrc']
 "}}}
 " Fugitive - Ultimate git wrapper for vim {{{
 " ================================================================
