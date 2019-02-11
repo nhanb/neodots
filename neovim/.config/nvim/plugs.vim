@@ -194,6 +194,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 
 let g:deoplete#enable_at_startup = 1
+let g:python_host_prog = '/home/nhanb/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/home/nhanb/.pyenv/versions/neovim3/bin/python'
 
 " Enable tab completion in addition to <C-n> / <C-p>
 " https://github.com/Shougo/deoplete.nvim/issues/432#issuecomment-279202235
