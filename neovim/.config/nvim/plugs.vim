@@ -39,6 +39,8 @@ let g:local_vimrc = {'names':['.lvimrc'],'hash_fun':'LVRHashOfFile'}
 " Fugitive - Ultimate git wrapper for vim {{{
 " ================================================================
 Plug 'tpope/vim-fugitive'
+Plug 'shumphrey/fugitive-gitlab.vim'
+let g:fugitive_gitlab_domains = ['https://git.parcelperform.com']
 
 nnoremap <leader>gg :Git<space>
 nnoremap <leader>gm :Gmove<space>
@@ -47,6 +49,7 @@ nnoremap <leader>gca :Git commit --amend<cr>
 nnoremap <leader>gd :Gvdiff<cr>
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gb :Gblame<cr>
+nnoremap <leader>gh :Gbrowse<cr>
 
 " Stage current file
 nnoremap <leader>ga :Gwrite<cr>
