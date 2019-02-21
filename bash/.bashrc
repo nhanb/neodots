@@ -28,6 +28,11 @@ if [ -d "$PRIVATE_DOTFILES" ]; then
     done
 fi
 
+# Downloaded single-executable programs
+if [ -d "$HOME/binaries" ]; then
+    export PATH="$HOME/binaries:$PATH"
+fi
+
 # pyenv
 if [ -d "$HOME/.pyenv" ]; then
     source "$DOTFILES/bash/pyenv.bash"
