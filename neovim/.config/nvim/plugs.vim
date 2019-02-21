@@ -14,7 +14,6 @@ Plug 'Z1MM32M4N/vim-superman'
 Plug 'pearofducks/ansible-vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'chrisbra/csv.vim'
-Plug 'zah/nim.vim'
 Plug 'cespare/vim-toml'
 Plug 'w0rp/ale'
 Plug 'Soares/base16.nvim'
@@ -26,6 +25,11 @@ Plug 'justinmk/vim-sneak'
 Plug 'ambv/black'
 " }}}
 
+" nim-lang {{{
+" ================================================================
+Plug 'nhanb/nim.nvim'
+let g:nim_fold = 0
+"}}}
 " Autoformat {{{
 " ================================================================
 Plug 'Chiel92/vim-autoformat'
