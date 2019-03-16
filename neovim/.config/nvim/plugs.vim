@@ -34,6 +34,7 @@ let g:nim_fold = 0
 " ================================================================
 Plug 'Chiel92/vim-autoformat'
 let g:formatters_python = ['black']
+autocmd BufWritePre *.rs silent execute ':Autoformat'
 "}}}
 " local vimrc {{{
 " ================================================================
