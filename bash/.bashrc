@@ -25,7 +25,7 @@ source "$DOTFILES/bash/prompt.bash"
 
 # Private stuff not suitable for public eyes
 if [ -d "$PRIVATE_DOTFILES" ]; then
-    for PRIVFILE in $PRIVATE_DOTFILES/bash/*.bash; do
+    for PRIVFILE in "$PRIVATE_DOTFILES"/bash/*.bash; do
         source "$PRIVFILE"
     done
 fi
@@ -66,6 +66,11 @@ fi
 # nim
 if [ -d "$HOME/.nimble" ]; then
     export PATH="$HOME/.nimble/bin:$PATH"
+fi
+
+# ruby
+if [ -d "$HOME/.gem/ruby/2.6.0/bin" ]; then
+    export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
 fi
 
 export NVM_DIR="$HOME/.nvm"
