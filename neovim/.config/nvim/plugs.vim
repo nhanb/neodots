@@ -15,15 +15,10 @@ Plug 'pearofducks/ansible-vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'chrisbra/csv.vim'
 Plug 'cespare/vim-toml'
-Plug 'w0rp/ale'
 Plug 'Soares/base16.nvim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'justinmk/vim-sneak'
 Plug 'inside/vim-search-pulse'
-" On ubuntu, install black with `pip3 install --user black`
-" No idea why the vim plugin doesn't create virtualenv & install black as said
-" in docs though.
-Plug 'ambv/black'
 " }}}
 
 " nim-lang {{{
@@ -34,7 +29,6 @@ let g:nim_fold = 0
 " Autoformat {{{
 " ================================================================
 Plug 'Chiel92/vim-autoformat'
-let g:formatters_python = ['black']
 autocmd BufWritePre *.rs silent execute ':Autoformat'
 "}}}
 " local vimrc {{{
@@ -197,15 +191,60 @@ Plug 'vim-airline/vim-airline-themes'
 
 let g:airline_theme='powerlineish'
 " }}}
-" Deoplete (YCM replacement) {{{
+" LanguageClient-neovim & deoplete {{{
 " ================================================================
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
+Plug 'autozimu/LanguageClient-neovim', {
+            \ 'branch': 'next',
+            \ 'do': 'bash install.sh',
+            \ }
 
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls'],
+    \ }
+
+let g:LanguageClient_settingsPath = '/home/nhanb/.config/nvim/lsp_settings.json'
+let g:LanguageClient_useVirtualText = 0
+" Default hl settings depend on Ale (wtf) so let's replace them with those
+" already available in stock vim:
+let g:LanguageClient_diagnosticsDisplay = {
+    \     1: {
+    \         "name": "Error",
+    \         "texthl": "SpellBad",
+    \         "signText": ">>",
+    \         "signTexthl": "error",
+    \     },
+    \     2: {
+    \         "name": "Warning",
+    \         "texthl": "SpellCap",
+    \         "signText": ">>",
+    \         "signTexthl": "todo",
+    \     },
+    \     3: {
+    \         "name": "Information",
+    \         "texthl": "SpellCap",
+    \         "signText": "ii",
+    \         "signTexthl": "todo",
+    \     },
+    \     4: {
+    \         "name": "Hint",
+    \         "texthl": "SpellCap",
+    \         "signText": "hh",
+    \         "signTexthl": "todo",
+    \     },
+    \ }
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<cr>
+
+" As much as I loooove autoformat-on-save,
+" it's a no-go for projects at work (for now...?)
+"autocmd BufWritePre *.py :call LanguageClient#textDocument_formatting_sync()
+
+nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<cr>
+command Format call LanguageClient#textDocument_formatting()
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
 let g:python_host_prog = '/home/nhanb/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/home/nhanb/.pyenv/versions/neovim3/bin/python'
-
 " Enable tab completion in addition to <C-n> / <C-p>
 " https://github.com/Shougo/deoplete.nvim/issues/432#issuecomment-279202235
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"

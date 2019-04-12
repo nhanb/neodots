@@ -15,3 +15,14 @@ ignore =
     E302 # expected 2 blank lines, found 0
     E123 # closing bracket does not match indentation of opening bracket’s line
     W503 # line break before binary operator
+
+    # Other rules ignored by pycodestyle by default:
+    # (http://pycodestyle.pycqa.org/en/latest/intro.html)
+    E121
+    E133
+    E241
+    E242
+    E704
+    W503
+    W504
+    W505
