@@ -57,3 +57,11 @@ function formattest () {
     echo -e "\e[4munderline\e[0m"
     echo -e "\e[9mstrikethrough\e[0m"
 }
+
+# There's no built in way to use multiple docker hub accounts because reasons
+# https://stackoverflow.com/q/47262489
+function docker-switch () {
+    echo -e "Switching to \e[1m~/.docker/config.$1.json\e[0m"
+    cp "$HOME/.docker/config.$1.json" "$HOME/.docker/config.json"
+}
+alias ds=docker-switch
