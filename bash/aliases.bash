@@ -65,3 +65,11 @@ function docker-switch () {
     cp "$HOME/.docker/config.$1.json" "$HOME/.docker/config.json"
 }
 alias ds=docker-switch
+
+# Helpers to open shells in running docker containers managed by docker-compose:
+psh () {
+    this_dir=$(basename "$PWD")
+    parent_dir=`basename $(dirname "$PWD")`
+    container_name="${parent_dir}_${this_dir}_1"
+    docker exec -it "$container_name" sh -l
+}
