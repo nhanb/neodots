@@ -23,13 +23,15 @@ pip install pynvim
 # rinse & repeat for neovim2
 ```
 
-Since most of the IDE-like stuff is now handled by python-language-server,
-they can (and must) be installed on a per-project basis:
+IDE-like features for python are all provided by Ale:
+
+- Linting, go to definition: backed by pyls
+- Code formatting: backed by black
 
 ```bash
 pyenv virtualenv 3.7.3 my_project
 pyenv activate my_project
-poetry add --dev python-language-server pyls-black flake8
+poetry add --dev python-language-server flake8
 # you DO use a package manager that can actually resolve dependencies, right?
 ```
 

@@ -2,6 +2,7 @@ setlocal tabstop=4
 setlocal softtabstop=4
 setlocal shiftwidth=4
 setlocal textwidth=88
+setlocal colorcolumn=+1
 setlocal smarttab
 setlocal expandtab
 

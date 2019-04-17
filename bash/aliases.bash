@@ -73,3 +73,10 @@ psh () {
     container_name="${parent_dir}_${this_dir}_1"
     docker exec -it "$container_name" sh -l
 }
+
+vman() {
+    vim -c "SuperMan $*"
+    if [ "$?" != "0" ]; then
+        echo "No manual entry for $*"
+    fi
+}

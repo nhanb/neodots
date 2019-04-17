@@ -12,7 +12,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'mitsuhiko/vim-python-combined'
 Plug 'Z1MM32M4N/vim-superman'
 Plug 'pearofducks/ansible-vim'
-Plug 'mustache/vim-mustache-handlebars'
 Plug 'chrisbra/csv.vim'
 Plug 'cespare/vim-toml'
 Plug 'Soares/base16.nvim'
@@ -25,11 +24,6 @@ Plug 'inside/vim-search-pulse'
 " ================================================================
 Plug 'nhanb/nim.nvim'
 let g:nim_fold = 0
-"}}}
-" Autoformat {{{
-" ================================================================
-Plug 'Chiel92/vim-autoformat'
-autocmd BufWritePre *.rs silent execute ':Autoformat'
 "}}}
 " local vimrc {{{
 " ================================================================
@@ -191,55 +185,34 @@ Plug 'vim-airline/vim-airline-themes'
 
 let g:airline_theme='powerlineish'
 " }}}
-" LanguageClient-neovim & deoplete {{{
+" Ale with LSP support {{{
 " ================================================================
-Plug 'autozimu/LanguageClient-neovim', {
-            \ 'branch': 'next',
-            \ 'do': 'bash install.sh',
+" ale_completion_enabled must be set before loading ale
+let g:ale_completion_enabled = 1
+Plug 'w0rp/ale'
+
+let g:ale_python_pyls_config = {
+            \   'pyls': {
+            \     'configurationSources': ['flake8'],
+            \   }
             \ }
-
-let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls'],
-    \ }
-
-let g:LanguageClient_settingsPath = '/home/nhanb/.config/nvim/lsp_settings.json'
-let g:LanguageClient_useVirtualText = 0
-" Default hl settings depend on Ale (wtf) so let's replace them with those
-" already available in stock vim:
-let g:LanguageClient_diagnosticsDisplay = {
-    \     1: {
-    \         "name": "Error",
-    \         "texthl": "SpellBad",
-    \         "signText": ">>",
-    \         "signTexthl": "error",
-    \     },
-    \     2: {
-    \         "name": "Warning",
-    \         "texthl": "SpellCap",
-    \         "signText": ">>",
-    \         "signTexthl": "todo",
-    \     },
-    \     3: {
-    \         "name": "Information",
-    \         "texthl": "SpellCap",
-    \         "signText": "ii",
-    \         "signTexthl": "todo",
-    \     },
-    \     4: {
-    \         "name": "Hint",
-    \         "texthl": "SpellCap",
-    \         "signText": "hh",
-    \         "signTexthl": "todo",
-    \     },
-    \ }
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<cr>
-
+nnoremap gd :ALEGoToDefinition<cr>
+" I prefer flake8's linter over flake8-over-pyls because for whatever dumb
+" reason the latter's error underlining is less clean, but in order for ale to
+" support goto definition, the linter must be pyls. Bummer.
+let g:ale_linters = {
+            \'python': ['pyls'],
+            \}
+" Pyls does support code formatting using black but then I'll need to install
+" an extra pyls-black pip package. Why bother with that when ale's direct
+" support for black works just fine?
+let g:ale_fixers = {
+            \'python': ['black'],
+            \}
 " As much as I loooove autoformat-on-save,
 " it's a no-go for projects at work (for now...?)
-"autocmd BufWritePre *.py :call LanguageClient#textDocument_formatting_sync()
-
-nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<cr>
-command Format call LanguageClient#textDocument_formatting()
+"let g:ale_fix_on_save = 1
+nnoremap <leader>lf :ALEFix<cr>
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
