@@ -194,6 +194,11 @@ Plug 'w0rp/ale'
 let g:ale_python_pyls_config = {
             \   'pyls': {
             \     'configurationSources': ['flake8'],
+            \     'plugins': {
+            \       'pycodestyle': {
+            \         'enabled': v:false
+            \       }
+            \     }
             \   }
             \ }
 nnoremap gd :ALEGoToDefinition<cr>
