@@ -212,7 +212,7 @@ let g:ale_linters = {
 " an extra pyls-black pip package. Why bother with that when ale's direct
 " support for black works just fine?
 let g:ale_fixers = {
-            \'python': ['black'],
+            \'python': ['black', 'isort'],
             \}
 " As much as I loooove autoformat-on-save,
 " it's a no-go for projects at work (for now...?)
