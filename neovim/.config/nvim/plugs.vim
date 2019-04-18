@@ -219,14 +219,15 @@ let g:ale_fixers = {
 "let g:ale_fix_on_save = 1
 nnoremap <leader>lf :ALEFix<cr>
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#enable_at_startup = 1
 let g:python_host_prog = '/home/nhanb/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/home/nhanb/.pyenv/versions/neovim3/bin/python'
 " Enable tab completion in addition to <C-n> / <C-p>
-" https://github.com/Shougo/deoplete.nvim/issues/432#issuecomment-279202235
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Avoid overly eager autocomplete:
+" https://github.com/w0rp/ale/issues/1700#issuecomment-405554860
+set completeopt=menu,menuone,preview,noselect,noinsert
 " }}}
 
 " Initialize plugin system
