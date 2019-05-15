@@ -228,6 +228,9 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Avoid overly eager autocomplete:
 " https://github.com/w0rp/ale/issues/1700#issuecomment-405554860
 set completeopt=menu,menuone,preview,noselect,noinsert
+
+" Completion tweaks
+let g:ale_completion_delay = 0
 " }}}
 
 " Initialize plugin system
