@@ -18,6 +18,7 @@ Plug 'Soares/base16.nvim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'justinmk/vim-sneak'
 Plug 'inside/vim-search-pulse'
+Plug 'ElmCast/elm-vim'
 " }}}
 
 " nim-lang {{{
@@ -208,6 +209,7 @@ nnoremap gd :ALEGoToDefinition<cr>
 let g:ale_linters = {
             \'python': ['pyls'],
             \'rust': ['rls'],
+            \'elm': ['make'],
             \}
 " Pyls does support code formatting using black but then I'll need to install
 " an extra pyls-black pip package. Why bother with that when ale's direct
@@ -215,6 +217,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
             \'python': ['black', 'isort'],
             \'rust': ['rustfmt'],
+            \'elm': ['elm-format'],
             \}
 " As much as I loooove autoformat-on-save,
 " it's a no-go for projects at work (for now...?)
