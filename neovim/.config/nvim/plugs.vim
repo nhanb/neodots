@@ -207,12 +207,14 @@ nnoremap gd :ALEGoToDefinition<cr>
 " support goto definition, the linter must be pyls. Bummer.
 let g:ale_linters = {
             \'python': ['pyls'],
+            \'rust': ['rls'],
             \}
 " Pyls does support code formatting using black but then I'll need to install
 " an extra pyls-black pip package. Why bother with that when ale's direct
 " support for black works just fine?
 let g:ale_fixers = {
             \'python': ['black', 'isort'],
+            \'rust': ['rustfmt'],
             \}
 " As much as I loooove autoformat-on-save,
 " it's a no-go for projects at work (for now...?)
