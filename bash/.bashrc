@@ -1,7 +1,7 @@
 # shellcheck source=/dev/null
 
 export DOTFILES="$HOME/neodots"
-export PRIVATE_DOTFILES="$HOME/Dropbox/privdots"
+export PRIVATE_DOTFILES="$HOME/Sync/Syncbox/privdots"
 
 # Sensible™ defaults
 source "$DOTFILES/bash/sensible.bash"
