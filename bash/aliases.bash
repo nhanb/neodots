@@ -80,3 +80,7 @@ vman() {
         echo "No manual entry for $*"
     fi
 }
+
+trim() {
+    awk '{$1=$1};1'
+}
