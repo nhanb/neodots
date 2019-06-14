@@ -204,7 +204,7 @@ set list
 " Hail tpope (again):
 " https://github.com/neovim/neovim/blob/ece19b459c082eae05b5c480f6ee91181f002c02/runtime/syntax/markdown.vim#L18-L28
 let g:markdown_fenced_languages = ['python', 'sh', 'json', 'javascript',
-            \'nim', 'vim', 'sql', 'yaml', 'rust']
+            \'vim', 'sql', 'yaml', 'rust']
 
 " ===== Plugins =====
 so $HOME/.config/nvim/plugs.vim

@@ -19,6 +19,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'justinmk/vim-sneak'
 Plug 'inside/vim-search-pulse'
 Plug 'ElmCast/elm-vim'
+Plug 'peterhoeg/vim-qml'
 " }}}
 
 " local vimrc {{{
@@ -205,6 +206,8 @@ let g:ale_linters = {
             \'python': ['pyls'],
             \'rust': ['rls'],
             \'elm': ['make'],
+            \'qml': ['qmllint'],
+            \'sh': ['shellcheck'],
             \}
 " Pyls does support code formatting using black but then I'll need to install
 " an extra pyls-black pip package. Why bother with that when ale's direct
@@ -213,6 +216,7 @@ let g:ale_fixers = {
             \'python': ['black', 'isort'],
             \'rust': ['rustfmt'],
             \'elm': ['elm-format'],
+            \'qml': ['qmlfmt'],
             \}
 " As much as I loooove autoformat-on-save,
 " it's a no-go for projects at work (for now...?)
