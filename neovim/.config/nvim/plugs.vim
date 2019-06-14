@@ -21,11 +21,6 @@ Plug 'inside/vim-search-pulse'
 Plug 'ElmCast/elm-vim'
 " }}}
 
-" nim-lang {{{
-" ================================================================
-Plug 'nhanb/nim.nvim'
-let g:nim_fold = 0
-"}}}
 " local vimrc {{{
 " ================================================================
 Plug 'MarcWeber/vim-addon-local-vimrc'
