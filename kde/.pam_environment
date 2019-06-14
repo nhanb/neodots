@@ -3,4 +3,5 @@ SSH_ASKPASS="ksshaskpass"
 
 GTK_IM_MODULE=fcitx
 QT_IM_MODULE=fcitx
+XIM=fcitx
 XMODIFIERS=@im=fcitx
