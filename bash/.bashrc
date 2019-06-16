@@ -35,11 +35,6 @@ if [ -d "$HOME/binaries" ]; then
     export PATH="$HOME/binaries:$PATH"
 fi
 
-# pyenv
-if [ -d "$HOME/.pyenv" ]; then
-    source "$DOTFILES/bash/pyenv.bash"
-fi
-
 # ruby gems
 if [ -d "$HOME/.gem/ruby/2.5.0/bin" ]; then
     export PATH="$HOME/.gem/ruby/2.5.0/bin:$PATH"
@@ -56,11 +51,6 @@ fi
 # kitty terminal
 if [ -d "$HOME/.local/kitty.app" ]; then
     export PATH="$HOME/.local/kitty.app/bin:$PATH"
-fi
-
-# proper python package manager
-if [ -d "$HOME/.poetry" ]; then
-    export PATH="$HOME/.poetry/bin:$PATH"
 fi
 
 # nim
