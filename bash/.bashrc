@@ -73,11 +73,6 @@ if [ -d "$HOME/.gem/ruby/2.6.0/bin" ]; then
     export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
 fi
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # When using Arch Linux OS-provided `npm` package, the following allows me to
 # use `npm install -g` as a user-wide installation instead of trashing
 # /usr/lib/node_modules like a neanderthal.
