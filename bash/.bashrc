@@ -7,8 +7,6 @@ export PRIVATE_DOTFILES="$HOME/Sync/Syncbox/privdots"
 source "$DOTFILES/bash/sensible.bash"
 source "$DOTFILES/bash/xubuntu.bash"
 
-export SSH_ASKPASS="ksshaskpass"
-
 # The only proper editor
 export EDITOR=nvim
 export GIT_EDITOR="$EDITOR"
