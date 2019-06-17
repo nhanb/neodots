@@ -41,6 +41,12 @@ fi
 # added by pipsi (https://github.com/mitsuhiko/pipsi)
 export PATH="/home/nhanb/.local/bin:$PATH"
 
+# Arch linux has official pyenv package now but not pyenv-virtualenv,
+# so I still have to stick to self-installed pyenv for now...
+if [ -d "$HOME/.pyenv" ]; then
+    source "$DOTFILES/bash/pyenv.bash"
+fi
+
 # rust
 if [ -d "$HOME/.cargo" ]; then
     export PATH="$HOME/.cargo/bin:$PATH"
