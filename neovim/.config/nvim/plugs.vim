@@ -20,6 +20,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'inside/vim-search-pulse'
 Plug 'ElmCast/elm-vim'
 Plug 'peterhoeg/vim-qml'
+Plug 'nucleic/enaml', { 'rtp': 'tools/vim' }
 " }}}
 
 " local vimrc {{{
