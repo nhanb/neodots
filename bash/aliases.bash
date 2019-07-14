@@ -71,6 +71,12 @@ psh () {
     this_dir=$(basename "$PWD")
     parent_dir=`basename $(dirname "$PWD")`
     container_name="${parent_dir}_${this_dir}_1"
+    docker exec -it "$container_name" bash
+}
+psu () {
+    this_dir=$(basename "$PWD")
+    parent_dir=`basename $(dirname "$PWD")`
+    container_name="${parent_dir}_${this_dir}_1"
     docker exec -it "$container_name" su
 }
 
