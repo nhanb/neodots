@@ -6,6 +6,9 @@ setlocal colorcolumn=+1
 setlocal smarttab
 setlocal expandtab
 
+" don't wrap long lines in insert mode
+set formatoptions-=t
+
 :iab iipdb __import__("ipdb").set_trace()
 :iab ipdbs __import__("ipdb").set_trace()
 :iab pdbs __import__("ipdb").set_trace()
