@@ -18,6 +18,9 @@ set noerrorbells         " don't beep
 set colorcolumn=+1       " draw colorcolumn 1 char after max textwidth
 let loaded_matchparen = 0 " matching paren highlighting is distracting
 
+" Help vim detect certain file types
+autocmd BufNewFile,BufRead poetry.lock set filetype=toml
+
 " Correctly highlight long multiline strings:
 " https://vi.stackexchange.com/a/15034
 syntax sync fromstart
