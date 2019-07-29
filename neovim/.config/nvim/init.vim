@@ -76,8 +76,8 @@ set pastetoggle=<F10>
 " F7 Clean ^M characters from Windows files
 nnoremap <f7> :%s/<c-v><c-m>//g<cr>
 
-" Tidy up with html5-tidy
-nnoremap <f8> :%!tidy<space>-q<space>-i<space>--show-errors<space>0<cr>
+" F8 to do a 'star search' (asterisk) without jumping to next match
+nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
 " Up Down Left Right to adjust current split size
 nnoremap <up> <c-w>+
