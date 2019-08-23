@@ -218,6 +218,8 @@ let g:ale_fixers = {
             \'rust': ['rustfmt'],
             \'elm': ['elm-format'],
             \'qml': ['qmlfmt'],
+            \'html': ['prettier'],
+            \'javascript': ['prettier'],
             \}
 " As much as I loooove autoformat-on-save,
 " it's a no-go for projects at work (for now...?)
