@@ -1,0 +1,5 @@
+[includeIf "gitdir:~/parcel/"]
+    path = ~/neodots/git/.gitconfig.pp
+
+[includeIf "gitdir:~/pj/"]
+    path = ~/neodots/git/.gitconfig.oss
