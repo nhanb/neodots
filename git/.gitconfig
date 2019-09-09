@@ -3,3 +3,6 @@
 
 [includeIf "gitdir:~/pj/"]
     path = ~/neodots/git/.gitconfig.oss
+
+[includeIf "gitdir:~/neodots/"]
+    path = ~/neodots/git/.gitconfig.oss
