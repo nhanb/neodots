@@ -14,7 +14,6 @@ export VISUAL="$EDITOR"
 alias vim=nvim
 alias vi=nvim
 
-
 # General-purpose aliases
 source "$DOTFILES/bash/aliases.bash"
 
@@ -47,19 +46,9 @@ if [ -d "$HOME/.pyenv" ]; then
     source "$DOTFILES/bash/pyenv.bash"
 fi
 
-# rust
-if [ -d "$HOME/.cargo" ]; then
-    export PATH="$HOME/.cargo/bin:$PATH"
-fi
-
 # kitty terminal
 if [ -d "$HOME/.local/kitty.app" ]; then
     export PATH="$HOME/.local/kitty.app/bin:$PATH"
-fi
-
-# nim
-if [ -d "$HOME/.nimble" ]; then
-    export PATH="$HOME/.nimble/bin:$PATH"
 fi
 
 # ruby

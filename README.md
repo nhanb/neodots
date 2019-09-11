@@ -6,7 +6,7 @@ Usage:
 $ cd ~
 $ git clone <neodots-git-url>
 $ cd neodots
-$ ./setup.sh
+$ ./init.py
 ```
 
 # Neovim
