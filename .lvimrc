@@ -1,4 +1,3 @@
 augroup LOCAL_SETUP
-    " Just for demo purposes. This option is already in plugs.vim:
-    let NERDTreeShowHidden=1
+    let g:ale_fix_on_save = 1
 augroup end
