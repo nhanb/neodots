@@ -1,0 +1,20 @@
+[Desktop Entry]
+Comment[en_US]=Manually installed Postman
+Comment=Manually installed Postman
+Exec=$HOME/Applications/Postman/Postman
+GenericName[en_US]=
+GenericName=
+Icon=/home/nhanb/Applications/Postman/app/resources/app/assets/icon.png
+MimeType=
+Name[en_US]=Postman
+Name=Postman
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=1.0
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=
