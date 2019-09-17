@@ -26,3 +26,6 @@ ignore =
     W503
     W504
     W505
+
+    # mccabe
+    C901
