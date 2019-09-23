@@ -209,6 +209,7 @@ let g:ale_linters = {
             \'elm': ['make'],
             \'qml': ['qmllint'],
             \'sh': ['shellcheck'],
+            \'markdown': [],
             \}
 " Pyls does support code formatting using black but then I'll need to install
 " an extra pyls-black pip package. Why bother with that when ale's direct
