@@ -69,24 +69,28 @@ alias ds=docker-switch
 # Helpers to open shells in running docker containers managed by docker-compose:
 psh () {
     this_dir=$(basename "$PWD")
-    parent_dir=`basename $(dirname "$PWD")`
+    parent_dir=$(basename "$(dirname "$PWD")")
     container_name="${parent_dir}_${this_dir}_1"
     docker exec -it "$container_name" bash
 }
 psu () {
     this_dir=$(basename "$PWD")
-    parent_dir=`basename $(dirname "$PWD")`
+    parent_dir=$(basename "$(dirname "$PWD")")
     container_name="${parent_dir}_${this_dir}_1"
     docker exec -it "$container_name" su
 }
 
 vman() {
-    vim -c "SuperMan $*"
-    if [ "$?" != "0" ]; then
+    if ! vim -c "SuperMan $*"; then
         echo "No manual entry for $*"
     fi
 }
 
 trim() {
     awk '{$1=$1};1'
+}
+
+function dockerenv () {
+    echo -e "Switching to \e[1m~/.docker/config.$1.json\e[0m"
+    cp "$HOME/.docker/config.$1.json" "$HOME/.docker/config.json"
 }
