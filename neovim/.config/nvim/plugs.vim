@@ -189,6 +189,9 @@ let g:airline_theme='powerlineish'
 let g:ale_completion_enabled = 1
 Plug 'w0rp/ale'
 
+" TODO figure out how to make this play nicely with pyenv virtualenvs
+"let g:ale_virtualenv_dir_names = ['/home/nhanb/.pyenv/versions/pp_data_io']
+
 let g:ale_python_pyls_config = {
             \   'pyls': {
             \     'configurationSources': ['flake8'],
