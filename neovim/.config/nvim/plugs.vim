@@ -21,6 +21,7 @@ Plug 'inside/vim-search-pulse'
 Plug 'ElmCast/elm-vim'
 Plug 'peterhoeg/vim-qml'
 Plug 'nucleic/enaml', { 'rtp': 'tools/vim' }
+Plug 'airblade/vim-rooter'
 " }}}
 
 " local vimrc {{{
@@ -189,8 +190,9 @@ let g:airline_theme='powerlineish'
 let g:ale_completion_enabled = 1
 Plug 'w0rp/ale'
 
-" TODO figure out how to make this play nicely with pyenv virtualenvs
-"let g:ale_virtualenv_dir_names = ['/home/nhanb/.pyenv/versions/pp_data_io']
+" Let Ale look for virtualenv in ~/.pyenv/versions/<current_project_dir_name>
+" FindRootDirectory() is provided by vim-rooter plugin
+autocmd BufNewFile,BufRead ~/parcel/*.py,~/pj/*.py let b:ale_virtualenv_dir_names = ['.pyenv/versions/' . split(FindRootDirectory(), '/')[-1]]
 
 let g:ale_python_pyls_config = {
             \   'pyls': {
