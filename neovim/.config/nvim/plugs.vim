@@ -21,6 +21,7 @@ Plug 'inside/vim-search-pulse'
 Plug 'ElmCast/elm-vim'
 Plug 'peterhoeg/vim-qml'
 Plug 'nucleic/enaml', { 'rtp': 'tools/vim' }
+Plug 'airblade/vim-rooter'
 " }}}
 
 " local vimrc {{{
