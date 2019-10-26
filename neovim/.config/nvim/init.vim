@@ -15,6 +15,7 @@ set undolevels=7777      " use many muchos levels of undo
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set title                " change the terminal's title
 set noerrorbells         " don't beep
+set textwidth=79
 set colorcolumn=+1       " draw colorcolumn 1 char after max textwidth
 let loaded_matchparen = 0 " matching paren highlighting is distracting
 
