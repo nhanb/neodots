@@ -11,14 +11,10 @@ $ ./setup.sh
 
 # Neovim
 
-My setup assumes pynvim is installed in its own dedicated virtualenv.
-Something like this should work:
+This setup assumes pynvim is installed, which is trivial on Arch Linux:
 
 ```sh
-pyenv virtualenv 3.7.3 neovim3
-pyenv activate neovim3
-pip install pynvim
-# rinse & repeat for neovim2
+sudo pacman -S python-pynvim
 ```
 
 IDE-like features for python are all provided by Ale, which shells out to:

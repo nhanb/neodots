@@ -26,6 +26,13 @@ autocmd BufNewFile,BufRead poetry.lock set filetype=toml
 " https://vi.stackexchange.com/a/15034
 syntax sync fromstart
 
+" Disable py2 provider:
+let g:loaded_python_provider = 0
+
+" Set system python as py3 provider.
+" This assumes I have installed the Arch Linux `python-pynvim` package.
+let g:python3_host_prog = '/usr/bin/python'
+
 " Keep temporary files in mybackupdir
 let mybackupdir=$HOME.'/.vim_backup'
 if !isdirectory(mybackupdir)

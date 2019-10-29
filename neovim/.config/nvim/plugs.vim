@@ -236,8 +236,6 @@ let g:ale_fixers = {
 "let g:ale_fix_on_save = 1
 nnoremap <leader>lf :ALEFix<cr>
 
-let g:python_host_prog = '/home/nhanb/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/home/nhanb/.pyenv/versions/neovim3/bin/python'
 " Enable tab completion in addition to <C-n> / <C-p>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
