@@ -33,38 +33,15 @@ if [ -d "$HOME/binaries" ]; then
     export PATH="$HOME/binaries:$PATH"
 fi
 
-# ruby gems
-if [ -d "$HOME/.gem/ruby/2.5.0/bin" ]; then
-    export PATH="$HOME/.gem/ruby/2.5.0/bin:$PATH"
-fi
-
-# added by pipsi (https://github.com/mitsuhiko/pipsi)
-export PATH="/home/nhanb/.local/bin:$PATH"
-
 # Arch linux has official pyenv package now but not pyenv-virtualenv,
 # so I still have to stick to self-installed pyenv for now...
 if [ -d "$HOME/.pyenv" ]; then
     source "$DOTFILES/bash/pyenv.bash"
 fi
 
-# rust
-if [ -d "$HOME/.cargo" ]; then
-    export PATH="$HOME/.cargo/bin:$PATH"
-fi
-
-# kitty terminal
-if [ -d "$HOME/.local/kitty.app" ]; then
-    export PATH="$HOME/.local/kitty.app/bin:$PATH"
-fi
-
 # nim
 if [ -d "$HOME/.nimble" ]; then
     export PATH="$HOME/.nimble/bin:$PATH"
-fi
-
-# ruby
-if [ -d "$HOME/.gem/ruby/2.6.0/bin" ]; then
-    export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
 fi
 
 # When using Arch Linux OS-provided `npm` package, the following allows me to
