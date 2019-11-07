@@ -22,6 +22,7 @@ Plug 'ElmCast/elm-vim'
 Plug 'peterhoeg/vim-qml'
 Plug 'nucleic/enaml', { 'rtp': 'tools/vim' }
 Plug 'airblade/vim-rooter'
+Plug 'zah/nim.vim'
 " }}}
 
 " local vimrc {{{
@@ -218,7 +219,11 @@ let g:ale_linters = {
             \'qml': ['qmllint'],
             \'sh': ['shellcheck'],
             \'markdown': [],
+            \'nim': ['nimlsp'],
             \}
+
+let g:ale_nim_nimlsp_nim_sources = '/home/nhanb/.choosenim/toolchains/nim-1.0.2'
+
 " Pyls does support code formatting using black but then I'll need to install
 " an extra pyls-black pip package. Why bother with that when ale's direct
 " support for black works just fine?

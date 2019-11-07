@@ -14,7 +14,6 @@ export VISUAL="$EDITOR"
 alias vim=nvim
 alias vi=nvim
 
-
 # General-purpose aliases
 source "$DOTFILES/bash/aliases.bash"
 
