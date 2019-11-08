@@ -14,23 +14,28 @@ $ ./setup.sh
 This setup assumes pynvim is installed, which is trivial on Arch Linux:
 
 ```sh
-sudo pacman -S python-pynvim
+sudo pacman -S python-pynvim \
+       flake8 python-black python-isort  # for Ale
 ```
 
-IDE-like features for python are all provided by Ale, which shells out to:
+YouCompleteMe provides semantic autocomplete & goto while Ale provides linting
+and autoformat. I tried to use Ale + language servers for everything in the
+past but that didn't work out too well.
 
-- **pyls** for linting and go to definition (which is configured to use
-  **flake8** under the hood)
-- **black** and **isort** for code formatting
+## Starting a typical python project:
 
 ```sh
-# casual coding:
-sudo pacman -S python-language-server flake8 python-black python-isort
+mkcd -p ~/pj/my_project  # mkdir & cd into it
+mkpyenv 3.7.5  # create pyenv virtualenv named after current dir
 
-# for proper projects I prefer to pin tooling versions too:
-pyenv virtualenv 3.7.3 my_project
-pyenv activate my_project
-poetry add --dev python-language-server flake8 black isort
+# Then install deps into virtualenv to help YCM with autocomplete and
+# go-to-definition. Only need to do this once every time deps are changed.
+actpyenv
+poetry install  # you're using poetry right?
+source deactivate
+# No need to keep virtualenv activated since I've configured YCM to look for
+# virtualenvs based on current file's path. Check neovim/.config/nvim/plugs.vim
+# for details.
 ```
 
 [1]: https://www.gnu.org/software/stow/

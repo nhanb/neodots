@@ -1,4 +1,5 @@
 [flake8]
 ignore =
-    E501 # long line
-    C901 # mccabe
+    E501 # long line - taken care of by black already
+    E266 # too many leading '#' for block comment - wtf?
+    C901 # mccabe - I'll judge how complex my code is thank you very much
