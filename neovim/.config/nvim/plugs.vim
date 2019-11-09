@@ -218,7 +218,7 @@ autocmd BufNewFile,BufRead ~/parcel/*.py,~/pj/*.py call SetVirtualenvPath()
 " }}}
 " Ale for linting and autoformat only {{{
 " ================================================================
-Plug 'w0rp/ale'
+Plug 'nhanb/ale'
 
 let g:ale_linters = {
             \'python': ['flake8'],
@@ -241,6 +241,7 @@ let g:ale_fixers = {
             \'html': ['prettier'],
             \'javascript': ['prettier'],
             \'sh': ['shfmt'],
+            \'nim': ['nimpretty'],
             \}
 " As much as I loooove autoformat-on-save,
 " it's a no-go for projects at work (for now...?)
