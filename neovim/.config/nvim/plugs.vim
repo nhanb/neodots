@@ -218,7 +218,7 @@ autocmd BufNewFile,BufRead ~/parcel/*.py,~/pj/*.py call SetVirtualenvPath()
 " }}}
 " Ale for linting and autoformat only {{{
 " ================================================================
-Plug 'nhanb/ale'
+Plug 'dense-analysis/ale'
 
 let g:ale_linters = {
             \'python': ['flake8'],
