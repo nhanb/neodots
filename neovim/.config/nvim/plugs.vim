@@ -189,13 +189,12 @@ let g:airline_theme='powerlineish'
 " ================================================================
 " ale_completion_enabled must be set before loading ale
 let g:ale_completion_enabled = 1
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
 " Let Ale look for virtualenv in ~/.pyenv/versions/<current_project_dir_name>
 autocmd BufNewFile,BufRead ~/parcel/*.py,~/pj/*.py
-            \ let b:ale_virtualenv_dir_names = [
-            \     '.pyenv/versions/' .
-            \     split(ale#python#FindProjectRoot(bufnr('%')), '/')[-1]
+            \ let g:ale_virtualenv_dir_names = [
+            \     expand('~/.pyenv/versions/') . split(FindRootDirectory(), '/')[-1]
             \ ]
 
 let g:ale_python_pyls_config = {
@@ -222,7 +221,7 @@ let g:ale_linters = {
             \'nim': ['nimlsp'],
             \}
 
-let g:ale_nim_nimlsp_nim_sources = '/home/nhanb/.choosenim/toolchains/nim-1.0.2'
+"let g:ale_nim_nimlsp_nim_sources = '/home/nhanb/.choosenim/toolchains/nim-1.0.2'
 
 " Pyls does support code formatting using black but then I'll need to install
 " an extra pyls-black pip package. Why bother with that when ale's direct
@@ -235,6 +234,7 @@ let g:ale_fixers = {
             \'html': ['prettier'],
             \'javascript': ['prettier'],
             \'sh': ['shfmt'],
+            \'nim': ['nimpretty'],
             \}
 " As much as I loooove autoformat-on-save,
 " it's a no-go for projects at work (for now...?)
