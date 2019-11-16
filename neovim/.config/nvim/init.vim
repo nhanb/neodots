@@ -1,3 +1,7 @@
+if &shell =~# 'fish$'
+    set shell=sh
+endif
+
 set tabstop=4 expandtab softtabstop=4
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting

@@ -9,6 +9,7 @@ targets=(
     kitty
     neovim
     tmux
+    fish
 )
 for target in "${targets[@]}"; do
     stow "$target"

@@ -23,6 +23,7 @@ Plug 'peterhoeg/vim-qml'
 Plug 'nucleic/enaml', { 'rtp': 'tools/vim' }
 Plug 'airblade/vim-rooter'
 Plug 'zah/nim.vim'
+Plug 'dag/vim-fish'
 " }}}
 
 " local vimrc {{{
