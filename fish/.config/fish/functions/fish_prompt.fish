@@ -28,7 +28,14 @@ function fish_prompt --description 'Write out the prompt'
     set_color normal
 
     __fish_git_prompt
-    #__fish_hg_prompt  # not working with hg atm tho
+
+    # Virtualenv
+    if set -q VIRTUAL_ENV
+        set_color magenta
+        echo -n -s " [" (basename "$VIRTUAL_ENV") "]"
+        set_color normal
+    end
+
     echo
 
     if not test $last_status -eq 0

@@ -69,6 +69,5 @@ set npm_config_prefix "$HOME/.node_modules"
 
 # Pyenv is a bit more involved
 if test -d ~/.pyenv
-    set PATH "$HOME/.pyenv/bin" $PATH
-    source (pyenv init - | psub)
+    source ~/neodots/fish/pyenv.fish
 end
