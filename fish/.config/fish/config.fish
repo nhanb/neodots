@@ -12,6 +12,7 @@ set -Ux VISUAL nvim
 abbr -a -g py3 python3
 abbr -a -g py python
 abbr -a -g bpy bpython
+abbr -a -g pup pip install --upgrade pip
 
 # git
 abbr -a -g g git
