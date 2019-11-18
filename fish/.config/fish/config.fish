@@ -61,11 +61,16 @@ function psu
 end
 
 # PATH stuff
-set PATH \
+set extra_paths \
     "$HOME/binaries" \
     "$HOME/.nimble/bin" \
-    "$HOME/.node_modules/bin" \
-    $PATH
+    "$HOME/.node_modules/bin"
+for extra_path in $extra_paths
+    if not contains $extra_path $PATH
+        set PATH $extra_path $PATH
+    end
+end
+
 set npm_config_prefix "$HOME/.node_modules"
 
 # Pyenv is a bit more involved
