@@ -243,6 +243,7 @@ let g:ale_fixers = {
             \'javascript': ['prettier'],
             \'sh': ['shfmt'],
             \'nim': ['nimpretty'],
+            \'c': ['clang-format'],
             \}
 " As much as I loooove autoformat-on-save,
 " it's a no-go for projects at work (for now...?)

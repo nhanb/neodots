@@ -32,6 +32,9 @@ abbr -a -g gco git checkout
 abbr -a -g gb git branch
 abbr -a -g gm git merge
 
+# C stuff
+abbr -a -g gdbb gdb --batch --ex run --ex bt --ex q --args
+
 # load tmuxp session
 abbr -a -g tm 'tmuxp load'
 
