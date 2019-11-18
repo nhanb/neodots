@@ -14,7 +14,7 @@ function fish_prompt --description 'Write out the prompt'
     set -l last_status $status
 
     # User & Host
-    set_color --bold yellow
+    set_color --bold ff0
     echo -n (whoami)
     echo -n '@'
     echo -n (prompt_hostname)
@@ -23,7 +23,7 @@ function fish_prompt --description 'Write out the prompt'
     echo -n ' '
 
     # PWD
-    set_color --bold green
+    set_color --bold 0f0
     echo -n (prompt_pwd)
     set_color normal
 
@@ -31,7 +31,7 @@ function fish_prompt --description 'Write out the prompt'
 
     # Virtualenv
     if set -q VIRTUAL_ENV
-        set_color magenta
+        set_color ffa500
         echo -n -s " [" (basename "$VIRTUAL_ENV") "]"
         set_color normal
     end
@@ -39,10 +39,11 @@ function fish_prompt --description 'Write out the prompt'
     echo
 
     if not test $last_status -eq 0
-        set_color red
+        set_color f00
         echo -n "$last_status "
     end
 
-    set_color normal
+    set_color --bold fff
     echo -n '$ '
+    set_color normal
 end
