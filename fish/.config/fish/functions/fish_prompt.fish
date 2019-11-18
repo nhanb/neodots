@@ -38,9 +38,18 @@ function fish_prompt --description 'Write out the prompt'
 
     echo
 
+    # Show "fg" if there's a backgrounded job that can be restored with `fg`
+    if jobs -q
+        set_color --bold 0ff
+        echo -n "fg "
+        set_color normal
+    end
+
+    # Error code of last command
     if not test $last_status -eq 0
-        set_color f00
+        set_color --bold f44
         echo -n "$last_status "
+        set_color normal
     end
 
     set_color --bold fff
