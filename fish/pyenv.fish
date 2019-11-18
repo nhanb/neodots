@@ -6,13 +6,12 @@ source (pyenv init - | psub)
 source (pyenv virtualenv-init - | psub)
 
 # Activate virtualenv with the same name as current dir
-function actpyenv
-    pyenv activate (basename $PWD)
-end
+abbr -a -g pyact 'pyenv activate (basename $PWD)'
+abbr -a -g pydeact pyenv deactivate
 
 # Make pyenv virtualenv using current directory as name.
 # Takes 1 arg: python version, which will be installed if necessary.
-function mkpyenv
+function pymk
     if [ (count $argv) != 1 ]
         echo 'Must provide only 1 argument for python version'
         return 1
