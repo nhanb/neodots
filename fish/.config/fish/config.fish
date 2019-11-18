@@ -77,3 +77,11 @@ set npm_config_prefix "$HOME/.node_modules"
 if test -d ~/.pyenv
     source ~/neodots/fish/pyenv.fish
 end
+
+# Private work-related tools
+set PRIVATE_DOTFILES "$HOME/Sync/Syncbox/privdots"
+if test -d $PRIVATE_DOTFILES
+    for privfile in $PRIVATE_DOTFILES/*.fish
+        source $privfile
+    end
+end
