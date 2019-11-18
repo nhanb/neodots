@@ -63,6 +63,7 @@ end
 # PATH stuff
 set extra_paths \
     "$HOME/binaries" \
+    "$HOME/.local/bin" \
     "$HOME/.nimble/bin" \
     "$HOME/.node_modules/bin"
 for extra_path in $extra_paths
