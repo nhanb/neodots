@@ -250,6 +250,13 @@ let g:ale_fixers = {
 "let g:ale_fix_on_save = 1
 nnoremap <leader>lf :ALEFix<cr>
 " }}}
+" Git Messenger {{{
+" ================================================================
+Plug 'rhysd/git-messenger.vim'
+
+" I don't use the default `gm` anyway
+nnoremap gm :GitMessenger<cr>
+" }}}
 
 " Initialize plugin system
 call plug#end()
