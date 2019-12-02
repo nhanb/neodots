@@ -13,6 +13,8 @@ abbr -a -g py3 python3
 abbr -a -g py python
 abbr -a -g bpy bpython
 abbr -a -g pup pip install --upgrade pip
+abbr -a -g pr poetry run
+abbr -a -g prp poetry run python
 
 # git
 abbr -a -g g git
