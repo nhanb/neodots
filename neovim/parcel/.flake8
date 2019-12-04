@@ -12,6 +12,7 @@ ignore =
     E701 # multiple statements on one line (colon)
     E702 # multiple statements on one line (semicolon)
     E226 # missing whitespace around arithmetic operator
+    E301 # expected 1 blank line, found 0
     E302 # expected 2 blank lines, found 0
     E123 # closing bracket does not match indentation of opening bracket’s line
     W503 # line break before binary operator
