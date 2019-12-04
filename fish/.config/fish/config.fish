@@ -34,6 +34,9 @@ abbr -a -g gco git checkout
 abbr -a -g gb git branch
 abbr -a -g gm git merge
 
+# docker *dun dun dunnnnn*
+abbr -a -g dc docker-compose
+
 # C stuff
 abbr -a -g gdbb gdb --batch --ex run --ex bt --ex q --args
 
