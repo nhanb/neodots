@@ -46,6 +46,9 @@ abbr -a -g tm 'tmuxp load'
 # make sure no weird TERM for ssh sessions
 abbr -a -g ssh env TERM=screen-256color ssh
 
+# project-specific
+abbr -a -g mn caophim-manage
+
 # mkdir then cd into it
 function mkcd
     mkdir -pv $argv
