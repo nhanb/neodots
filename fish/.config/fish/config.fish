@@ -46,6 +46,9 @@ abbr -a -g tm 'tmuxp load'
 # make sure no weird TERM for ssh sessions
 abbr -a -g ssh env TERM=screen-256color ssh
 
+# misc stuff
+abbr -a -g time time -p
+
 # project-specific
 abbr -a -g mn caophim-manage
 
