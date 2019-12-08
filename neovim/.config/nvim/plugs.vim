@@ -245,6 +245,7 @@ let g:ale_fixers = {
             \'nim': ['nimpretty'],
             \'c': ['clang-format'],
             \'css': ['prettier'],
+            \'json': ['prettier'],
             \}
 " As much as I loooove autoformat-on-save,
 " it's a no-go for projects at work (for now...?)
