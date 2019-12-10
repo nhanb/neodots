@@ -100,3 +100,6 @@ if test -d $PRIVATE_DOTFILES
         source $privfile
     end
 end
+
+# Default imports for python
+set -Ux PYTHONSTARTUP "$HOME/.pythonrc.py"
