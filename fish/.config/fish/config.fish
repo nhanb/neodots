@@ -103,3 +103,7 @@ end
 
 # Default imports for python
 set -Ux PYTHONSTARTUP "$HOME/.pythonrc.py"
+
+# Qt/Kirigami stuff
+set QT_QUICK_CONTROLS_MOBILE 0
+set QT_QUICK_CONTROLS_STYLE org.kde.desktop
