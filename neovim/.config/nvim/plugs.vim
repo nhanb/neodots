@@ -222,7 +222,7 @@ autocmd BufNewFile,BufRead ~/parcel/*.py,~/pj/*.py call SetVirtualenvPath()
 Plug 'dense-analysis/ale'
 
 let g:ale_linters = {
-            \'python': ['flake8'],
+            \'python': ['flake8', 'mypy'],
             \'rust': ['rls'],
             \'elm': ['make'],
             \'qml': ['qmllint'],
