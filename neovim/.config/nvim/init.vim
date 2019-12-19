@@ -26,10 +26,6 @@ let loaded_matchparen = 0 " matching paren highlighting is distracting
 " Help vim detect certain file types
 autocmd BufNewFile,BufRead poetry.lock set filetype=toml
 
-" Correctly highlight long multiline strings:
-" https://vi.stackexchange.com/a/15034
-syntax sync fromstart
-
 " Disable py2 provider:
 let g:loaded_python_provider = 0
 
