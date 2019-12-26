@@ -3,3 +3,7 @@
 " This is simply copied from tpope's syntax file but with `_` removed from the
 " pattern.
 syn match markdownError "\w\@<=\w\@="
+
+" Correctly highlight long multiline strings:
+" https://vi.stackexchange.com/a/15034
+syntax sync fromstart
