@@ -24,6 +24,7 @@ Plug 'nucleic/enaml', { 'rtp': 'tools/vim' }
 Plug 'airblade/vim-rooter'
 Plug 'zah/nim.vim'
 Plug 'dag/vim-fish'
+Plug 'mattn/emmet-vim'
 " }}}
 
 " local vimrc {{{
