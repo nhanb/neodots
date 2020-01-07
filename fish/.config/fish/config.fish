@@ -94,7 +94,7 @@ if test -d ~/.pyenv
 end
 
 # Private work-related tools
-set PRIVATE_DOTFILES "$HOME/Sync/Syncbox/privdots"
+set PRIVATE_DOTFILES "$HOME/Dropbox/privdots"
 if test -d $PRIVATE_DOTFILES
     for privfile in $PRIVATE_DOTFILES/*.fish
         source $privfile
