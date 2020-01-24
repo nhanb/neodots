@@ -243,7 +243,7 @@ let g:ale_fixers = {
             \'html': ['prettier'],
             \'javascript': ['prettier'],
             \'sh': ['shfmt'],
-            \'nim': ['nimpretty'],
+            \'nim': [],
             \'c': ['clang-format'],
             \'css': ['prettier'],
             \'json': ['prettier'],
