@@ -187,50 +187,45 @@ Plug 'vim-airline/vim-airline-themes'
 
 let g:airline_theme='powerlineish'
 " }}}
-" YouCompleteMe {{{
+" Ale with LSP support {{{
 " ================================================================
-Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
-
-nnoremap gd :YcmCompleter GoTo<cr>
-nnoremap gr :YcmCompleter GoToReferences<cr>
-
-" This whole dance is basically to allow using g:ycm_python_interpreter_path
-" and g:ycm_python_sys_path for static analysis:
-" (copied from :h youcompleteme-configuring-through-vim-options)
-let g:ycm_python_interpreter_path = ''
-let g:ycm_python_sys_path = []
-let g:ycm_extra_conf_vim_data = [
-            \  'g:ycm_python_interpreter_path',
-            \  'g:ycm_python_sys_path'
-            \]
-let g:ycm_global_ycm_extra_conf = '~/neodots/neovim/ycm_global_extra_conf.py'
-
-" Now we can tell YCM to look for virtualenv in
-" ~/.pyenv/versions/<current_project_dir_name>
-function! SetVirtualenvPath()
-    let syspath = expand('~/.pyenv/versions/') . split(FindRootDirectory(), '/')[-1]
-    let pypath = syspath . '/bin/python'
-    if filereadable(pypath)
-        let g:ycm_python_interpreter_path = pypath
-        let g:ycm_python_sys_path = [syspath]
-    endif
-endfunction
-autocmd BufNewFile,BufRead ~/parcel/*.py,~/pj/*.py call SetVirtualenvPath()
-
-" }}}
-" Ale for linting and autoformat only {{{
-" ================================================================
+" ale_completion_enabled must be set before loading ale
+let g:ale_completion_enabled = 1
 Plug 'dense-analysis/ale'
 
+" Let Ale look for virtualenv in ~/.pyenv/versions/<current_project_dir_name>
+" (FindRootDirectory function provided by vim-rooter)
+autocmd BufNewFile,BufRead ~/parcel/*.py,~/pj/*.py
+            \ let b:ale_virtualenv_dir_names = [
+            \     '/home/nhanb/.pyenv/versions/' .
+            \     split(FindRootDirectory(), '/')[-1]
+            \ ]
+
+let g:ale_python_pyls_config = {
+            \   'pyls': {
+            \     'configurationSources': ['flake8'],
+            \     'plugins': {
+            \       'pycodestyle': {
+            \         'enabled': v:false
+            \       }
+            \     }
+            \   }
+            \ }
+nnoremap gd :ALEGoToDefinition<cr>
+" I prefer flake8's linter over flake8-over-pyls because for whatever dumb
+" reason the latter's error underlining is less clean, but in order for ale to
+" support goto definition, the linter must be pyls. Bummer.
 let g:ale_linters = {
-            \'python': ['flake8', 'mypy'],
+            \'python': ['pyls'],
             \'rust': ['rls'],
             \'elm': ['make'],
             \'qml': ['qmllint'],
             \'sh': ['shellcheck'],
             \'markdown': [],
-            \'nim': ['nimcheck'],
+            \'nim': ['nimlsp'],
             \}
+
+let g:ale_nim_nimlsp_nim_sources = '/home/nhanb/.choosenim/toolchains/nim-1.0.6'
 
 " Pyls does support code formatting using black but then I'll need to install
 " an extra pyls-black pip package. Why bother with that when ale's direct
@@ -252,6 +247,17 @@ let g:ale_fixers = {
 " it's a no-go for projects at work (for now...?)
 "let g:ale_fix_on_save = 1
 nnoremap <leader>lf :ALEFix<cr>
+
+" Enable tab completion in addition to <C-n> / <C-p>
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Avoid overly eager autocomplete:
+" https://github.com/w0rp/ale/issues/1700#issuecomment-405554860
+set completeopt=menu,menuone,preview,noselect,noinsert
+
+" Completion tweaks
+let g:ale_completion_delay = 0
 " }}}
 " Git Messenger {{{
 " ================================================================
