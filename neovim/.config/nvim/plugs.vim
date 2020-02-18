@@ -242,11 +242,15 @@ let g:ale_fixers = {
             \'c': ['clang-format'],
             \'css': ['prettier'],
             \'json': ['prettier'],
+            \'sql': ['sqlformat'],
             \}
 " As much as I loooove autoformat-on-save,
 " it's a no-go for projects at work (for now...?)
 "let g:ale_fix_on_save = 1
 nnoremap <leader>lf :ALEFix<cr>
+
+" pacman -S python-sqlparse
+let g:ale_sql_sqlformat_options = '-r'
 
 " Enable tab completion in addition to <C-n> / <C-p>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
