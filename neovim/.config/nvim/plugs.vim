@@ -240,7 +240,7 @@ let g:ale_fixers = {
             \'c': ['clang-format'],
             \'css': ['prettier'],
             \'json': ['prettier'],
-            \'sql': ['sqlformat'],
+            \'sql': [],
             \}
 " As much as I loooove autoformat-on-save,
 " it's a no-go for projects at work (for now...?)
