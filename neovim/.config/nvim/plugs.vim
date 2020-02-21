@@ -222,10 +222,8 @@ let g:ale_linters = {
             \'qml': ['qmllint'],
             \'sh': ['shellcheck'],
             \'markdown': [],
-            \'nim': ['nimlsp'],
+            \'nim': ['nimcheck'],
             \}
-
-let g:ale_nim_nimlsp_nim_sources = '/home/nhanb/.choosenim/toolchains/nim-1.0.6'
 
 " Pyls does support code formatting using black but then I'll need to install
 " an extra pyls-black pip package. Why bother with that when ale's direct
