@@ -104,3 +104,7 @@ set -Ux PYTHONSTARTUP "$HOME/.pythonrc.py"
 # Qt/Kirigami stuff
 set QT_QUICK_CONTROLS_MOBILE 0
 set QT_QUICK_CONTROLS_STYLE org.kde.desktop
+
+# quickly decode jwt
+# sudo pacman -S python-pyjwt
+abbr -a -g jwt pyjwt decode --no-verify
