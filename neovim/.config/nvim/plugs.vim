@@ -223,6 +223,7 @@ let g:ale_linters = {
             \'sh': ['shellcheck'],
             \'markdown': [],
             \'nim': ['nimcheck'],
+            \'javascript': ['jshint'],
             \}
 
 " Pyls does support code formatting using black but then I'll need to install
