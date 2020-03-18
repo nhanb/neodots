@@ -36,6 +36,15 @@ function fish_prompt --description 'Write out the prompt'
         set_color normal
     end
 
+    # Last command's execution time
+    if test $CMD_DURATION
+        # Show duration of the last command in seconds
+        set duration (echo "$CMD_DURATION 1000" | awk '{printf "%.2fs", $1 / $2}')
+        set_color --bold 666
+        echo -n " $duration"
+        set_color normal
+    end
+
     echo
 
     # Show "fg" if there's a backgrounded job that can be restored with `fg`
