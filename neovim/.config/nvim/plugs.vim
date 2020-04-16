@@ -25,6 +25,7 @@ Plug 'airblade/vim-rooter'
 Plug 'zah/nim.vim'
 Plug 'dag/vim-fish'
 Plug 'mattn/emmet-vim'
+Plug 'nhanb/vim-mint'
 " }}}
 
 " local vimrc {{{
