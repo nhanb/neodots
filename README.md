@@ -22,13 +22,13 @@ sudo pacman -S python-pynvim \
 
 ```sh
 mkcd -p ~/pj/my_project  # mkdir & cd into it
-mkpyenv 3.7.5  # create pyenv virtualenv named after current dir
+pymk 3.7.5  # create pyenv virtualenv named after current dir
 
 # install pyls into said virtualenv:
-actpyenv
+pyact
 poetry init  # you're using poetry right?
 poetry add -D python-language-server
-source deactivate
+pyenv deactivate
 # No need to keep virtualenv activated since I've configured ALE to look for
 # virtualenvs based on current file's path. Check neovim/.config/nvim/plugs.vim
 # for details.

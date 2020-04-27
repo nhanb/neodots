@@ -19,13 +19,13 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'justinmk/vim-sneak'
 Plug 'inside/vim-search-pulse'
 Plug 'ElmCast/elm-vim'
-Plug 'peterhoeg/vim-qml'
-Plug 'nucleic/enaml', { 'rtp': 'tools/vim' }
+"Plug 'peterhoeg/vim-qml'
+"Plug 'nucleic/enaml', { 'rtp': 'tools/vim' }
 Plug 'airblade/vim-rooter'
 Plug 'zah/nim.vim'
 Plug 'dag/vim-fish'
 Plug 'mattn/emmet-vim'
-Plug 'nhanb/vim-mint'
+"Plug 'nhanb/vim-mint'
 " }}}
 
 " local vimrc {{{
@@ -37,7 +37,7 @@ let g:local_vimrc = {'names':['.lvimrc'],'hash_fun':'LVRHashOfFile'}
 " ================================================================
 Plug 'tpope/vim-fugitive'
 Plug 'shumphrey/fugitive-gitlab.vim'
-let g:fugitive_gitlab_domains = ['https://git.parcelperform.com']
+"let g:fugitive_gitlab_domains = ['https://git.parcelperform.com']
 
 nnoremap <leader>gg :Git<space>
 nnoremap <leader>gm :Gmove<space>
@@ -196,17 +196,25 @@ Plug 'dense-analysis/ale'
 
 " Let Ale look for virtualenv in ~/.pyenv/versions/<current_project_dir_name>
 " (FindRootDirectory function provided by vim-rooter)
-autocmd BufNewFile,BufRead ~/parcel/*.py,~/pj/*.py
-            \ let b:ale_virtualenv_dir_names = [
-            \     '/home/nhanb/.pyenv/versions/' .
-            \     split(FindRootDirectory(), '/')[-1]
-            \ ]
+function UseVirtualEnvIfExists()
+    let b:rootdir = FindRootDirectory()
+    if len(b:rootdir) == 0
+        return
+    endif
+    let b:ale_virtualenv_dir_names = [
+                \     '/home/nhanb/.pyenv/versions/' .
+                \     split(b:rootdir, '/')[-1]
+                \ ]
+endfunction
+autocmd BufNewFile,BufRead ~/pj/*.py call UseVirtualEnvIfExists()
 
 let g:ale_python_pyls_config = {
             \   'pyls': {
-            \     'configurationSources': ['flake8'],
             \     'plugins': {
             \       'pycodestyle': {
+            \         'enabled': v:false
+            \       },
+            \       'flake8': {
             \         'enabled': v:false
             \       }
             \     }
@@ -214,10 +222,11 @@ let g:ale_python_pyls_config = {
             \ }
 nnoremap gd :ALEGoToDefinition<cr>
 " I prefer flake8's linter over flake8-over-pyls because for whatever dumb
-" reason the latter's error underlining is less clean, but in order for ale to
-" support goto definition, the linter must be pyls. Bummer.
+" reason the latter's error underlining is less clean, but I'll still need to
+" have pyls in ale_linters so ALE can use it for autocomplete & go-to-def. The
+" trick is to disable pyls's linting plugin (done above).
 let g:ale_linters = {
-            \'python': ['pyls'],
+            \'python': ['flake8', 'pyls'],
             \'rust': ['rls'],
             \'elm': ['make'],
             \'qml': ['qmllint'],
