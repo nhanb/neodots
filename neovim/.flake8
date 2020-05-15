@@ -4,3 +4,4 @@ ignore =
     E266 # too many leading '#' for block comment - wtf?
     C901 # mccabe - I'll judge how complex my code is thank you very much
     W503 # line break before binary operator - Incompatible with black/pep8
+    E203 # space before `:` - https://github.com/PyCQA/pycodestyle/issues/373
