@@ -109,3 +109,6 @@ set QT_QUICK_CONTROLS_STYLE org.kde.desktop
 # quickly decode jwt
 # sudo pacman -S python-pyjwt
 abbr -a -g jwt pyjwt decode --no-verify
+
+# Pytaku
+abbr -a -g pm pytaku-manage
