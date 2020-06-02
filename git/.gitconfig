@@ -3,3 +3,5 @@
 
 [includeIf "gitdir:~/neodots/"]
     path = ~/neodots/git/.gitconfig.oss
+[sendemail]
+	confirm = auto
