@@ -4,6 +4,7 @@
     name = Bùi Thành Nhân
 
 [sendemail]
+    confirm = auto
     smtpserver = smtp.fastmail.com
     smtpuser = hi@imnhan.com
     smtpencryption = tls
