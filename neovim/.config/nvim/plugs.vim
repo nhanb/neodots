@@ -188,45 +188,60 @@ Plug 'vim-airline/vim-airline-themes'
 
 let g:airline_theme='powerlineish'
 " }}}
-" Ale with LSP support {{{
+" YouCompleteMe {{{
+" ================================================================
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
+
+nnoremap gd :YcmCompleter GoTo<cr>
+nnoremap gr :YcmCompleter GoToReferences<cr>
+
+" This whole dance is basically to allow using g:ycm_python_interpreter_path
+" and g:ycm_python_sys_path for static analysis:
+" (copied from :h youcompleteme-configuring-through-vim-options)
+"let g:ycm_python_interpreter_path = ''
+"let g:ycm_python_sys_path = []
+"let g:ycm_extra_conf_vim_data = [
+"            \  'g:ycm_python_interpreter_path',
+"            \  'g:ycm_python_sys_path'
+"            \]
+"let g:ycm_global_ycm_extra_conf = '~/neodots/neovim/ycm_global_extra_conf.py'
+"
+"" Now we can tell YCM to look for virtualenv in
+"" ~/.pyenv/versions/<current_project_dir_name>
+"function! SetVirtualenvPath()
+"    let syspath = expand('~/.pyenv/versions/') . split(FindRootDirectory(), '/')[-1]
+"    let pypath = syspath . '/bin/python'
+"    if filereadable(pypath)
+"        let g:ycm_python_interpreter_path = pypath
+"        let g:ycm_python_sys_path = [syspath]
+"    endif
+"endfunction
+"autocmd BufNewFile,BufRead ~/parcel/*.py,~/pj/*.py call SetVirtualenvPath()
+
+" }}}
+" Ale {{{
 " ================================================================
 " ale_completion_enabled must be set before loading ale
-let g:ale_completion_enabled = 1
+let g:ale_completion_enabled = 0
 Plug 'dense-analysis/ale'
 
 " Let Ale look for virtualenv in ~/.pyenv/versions/<current_project_dir_name>
 " (FindRootDirectory function provided by vim-rooter)
-function UseVirtualEnvIfExists()
-    let b:rootdir = FindRootDirectory()
-    if len(b:rootdir) == 0
-        return
-    endif
-    let b:ale_virtualenv_dir_names = [
-                \     '/home/nhanb/.pyenv/versions/' .
-                \     split(b:rootdir, '/')[-1]
-                \ ]
-endfunction
-autocmd BufNewFile,BufRead ~/pj/*.py call UseVirtualEnvIfExists()
+"function UseVirtualEnvIfExists()
+"    let b:rootdir = FindRootDirectory()
+"    if len(b:rootdir) == 0
+"        return
+"    endif
+"    let b:ale_virtualenv_dir_names = [
+"                \     '/home/nhanb/.pyenv/versions/' .
+"                \     split(b:rootdir, '/')[-1]
+"                \ ]
+"endfunction
+"autocmd BufNewFile,BufRead ~/pj/*.py call UseVirtualEnvIfExists()
+"nnoremap gd :ALEGoToDefinition<cr>
 
-let g:ale_python_pyls_config = {
-            \   'pyls': {
-            \     'plugins': {
-            \       'pycodestyle': {
-            \         'enabled': v:false
-            \       },
-            \       'flake8': {
-            \         'enabled': v:false
-            \       }
-            \     }
-            \   }
-            \ }
-nnoremap gd :ALEGoToDefinition<cr>
-" I prefer flake8's linter over flake8-over-pyls because for whatever dumb
-" reason the latter's error underlining is less clean, but I'll still need to
-" have pyls in ale_linters so ALE can use it for autocomplete & go-to-def. The
-" trick is to disable pyls's linting plugin (done above).
 let g:ale_linters = {
-            \'python': ['flake8', 'pyls'],
+            \'python': ['flake8'],
             \'rust': ['rls'],
             \'elm': ['make'],
             \'qml': ['qmllint'],
@@ -267,10 +282,10 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Avoid overly eager autocomplete:
 " https://github.com/w0rp/ale/issues/1700#issuecomment-405554860
-set completeopt=menu,menuone,preview,noselect,noinsert
+"set completeopt=menu,menuone,preview,noselect,noinsert
 
 " Completion tweaks
-let g:ale_completion_delay = 0
+"let g:ale_completion_delay = 0
 " }}}
 " Git Messenger {{{
 " ================================================================
