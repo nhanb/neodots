@@ -56,11 +56,17 @@ function mkcd
 end
 
 # test term formatting features
-function formattest
+function testformat
     echo -e "\e[1mbold\e[0m"
     echo -e "\e[3mitalic\e[0m"
     echo -e "\e[4munderline\e[0m"
     echo -e "\e[9mstrikethrough\e[0m"
+end
+
+function testip
+    echo "Using ipify.org"
+    echo (curl -s api.ipify.org)
+    echo (curl -s api6.ipify.org)
 end
 
 # Helpers to open shells in running docker containers managed by docker-compose:
