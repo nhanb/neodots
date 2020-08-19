@@ -23,6 +23,9 @@ set textwidth=79
 set colorcolumn=+1       " draw colorcolumn 1 char after max textwidth
 let loaded_matchparen = 0 " matching paren highlighting is distracting
 
+" Always do proper syntax highlighting even if it means big files become slow
+autocmd BufEnter * :syntax sync fromstart
+
 " Help vim detect certain file types
 autocmd BufNewFile,BufRead poetry.lock set filetype=toml
 
