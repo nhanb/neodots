@@ -185,29 +185,31 @@ map Y y$
 " Go to previously open file (basically like alt-tab toggle)
 nnoremap <leader><tab> <c-^>
 
-" Use '+' register or xsel to do system clipboard stuff {{{
+" Use '+' register to do system clipboard stuff {{{
 if has('clipboard')
     vnoremap <leader>y "+y
                 \:echo 'Selection yanked to system clipboard'<cr>
     nnoremap <leader>y "+yy
                 \:echo '1 line yanked to system clipboard'<cr>
+    nnoremap <leader>Y "+y$
+                \:echo 'Rest of line yanked to system clipboard'<cr>
+    vnoremap <leader>p "+p
     nnoremap <leader>p "+p
-elseif executable('xsel')
-    vnoremap <leader>y :w !xsel -i -b<cr><cr>
-                \:echo 'Selection yanked to system clipboard using xsel'<cr>
-    nnoremap <leader>y V:w !xsel -i -b<cr><cr>
-                \:echo '1 line yanked to system clipboard using xsel'<cr>
-    nnoremap <leader>p :silent :r !xsel -o -b<cr>
+    nnoremap <leader>P "+P
+
 else
     function! NoClipboardWarning()
         echohl WarningMsg
-        echo 'Cannnot use system clipboard. Install `xsel` or recompile vim'.
-                    \' with "+clipboard" to solve this.'
+        echo 'Cannnot use system clipboard! '.
+                    \'Recompile vim with "+clipboard" to solve this.'
         echohl None
     endfunction
     vnoremap <leader>y :call NoClipboardWarning()<cr>
     nnoremap <leader>y :call NoClipboardWarning()<cr>
+    nnoremap <leader>Y :call NoClipboardWarning()<cr>
+    vnoremap <leader>p :call NoClipboardWarning()<cr>
     nnoremap <leader>p :call NoClipboardWarning()<cr>
+    nnoremap <leader>P :call NoClipboardWarning()<cr>
 endif
 "}}}
 
@@ -218,7 +220,7 @@ set list
 " Hail tpope (again):
 " https://github.com/neovim/neovim/blob/ece19b459c082eae05b5c480f6ee91181f002c02/runtime/syntax/markdown.vim#L18-L28
 let g:markdown_fenced_languages = ['python', 'sh', 'json', 'javascript',
-            \'vim', 'sql', 'yaml', 'rust']
+            \'vim', 'sql', 'yaml', 'rust', 'd', 'toml', 'html']
 
 " ===== Plugins =====
 so $HOME/.config/nvim/plugs.vim
