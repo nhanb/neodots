@@ -67,12 +67,14 @@ input "1118:2415:Microsoft_Surface_Type_Cover_Touchpad" {
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+    bindsym Mod1+Shift+Return exec $term
 
     # Kill focused window
     bindsym $mod+Shift+q kill
 
     # Start your launcher
     bindsym $mod+d exec $menu
+    bindsym Mod1+space exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -204,16 +206,16 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    position top
+    position bottom
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    status_command while ~/.config/sway/status.fish; do sleep 1; done
 
     colors {
         statusline #ffffff
         background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        inactive_workspace #323232 #323232 #ffffff
     }
 }
 
@@ -225,4 +227,4 @@ bindsym Print exec grim - | wl-copy
 
 include /etc/sway/config.d/*
 
-font pango:"Ubuntu Mono" 12
+font pango:Ubuntu 11
