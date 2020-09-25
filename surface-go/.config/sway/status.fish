@@ -21,5 +21,7 @@ end
 
 set battery_capacity (cat /sys/class/power_supply/BAT1/capacity)
 
+set volume (pulsemixer --get-volume | cut -d ' ' -f1)
+
 # Emojis and characters for the status bar
-echo 💻$uptime_formatted 🔋$battery_capacity% $bstatus $date_formatted
+echo 💻$uptime_formatted 🔊 $volume 🔋$battery_capacity% $bstatus $date_formatted
