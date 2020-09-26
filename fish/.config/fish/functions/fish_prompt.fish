@@ -9,12 +9,19 @@ set __fish_git_prompt_show_informative_status
 set __fish_git_prompt_showcolorhints
 set __fish_git_prompt_showupstream "auto"
 
+# If inside ssh, diplay light blue hostname, else yellow
+if set -q SSH_TTY
+  set -g fish_color_host 0ff
+else
+  set -g fish_color_host ff0
+end
+
 
 function fish_prompt --description 'Write out the prompt'
     set -l last_status $status
 
     # User & Host
-    set_color --bold ff0
+    set_color --bold $fish_color_host
     echo -n (whoami)
     echo -n '@'
     echo -n (prompt_hostname)
