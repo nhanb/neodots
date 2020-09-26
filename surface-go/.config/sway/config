@@ -65,6 +65,10 @@ input "1118:2415:Microsoft_Surface_Type_Cover_Touchpad" {
 input type:keyboard repeat_delay 300
 input type:keyboard repeat_rate 35
 
+# Map touchscreen input to its output device so touch keeps working
+# correctly when output is rotated.
+input '1267:9754:ELAN9038:00_04F3:261A' map_to_output eDP-1
+
 ### Key bindings
 #
 # Basics:
