@@ -73,6 +73,8 @@ input '1267:9754:ELAN9038:00_04F3:261A' map_to_output eDP-1
 #
 # Basics:
 #
+    bindsym $mod+d exec alacritty -e ranger
+
     # Start a terminal
     bindsym $mod+Return exec $term
     bindsym Mod1+Shift+Return exec $term
@@ -81,7 +83,6 @@ input '1267:9754:ELAN9038:00_04F3:261A' map_to_output eDP-1
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
     bindsym Mod1+space exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
