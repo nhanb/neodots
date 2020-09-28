@@ -25,5 +25,16 @@ set volume (pulsemixer --get-volume | cut -d ' ' -f1)
 
 set brightness (math (brightnessctl get) / (brightnessctl max) x 100)
 
+if bluetoothctl show | grep 'Powered: yes' &>/dev/null
+    # There's no bluetooth glyph so here's a poor man's
+    # approximation instead
+    set bluetooth_status 'ᛒ'
+    if bluetoothctl info | grep 'input-mouse' &>/dev/null
+        set bluetooth_status "$bluetooth_status🖱️"
+    end
+else
+    set bluetooth_status ''
+end
+
 # Emojis and characters for the status bar
-echo 💻$uptime_formatted 🔆$brightness 🔊$volume 🔋$battery_capacity $bstatus $date_formatted
+echo $bluetooth_status 💻$uptime_formatted 🔆$brightness 🔊$volume 🔋$battery_capacity $bstatus $date_formatted
