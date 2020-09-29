@@ -22,6 +22,11 @@ end
 set battery_capacity (cat /sys/class/power_supply/BAT1/capacity)
 
 set volume (pulsemixer --get-volume | cut -d ' ' -f1)
+if [ (pulsemixer --get-mute) = '1' ]
+    set volume_icon '🔇'
+else
+    set volume_icon '🔊'
+end
 
 set brightness (math (brightnessctl get) / (brightnessctl max) x 100)
 
@@ -37,4 +42,4 @@ else
 end
 
 # Emojis and characters for the status bar
-echo $bluetooth_status 💻$uptime_formatted 🔆$brightness 🔊$volume 🔋$battery_capacity $bstatus $date_formatted
+echo $bluetooth_status 💻$uptime_formatted 🔆$brightness $volume_icon$volume 🔋$battery_capacity $bstatus $date_formatted
