@@ -249,6 +249,7 @@ let g:ale_linters = {
             \'markdown': [],
             \'nim': ['nimcheck'],
             \'javascript': ['jshint'],
+            \'d': ['dls'],
             \}
 
 " Pyls does support code formatting using black but then I'll need to install
@@ -265,6 +266,7 @@ let g:ale_fixers = {
             \'nim': [],
             \'c': ['clang-format'],
             \'css': ['prettier'],
+            \'d': ['dfmt'],
             \'json': ['prettier'],
             \'sql': [],
             \}
