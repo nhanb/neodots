@@ -233,6 +233,8 @@ output 'Sharp Corporation LQ100P1JX51 0x00000000' scale 1.3
 input * xkb_options ctrl:nocaps
 
 bindsym Print exec grim - | wl-copy
+bindsym Ctrl+Print exec grim -g "$(slurp)" - | wl-copy
+bindsym Ctrl+Shift+Print exec grim -g "$(slurp)" - | swappy -f -
 
 include /etc/sway/config.d/*
 
