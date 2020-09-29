@@ -81,6 +81,7 @@ end
 # PATH stuff
 set extra_paths \
     "$HOME/binaries" \
+    "$HOME/scripts" \
     "$HOME/.local/bin" \
     "$HOME/.nimble/bin" \
     "$HOME/.node_modules/bin" \
