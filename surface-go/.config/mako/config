@@ -1,9 +1,0 @@
-background-color=#285577AA
-default-timeout=3000
-anchor=bottom-right
-icon-path=/usr/share/icons/Faenza
-max-visible=1
-max-icon-size=32
-
-[app-name="volume"]
-background-color=#ff0000
