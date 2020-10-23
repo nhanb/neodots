@@ -118,5 +118,6 @@ set QT_QUICK_CONTROLS_STYLE org.kde.desktop
 # sudo pacman -S python-pyjwt
 abbr -a -g jwt pyjwt decode --no-verify
 
-# Pytaku
+# Projects
 abbr -a -g pm pytaku-manage
+abbr -a -g mh manhoa-manage
