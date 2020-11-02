@@ -98,6 +98,7 @@ set npm_config_prefix "$HOME/.node_modules"
 if test -d ~/.pyenv
     source ~/neodots/fish/pyenv.fish
 end
+abbr -a -g pwhich pyenv which
 
 # Private work-related tools
 set PRIVATE_DOTFILES "$HOME/Dropbox/privdots"
