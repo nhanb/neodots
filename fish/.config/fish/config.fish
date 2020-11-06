@@ -82,6 +82,9 @@ end
 set extra_paths \
     "$HOME/binaries" \
     "$HOME/scripts" \
+    # I don't wanna stow the whole surface-go dir yet because it contains
+    # wayland stuff, and I've moved back to KDE on xorg for now.
+    "$HOME/neodots/surface-go/scripts" \
     "$HOME/.local/bin" \
     "$HOME/.nimble/bin" \
     "$HOME/.node_modules/bin" \
