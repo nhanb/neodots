@@ -1,0 +1,84 @@
+Rought outline from zero to working full disk encrypted root login with working
+wifi.
+
+```sh
+timedatectl set-ntp true
+
+# Partitioning
+# Assuming target disk is /dev/sda
+
+gdisk /dev/sda
+  p # print status
+  o # create new GPT
+    Y # confirm
+  n # create EFI/boot partition
+    - Partition number: default (1)
+    - First sector: default (start of disk)
+    - Last sector: +512M
+    - Hex code or GUID: EF00
+  n # create root parition
+    - Partition number: default (2)
+    - First sector: default (start of available space after partition 1)
+    - Last sector: default (rest of disk)
+    - Hex code or GUID: default (8300 - Linux filesystem)
+  w # write changes to disk
+
+# Now we should have:
+#   /dev/sda1: EFI (fat32)
+#   /dev/sda2: Linux filesystem
+# Can confirm with `lsblk -fs`
+
+# Setup LUKS encrypted partition on top of sda2:
+cryptsetup -y -v luksFormat /dev/sda2
+  confirm: YES
+  enter & confirm passphrase
+cryptsetup open /dev/sda2 cryptroot
+  enter passphrase
+mkfs.ext4 /dev/mapper/cryptroot
+mount /dev/mapper/cryptroot /mnt
+# optionally unmount & mount again to verify everything works:
+#   umount /mnt
+#   cryptsetup close cryptroot
+#   cryptsetup open /dev/sda2 cryptroot
+#   mount /dev/mapper/cryptroot /mnt
+
+# Setup boot partition & mount:
+mkfs.fat -F32 /dev/sda1
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+
+# Bootstrap
+pacstrap /mnt base linux linux-firmware efibootmgr vim tmux networkmanager-qt
+genfstab -U /mnt >> /mnt/etc/fstab
+
+# Chroot to do further setups
+arch-chroot /mnt
+  ln -sf /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
+  hwclock --systohc
+  echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen
+  locale-gen
+  echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+  echo myhostname > /etc/hostname
+
+  echo '127.0.0.1 localhost' >> /etc/hosts
+  echo '::1 localhost' >> /etc/hosts
+  echo '127.0.1.1 harry' >> /etc/hosts
+
+  systemctl enable NetworkManager
+
+vim /etc/mkinitcpio.conf
+  HOOKS=(base *udev* autodetect *keyboard* consolefont modconf block *encrypt* filesystems fsck) 
+mkinitcpio -P
+efibootmgr --verbose --disk /dev/sda --part 1 --create --label "Arch Linux" \
+	--loader /vmlinuz-linux \
+	--unicode 'cryptdevice=UUID=uuid_of_dev_sda2:cryptroot root=/dev/mapper/cryptroot rw initrd=\intel-ucode.img initrd=\initramfs-linux.img'
+pacman -S intel-ucode
+passwd
+exit
+
+umount -R /mnt
+reboot
+
+
+# login as root, use nmtui to connect to wifi, profit.
+```
