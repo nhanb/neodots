@@ -70,15 +70,15 @@ arch-chroot /mnt
 
   systemctl enable NetworkManager
 
-vim /etc/mkinitcpio.conf
-  HOOKS=(base *udev* autodetect *keyboard* consolefont modconf block *encrypt* filesystems fsck) 
-mkinitcpio -P
-efibootmgr --verbose --disk /dev/sda --part 1 --create --label "Arch Linux" \
-	--loader /vmlinuz-linux \
-	--unicode 'cryptdevice=UUID=uuid_of_dev_sda2:cryptroot root=/dev/mapper/cryptroot rw initrd=\intel-ucode.img initrd=\initramfs-linux.img'
-pacman -S intel-ucode
-passwd
-exit
+  vim /etc/mkinitcpio.conf
+    HOOKS=(base *udev* autodetect *keyboard* consolefont modconf block *encrypt* filesystems fsck) 
+  mkinitcpio -P
+  efibootmgr --verbose --disk /dev/sda --part 1 --create --label "Arch Linux" \
+    --loader /vmlinuz-linux \
+    --unicode 'cryptdevice=UUID=uuid_of_dev_sda2:cryptroot root=/dev/mapper/cryptroot rw initrd=\intel-ucode.img initrd=\initramfs-linux.img'
+  pacman -S intel-ucode
+  passwd
+  exit
 
 umount -R /mnt
 reboot
