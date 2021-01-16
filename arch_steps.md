@@ -105,3 +105,16 @@ vim /etc/sddm.conf.d/autologin.conf :
   User=john
   Session=plasma.desktop
 ```
+
+# Fluff
+
+```sh
+# These fonts cover sans-serif, serif, lots of monospace/programming fonts,
+# cjk, emoji and kaomoji
+doas pacman -S ttf-dejavu ttf-croscore ttf-ibm-plex ttf-liberation \
+  ttf-fira-mono ttf-hack ttf-inconsolata ttf-jetbrains-mono \
+  adobe-source-code-pro-fonts adobe-source-sans-pro-fonts \
+  adobe-source-serif-pro-fonts adobe-source-han-sans-otc-fonts \
+  adobe-source-han-serif-otc-fonts noto-fonts-emoji gnu-free-fonts \
+  ttf-arphic-uming ttf-indic-otf ttf-ubuntu-font-family
+```
