@@ -1,7 +1,9 @@
+Rough outline of stuff I did on a thinkpad t530 with nvidia graphics
+(though I only use the intel igpu on linux).
+
 # Zero to CLI
 
-Rought outline from zero to working full disk encrypted root login with working
-wifi.
+Up to full disk encrypted root login with working wifi.
 
 ```sh
 timedatectl set-ntp true
