@@ -1,3 +1,5 @@
+# Zero to CLI
+
 Rought outline from zero to working full disk encrypted root login with working
 wifi.
 
@@ -81,4 +83,23 @@ reboot
 
 
 # login as root, use nmtui to connect to wifi, profit.
+```
+
+# CLI to GUI
+
+```sh
+# Main user
+pacman -Syu fish git opendoas
+useradd -m -s `which fish` nhanb
+passwd nhanb
+echo 'permit nopass nhanb as root' > /etc/doas.conf
+
+# Xorg, SDDM, KDE
+pacman -Syu xorg-server xorg-apps xf86-video-intel mesa \
+  sddm sddm-kcm \
+  plasma-meta kde-applications-meta
+vim /etc/sddm.conf.d/autologin.conf :
+  [Autologin]
+  User=john
+  Session=plasma.desktop
 ```
