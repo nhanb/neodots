@@ -9,3 +9,6 @@
 
 [core]
     attributesfile = ~/.gitattributes
+
+[init]
+    defaultBranch = master
