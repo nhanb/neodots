@@ -9,23 +9,13 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
-Plug 'mitsuhiko/vim-python-combined'
-Plug 'Z1MM32M4N/vim-superman'
-Plug 'pearofducks/ansible-vim'
-Plug 'chrisbra/csv.vim'
 Plug 'cespare/vim-toml'
 Plug 'Soares/base16.nvim'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'justinmk/vim-sneak'
 Plug 'inside/vim-search-pulse'
-Plug 'ElmCast/elm-vim'
-"Plug 'peterhoeg/vim-qml'
-"Plug 'nucleic/enaml', { 'rtp': 'tools/vim' }
 Plug 'airblade/vim-rooter'
-Plug 'zah/nim.vim'
 Plug 'dag/vim-fish'
 Plug 'mattn/emmet-vim'
-"Plug 'nhanb/vim-mint'
 " }}}
 
 " local vimrc {{{
@@ -120,11 +110,6 @@ elseif executable('ag')
     nnoremap <leader>ge :Ag<space>
 endif
 "}}}
-" delimitMate - Auto bracket {{{
-" ================================================================
-Plug 'Raimondi/delimitMate'
-let delimitMate_expand_cr = 1
-"}}}
 " Tagbar {{{
 " ================================================================
 Plug 'majutsushi/tagbar'
@@ -132,14 +117,6 @@ Plug 'majutsushi/tagbar'
 " F5 toggles tagbar
 nnoremap <f5> :TagbarToggle<cr>
 " }}}
-" vim-indent-guides {{{
-" ================================================================
-Plug 'nathanaelkane/vim-indent-guides'
-
-" Indentation guidlines
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 4
-"}}}
 " NERDTree {{{
 " ================================================================
 Plug 'scrooloose/nerdtree'
