@@ -125,3 +125,5 @@ abbr -a -g jwt pyjwt decode --no-verify
 # Projects
 abbr -a -g pm pytaku-manage
 abbr -a -g mh manhoa-manage
+
+abbr -a -g ddd doas dd bs=4M status=progress oflag=sync
