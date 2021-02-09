@@ -4,9 +4,9 @@ set fish_greeting
 # neovim all the things
 abbr -a -g vim nvim
 abbr -a -g vi nvim
-set -Ux EDITOR nvim
-set -Ux GIT_EDITOR nvim
-set -Ux VISUAL nvim
+set -x EDITOR nvim
+set -x GIT_EDITOR nvim
+set -x VISUAL nvim
 
 # python stuff
 abbr -a -g py3 python3
@@ -35,20 +35,11 @@ abbr -a -g gco git checkout
 abbr -a -g gb git branch
 abbr -a -g gm git merge
 
-# docker *dun dun dunnnnn*
+abbr -a -g ddd doas dd bs=4M status=progress oflag=sync
+
 abbr -a -g dc docker-compose
 
-# C stuff
-abbr -a -g gdbb gdb --batch --ex run --ex bt --ex q --args
-
-# load tmuxp session
 abbr -a -g tm 'tmuxp load'
-
-# misc stuff
-abbr -a -g time time -p
-
-# project-specific
-abbr -a -g mn caophim-manage
 
 # mkdir then cd into it
 function mkcd
@@ -70,13 +61,6 @@ function testip
     echo (curl -s api6.ipify.org)
 end
 
-# Helpers to open shells in running docker containers managed by docker-compose:
-function psu
-    set this_dir (basename "$PWD")
-    set parent_dir (basename (dirname $PWD))
-    set container_name "$parent_dir"_"$this_dir"_1
-    docker exec -it "$container_name" su
-end
 
 # PATH stuff
 set extra_paths \
@@ -91,11 +75,11 @@ set extra_paths \
     "$HOME/google-cloud-sdk/bin"
 for extra_path in $extra_paths
     if not contains $extra_path $PATH
-        set PATH $extra_path $PATH
+        set -x PATH $extra_path $PATH
     end
 end
 
-set npm_config_prefix "$HOME/.node_modules"
+set -x npm_config_prefix "$HOME/.node_modules"
 
 # Pyenv is a bit more involved
 if test -d ~/.pyenv
@@ -112,7 +96,7 @@ if test -d $PRIVATE_DOTFILES
 end
 
 # Default imports for python
-set -Ux PYTHONSTARTUP "$HOME/.pythonrc.py"
+set -x PYTHONSTARTUP "$HOME/.pythonrc.py"
 
 # Qt/Kirigami stuff
 set QT_QUICK_CONTROLS_MOBILE 0
@@ -125,5 +109,4 @@ abbr -a -g jwt pyjwt decode --no-verify
 # Projects
 abbr -a -g pm pytaku-manage
 abbr -a -g mh manhoa-manage
-
-abbr -a -g ddd doas dd bs=4M status=progress oflag=sync
+abbr -a -g mn caophim-manage
