@@ -35,6 +35,12 @@ abbr -a -g gco git checkout
 abbr -a -g gb git branch
 abbr -a -g gm git merge
 
+# mygit
+abbr -a -g mg ssh mygit
+function mgc
+    git clone git@mygit:{$argv}.git
+end
+
 abbr -a -g ddd doas dd bs=4M status=progress oflag=sync
 
 abbr -a -g dc docker-compose
