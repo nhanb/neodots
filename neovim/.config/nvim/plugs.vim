@@ -227,6 +227,7 @@ let g:ale_linters = {
             \'nim': ['nimcheck'],
             \'javascript': ['jshint'],
             \'d': ['dls'],
+            \'c': ['cc'],
             \}
 
 " Pyls does support code formatting using black but then I'll need to install
@@ -254,6 +255,7 @@ nnoremap <leader>lf :ALEFix<cr>
 
 " pacman -S python-sqlparse
 let g:ale_sql_sqlformat_options = '-r'
+let g:ale_c_clangformat_options = '--style=file'
 
 " Enable tab completion in addition to <C-n> / <C-p>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
