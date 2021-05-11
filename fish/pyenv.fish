@@ -1,9 +1,10 @@
 set -Ux VIRTUAL_ENV_DISABLE_PROMPT 1
 set -Ux PYENV_VIRTUALENV_DISABLE_PROMPT 1
 
-set PATH "$HOME/.pyenv/bin" $PATH
-status --is-interactive; and source (pyenv init -|psub)
-status --is-interactive; and source (pyenv virtualenv-init -|psub)
+set -Ux PYENV_ROOT $HOME/.pyenv
+set -Ux fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+pyenv init - | source
+pyenv init --path | source
 
 # Activate virtualenv with the same name as current dir
 abbr -a -g pyact 'pyenv activate (basename $PWD)'
