@@ -147,17 +147,6 @@ let NERDTreeShowHidden=1
 " Show git signs too because why not?
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " }}}
-" Gitv - Requires fugitive - "command line gitk" {{{
-" ================================================================
-Plug 'gregsexton/gitv'
-
-" Their default <c-whatever> keybindings clash with mine => disable them
-let g:Gitv_DoNotMapCtrlKey = 1
-
-nmap <leader>gv :Gitv --all<cr>
-nmap <leader>gV :Gitv! --all<cr>
-vmap <leader>gV :Gitv! --all<cr>
-" }}}
 " Airline {{{
 " ================================================================
 Plug 'vim-airline/vim-airline'
@@ -267,13 +256,6 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Completion tweaks
 "let g:ale_completion_delay = 0
-" }}}
-" Git Messenger {{{
-" ================================================================
-Plug 'rhysd/git-messenger.vim'
-
-" I don't use the default `gm` anyway
-nnoremap gm :GitMessenger<cr>
 " }}}
 
 " Initialize plugin system
