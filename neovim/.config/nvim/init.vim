@@ -23,8 +23,21 @@ set textwidth=79
 set colorcolumn=+1       " draw colorcolumn 1 char after max textwidth
 let loaded_matchparen = 0 " matching paren highlighting is distracting
 
-" Always do proper syntax highlighting even if it means big files become slow
-autocmd BufEnter * :syntax sync fromstart
+
+" Open http(s) url under cursor with xdg-open
+function! OpenURL()
+  let l:url = matchstr(expand("<cWORD>"), 'https\=:\/\/[^ >,;()]*')
+  if l:url != ""
+    let l:url = shellescape(l:url, 1)
+    let l:command = "!xdg-open ".l:url
+    echo l:command
+    silent exec l:command
+  else
+    echo "No URL found under cursor."
+  endif
+endfunction
+
+nnoremap gl :call OpenURL()<cr>
 
 " Help vim detect certain file types
 autocmd BufNewFile,BufRead poetry.lock set filetype=toml
