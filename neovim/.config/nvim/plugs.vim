@@ -236,6 +236,7 @@ let g:ale_fixers = {
             \'d': ['dfmt'],
             \'json': ['prettier'],
             \'sql': [],
+            \'vim': ['remove_trailing_lines', 'trim_whitespace'],
             \}
 " As much as I loooove autoformat-on-save,
 " it's a no-go for projects at work (for now...?)
