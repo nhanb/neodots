@@ -36,8 +36,20 @@ function! OpenURL()
     echo "No URL found under cursor."
   endif
 endfunction
-
 nnoremap gl :call OpenURL()<cr>
+
+" Open jira issue under cursor with xdg-open
+function! OpenJira()
+  let l:jira_id = toupper(matchstr(expand("<cWORD>"), '\c\(id2\|sre\|csi\)-[0-9]\+'))
+  if l:jira_id != ""
+    let l:command = "!xdg-open https://inspectorio.atlassian.net/browse/".l:jira_id
+    echo l:command
+    silent exec l:command
+  else
+    echo "No Jira ticket found under cursor."
+  endif
+endfunction
+nnoremap gj :call OpenJira()<cr>
 
 " Help vim detect certain file types
 autocmd BufNewFile,BufRead poetry.lock set filetype=toml
