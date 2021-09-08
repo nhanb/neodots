@@ -161,6 +161,13 @@ Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
 nnoremap gd :YcmCompleter GoTo<cr>
 nnoremap gr :YcmCompleter GoToReferences<cr>
 
+let g:ycm_language_server = [
+            \ {
+            \     'name': 'd',
+            \     'cmdline': ['serve-d'],
+            \     'filetypes': ['d'],
+            \ }]
+
 " This whole dance is basically to allow using g:ycm_python_interpreter_path
 " and g:ycm_python_sys_path for static analysis:
 " (copied from :h youcompleteme-configuring-through-vim-options)
