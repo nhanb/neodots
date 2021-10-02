@@ -43,7 +43,7 @@ end
 
 abbr -a -g ddd doas dd bs=4M status=progress oflag=sync
 
-abbr -a -g dc docker-compose
+abbr -a -g dc docker compose
 
 abbr -a -g tm 'tmuxp load'
 
