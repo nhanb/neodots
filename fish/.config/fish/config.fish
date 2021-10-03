@@ -115,7 +115,6 @@ abbr -a -g jwt pyjwt decode --no-verify
 # Projects
 abbr -a -g pm pytaku-manage
 abbr -a -g mh manhoa-manage
-abbr -a -g mn caophim-manage
 
 # Pipenv shit
 set -x PIPENV_VENV_IN_PROJECT 1
