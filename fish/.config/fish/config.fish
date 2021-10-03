@@ -123,3 +123,5 @@ abbr -a -g vpnsg doas tailscale up --exit-node='100.122.54.122'
 abbr -a -g vpnvn doas tailscale up --exit-node='100.92.80.112'
 abbr -a -g vpnoff doas tailscale up --exit-node=''
 abbr -a -g vpncheck 'tailscale status | grep "exit node"'
+
+abbr -a -g wcfreq v4l2-ctl -c power_line_frequency=1
