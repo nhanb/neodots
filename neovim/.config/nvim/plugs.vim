@@ -224,7 +224,7 @@ let g:ale_linters = {
             \'javascript': ['jshint'],
             \'d': ['dls'],
             \'c': ['cc'],
-            \'go': ['govet'],
+            \'go': ['gopls'],
             \}
 
 " Pyls does support code formatting using black but then I'll need to install
