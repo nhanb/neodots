@@ -239,8 +239,18 @@ endif
 "}}}
 
 " Make tabs, trailing whitespace, and non-breaking spaces visible
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-set list
+fun! MarkSpecialWhitespaces()
+    " Tabs are the norm in golang so don't mark them.
+    " \uA0 is a non breaking space, only because if I put a normal space here
+    " it'll be a syntax error.
+    if &ft ==# 'go'
+        exec "setlocal listchars=tab:\uA0\uA0,trail:\uB7,nbsp:~"
+    else
+        exec "setlocal listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+    endif
+    set list
+endfun
+autocmd BufEnter * call MarkSpecialWhitespaces()
 
 " Hail tpope (again):
 " https://github.com/neovim/neovim/blob/ece19b459c082eae05b5c480f6ee91181f002c02/runtime/syntax/markdown.vim#L18-L28

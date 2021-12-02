@@ -156,7 +156,7 @@ let g:airline_theme='powerlineish'
 " }}}
 " YouCompleteMe {{{
 " ================================================================
-Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer' }
 
 nnoremap gd :YcmCompleter GoTo<cr>
 nnoremap gr :YcmCompleter GoToReferences<cr>
@@ -224,6 +224,7 @@ let g:ale_linters = {
             \'javascript': ['jshint'],
             \'d': ['dls'],
             \'c': ['cc'],
+            \'go': ['govet'],
             \}
 
 " Pyls does support code formatting using black but then I'll need to install
@@ -244,6 +245,7 @@ let g:ale_fixers = {
             \'json': ['prettier'],
             \'sql': [],
             \'vim': ['remove_trailing_lines', 'trim_whitespace'],
+            \'go': ['gofmt'],
             \}
 " As much as I loooove autoformat-on-save,
 " it's a no-go for projects at work (for now...?)
