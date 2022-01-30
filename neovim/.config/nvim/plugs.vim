@@ -8,6 +8,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
 Plug 'scrooloose/nerdcommenter'
 Plug 'cespare/vim-toml'
 Plug 'Soares/base16.nvim'
@@ -34,9 +35,9 @@ nnoremap <leader>gm :Gmove<space>
 nnoremap <leader>gcc :Gcommit<cr>
 nnoremap <leader>gca :Git commit --amend<cr>
 nnoremap <leader>gd :Gvdiff<cr>
-nnoremap <leader>gs :Gstatus<cr>
-nnoremap <leader>gb :Gblame<cr>
-nnoremap <leader>gh :Gbrowse<cr>
+nnoremap <leader>gs :Git status<cr>
+nnoremap <leader>gb :Git blame<cr>
+nnoremap <leader>gh :GBrowse<cr>
 
 " Stage current file
 nnoremap <leader>ga :Gwrite<cr>
