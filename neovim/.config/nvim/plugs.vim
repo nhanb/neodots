@@ -268,6 +268,25 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Completion tweaks
 "let g:ale_completion_delay = 0
 " }}}
+" vim-go {{{
+" ================================================================
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" https://discourse.gohugo.io/t/vim-syntax-highlighting-for-hugo-html-templates/19398/6
+function DetectGoHtmlTmpl()
+    if expand('%:e') == "html" && search("{{") != 0
+        set filetype=gohtmltmpl
+    endif
+endfunction
+augroup filetypedetect
+    au! BufRead,BufNewFile * call DetectGoHtmlTmpl()
+augroup END
+
+" Since vim-go has some overlapping features with YCM & ALE, let's disable the
+" vim-go stuff for now, just because I'm more used to the others.
+let g:go_fmt_autosave = 0 " autoformat on save - ALEFix does it
+let g:go_def_mapping_enabled = 0 " gotodef - YCM GoTo does it
+" }}}
 
 " Initialize plugin system
 call plug#end()
