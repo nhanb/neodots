@@ -141,7 +141,7 @@ let NERDTreeIgnore = ['\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$',
 
 nnoremap <leader>d <esc>:NERDTree<cr>
 nnoremap <leader>e :NERDTreeToggle<cr>
-nnoremap <leader>f :NERDTreeFind<cr>
+nnoremap <leader>f :NERDTreeRefresh<cr>:NERDTreeFind<cr>
 
 let NERDTreeShowHidden=1
 
