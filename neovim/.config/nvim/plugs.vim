@@ -16,7 +16,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'inside/vim-search-pulse'
 Plug 'airblade/vim-rooter'
 Plug 'dag/vim-fish'
-Plug 'mattn/emmet-vim'
 " }}}
 
 " local vimrc {{{
@@ -287,6 +286,26 @@ augroup END
 let g:go_fmt_autosave = 0 " autoformat on save - ALEFix does it
 let g:go_def_mapping_enabled = 0 " gotodef - YCM GoTo does it
 " }}}
+" emmet-vim {{{
+" ================================================================
+Plug 'mattn/emmet-vim'
+let g:user_emmet_settings = {
+            \  'variables': {'lang': 'en', 'charset': 'utf-8'},
+            \  'html': {
+            \    'snippets': {
+            \      'html:5': "<!DOCTYPE html>\n"
+            \              ."<html lang=\"${lang}\">\n"
+            \              ."  <head>\n"
+            \              ."    <meta charset=\"${charset}\" />\n"
+            \              ."    <title></title>\n"
+            \              ."    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n"
+            \              ."  </head>\n"
+            \              ."  <body>${child}</body>\n"
+            \              ."</html>",
+            \    },
+            \  },
+            \}
+"}}}
 
 " Initialize plugin system
 call plug#end()
