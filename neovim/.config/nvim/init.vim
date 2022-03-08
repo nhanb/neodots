@@ -257,5 +257,8 @@ autocmd BufEnter * call MarkSpecialWhitespaces()
 let g:markdown_fenced_languages = ['python', 'sh', 'json', 'javascript',
             \'vim', 'sql', 'yaml', 'rust', 'd', 'toml', 'html']
 
+" Access command history without a Shift
+nnoremap q; q:
+
 " ===== Plugins =====
 so $HOME/.config/nvim/plugs.vim
