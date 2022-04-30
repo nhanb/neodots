@@ -217,18 +217,22 @@ local on_attach = function(client, bufnr)
   vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
 end
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = { 'gopls' }
-for _, lsp in pairs(servers) do
-  require('lspconfig')[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      -- This will be the default in neovim 0.7+
-      debounce_text_changes = 150,
-    }
-  }
-end
+require('lspconfig').pyright.setup {
+  on_attach = on_attach,
+  settings = {
+    python = {
+      analysis = {
+        -- I'm only using pyright as a faster pylsp, so I don't need any of
+        -- its typechecking shenanigans
+        typeCheckingMode = 'off',
+      },
+    },
+  },
+}
+
+require('lspconfig').gopls.setup {
+  on_attach = on_attach,
+}
 
 -- gopls: autoimport on save
 -- (https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports)

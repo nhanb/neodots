@@ -263,5 +263,12 @@ nnoremap q; q:
 " Trigger omnifunc with ctrl+space
 inoremap <c-space> <c-x><c-o>
 
+" Enable tab completion in addition to <C-n> / <C-p>
+inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
+" Sensible completion menu behavior
+set completeopt=menu,menuone,preview,noselect,noinsert
+
 " ===== Plugins =====
 so $HOME/.config/nvim/plugs.vim
