@@ -139,9 +139,8 @@ let NERDTreeIgnore = ['\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$',
             \'\.so$', '\.egg$', '^\.git$', '\.gem$',  '\.rbc$', '\~$',
             \ '^__pycache__$']
 
-nnoremap <leader>d <esc>:NERDTree<cr>
-nnoremap <leader>e :NERDTreeToggle<cr>
-nnoremap <leader>f :NERDTreeRefresh<cr>:NERDTreeFind<cr>
+nnoremap <leader>d :NERDTreeToggle<cr>:NERDTreeRefresh<cr>
+nnoremap <leader>e :NERDTreeFind<cr>:NERDTreeRefresh<cr>
 
 let NERDTreeShowHidden=1
 
@@ -175,6 +174,22 @@ let g:user_emmet_settings = {
             \  },
             \}
 "}}}
+" isort & black {{{
+" ================================================================
+Plug 'nhanb/vim-isort'
+Plug 'psf/black', { 'branch': 'stable' }
+
+function! FormatPython()
+    Isort
+    Black
+endfunction
+autocmd BufWritePre ~/pj/**/*.py call FormatPython()
+" Currently only Python needs a custom format function. All other filetypes
+" that I use can utilize nvim-lspconfig's format function instead (see the
+" nvim-lspconfig section way below).
+autocmd FileType python nnoremap <buffer> <leader>f :call FormatPython()<cr>
+
+" }}}
 
 " Initialize plugin system
 call plug#end()
@@ -203,7 +218,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<c-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
@@ -211,10 +226,12 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  if vim.bo.filetype ~= 'python' then
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  end
 
-  -- Autoformat on save
-  vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
+  -- Autoformat on save - only apply on Go for now
+  vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync()]]
 end
 
 require('lspconfig').pyright.setup {

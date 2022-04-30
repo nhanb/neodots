@@ -196,10 +196,12 @@ inoremap ;s <c-o>:w<cr>
 " Run, Forrest, Run!
 nnoremap <leader>q :!chmod +x %<cr><cr>:echo 'File is now executable'<cr>
 
-" Space to center cursor vertically
-" (yeah, zz is an abomination to ergo-minded people... or at least me)
-nnoremap <space> zz
-nnoremap <leader><space> zt
+" Shortcut to center cursor vertically.
+" Used to be <space> instead of \, but then I needed to clear <space> up for
+" the nvim-lspconfig shortcuts. It's ergonomically worse, but at least not as
+" bad as z.
+nnoremap \ zz
+nnoremap <leader>\ zt
 
 " Close quickfix
 nnoremap <leader>x :cclose<cr>:lclose<cr>:pc<cr>
