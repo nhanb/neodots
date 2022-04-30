@@ -260,5 +260,8 @@ let g:markdown_fenced_languages = ['python', 'sh', 'json', 'javascript',
 " Access command history without a Shift
 nnoremap q; q:
 
+" Trigger omnifunc with ctrl+space
+inoremap <c-space> <c-x><c-o>
+
 " ===== Plugins =====
 so $HOME/.config/nvim/plugs.vim
