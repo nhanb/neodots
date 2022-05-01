@@ -190,6 +190,50 @@ autocmd BufWritePre ~/pj/**/*.py call FormatPython()
 autocmd FileType python nnoremap <buffer> <leader>f :call FormatPython()<cr>
 
 " }}}
+" ALE {{{
+" ================================================================
+" For file types that don't have established langservers (i.e. not readily
+" installable with pacman -S), fall back to using ALE for linting and
+" autoformatting. For me right now that means anything that's not Python or Go.
+let g:ale_completion_enabled = 0 " must be set before ALE is loaded
+Plug 'dense-analysis/ale'
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+            \'elm': ['make'],
+            \'qml': ['qmllint'],
+            \'sh': ['shellcheck'],
+            \'nim': ['nimcheck'],
+            \'javascript': ['jshint'],
+            \'d': ['dls'],
+            \'c': ['cc'],
+            \}
+let g:ale_fixers = {
+            \'python': [],
+            \'go': [],
+            \'rust': ['rustfmt'],
+            \'elm': ['elm-format'],
+            \'qml': ['qmlfmt'],
+            \'html': ['prettier'],
+            \'javascript': ['prettier'],
+            \'sh': ['shfmt'],
+            \'nim': [],
+            \'c': ['clang-format'],
+            \'css': ['prettier'],
+            \'d': ['dfmt'],
+            \'json': ['prettier'],
+            \'sql': [],
+            \'vim': ['remove_trailing_lines', 'trim_whitespace'],
+            \}
+
+" For filetypes with configured fixer(s), bind ALEFix to <leader>f
+for [key, value] in items(g:ale_fixers)
+    if value != []
+        execute 'autocmd FileType '.key.' nnoremap <buffer> <leader>f :ALEFix<cr>'
+    endif
+endfor
+
+" }}}
+
 
 " Initialize plugin system
 call plug#end()
