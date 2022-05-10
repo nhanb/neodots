@@ -93,25 +93,6 @@ if test -d ~/.pyenv
 end
 abbr -a -g pwhich pyenv which
 
-# Private work-related tools
-set PRIVATE_DOTFILES "$HOME/Dropbox/privdots"
-if test -d $PRIVATE_DOTFILES
-    for privfile in $PRIVATE_DOTFILES/*.fish
-        source $privfile
-    end
-end
-
-# Default imports for python
-set -x PYTHONSTARTUP "$HOME/.pythonrc.py"
-
-# Qt/Kirigami stuff
-set QT_QUICK_CONTROLS_MOBILE 0
-set QT_QUICK_CONTROLS_STYLE org.kde.desktop
-
-# quickly decode jwt
-# sudo pacman -S python-pyjwt
-abbr -a -g jwt pyjwt decode --no-verify
-
 # Projects
 abbr -a -g pm pytaku-manage
 abbr -a -g mh manhoa-manage
@@ -124,3 +105,9 @@ abbr -a -g vpnoff doas tailscale up --exit-node=''
 abbr -a -g vpncheck 'tailscale status | grep "exit node"'
 
 abbr -a -g wcfreq v4l2-ctl -c power_line_frequency=1
+
+abbr -a -g dj ./manage.py
+abbr -a -g djr ./manage.py runserver
+abbr -a -g djs ./manage.py shell
+abbr -a -g djmm ./manage.py makemigrations
+abbr -a -g djm ./manage.py migrate
