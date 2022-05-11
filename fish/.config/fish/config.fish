@@ -111,3 +111,5 @@ abbr -a -g djr ./manage.py runserver
 abbr -a -g djs ./manage.py shell
 abbr -a -g djmm ./manage.py makemigrations
 abbr -a -g djm ./manage.py migrate
+
+abbr -a -g pyt pytest --reuse-db -s
