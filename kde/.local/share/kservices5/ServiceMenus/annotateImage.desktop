@@ -1,0 +1,11 @@
+[Desktop Action annotate-image]
+Exec=spectacle --edit-existing "%U"
+Name=Annotate Image
+Icon=spectacle
+
+[Desktop Entry]
+Actions=annotate-image
+MimeType=image/*;
+ServiceTypes=KonqPopupMenu/Plugin
+Type=Service
+X-KDE-Priority=TopLevel
