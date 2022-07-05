@@ -1,7 +1,7 @@
 # vi: ft=gitconfig
 [user]
     email = hi@imnhan.com
-    name = Bùi Thành Nhân
+    name = Nhân
 
 [sendemail]
     confirm = auto
