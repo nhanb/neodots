@@ -1,0 +1,12 @@
+[Unit]
+Description=Tailscale Systray
+Wants=tailscaled.service
+After=tailscaled.service
+
+[Service]
+Type=simple
+ExecStartPre=/bin/sleep 15
+ExecStart=/home/nhanb/binaries/tailscale-systray
+
+[Install]
+WantedBy=default.target
