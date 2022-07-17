@@ -317,6 +317,6 @@ EOF
 syntax enable
 set termguicolors
 set background=dark
-colorscheme oceanicnext
+colorscheme twilight
 highlight Pmenu guibg='#444444'
 highlight ColorColumn guibg='#222222'
