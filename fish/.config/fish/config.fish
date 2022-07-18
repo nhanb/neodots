@@ -100,7 +100,7 @@ abbr -a -g mh manhoa-manage
 # Pipenv shit
 set -x PIPENV_VENV_IN_PROJECT 1
 
-abbr -a -g vpnvn doas tailscale up --exit-node=bf-tailscale
+abbr -a -g vpnvn doas tailscale up --exit-node=vl-tailscale
 abbr -a -g vpnoff doas tailscale up --exit-node=''
 abbr -a -g vpncheck 'tailscale status | grep "exit node"'
 
