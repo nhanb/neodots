@@ -52,7 +52,9 @@ mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
 
 # Bootstrap
-pacstrap /mnt base linux linux-firmware efibootmgr vim tmux networkmanager-qt
+pacstrap /mnt base-devel linux linux-firmware efibootmgr vim tmux networkmanager-qt
+# Or when on the gpd micro pc:
+#   pacstrap /mnt base-devel linux linux-firmware linux-firmware-qlogic efibootmgr vim tmux iwd dhcpcd
 genfstab -U /mnt >> /mnt/etc/fstab
 
 # Chroot to do further setups
@@ -69,6 +71,9 @@ arch-chroot /mnt
   echo '127.0.1.1 harry' >> /etc/hosts
 
   systemctl enable NetworkManager
+  # Or when on the gpd micro pc:
+  #   systemctl enable iwd
+  #   systemctl enable dhcpcd
 
   vim /etc/mkinitcpio.conf
     HOOKS=(base *udev* autodetect *keyboard* consolefont modconf block *encrypt* filesystems fsck) 
@@ -76,6 +81,7 @@ arch-chroot /mnt
   efibootmgr --verbose --disk /dev/sda --part 1 --create --label "Arch Linux" \
     --loader /vmlinuz-linux \
     --unicode 'cryptdevice=UUID=uuid_of_dev_sda2:cryptroot root=/dev/mapper/cryptroot rw initrd=\intel-ucode.img initrd=\initramfs-linux.img'
+  # you can find uuid_of_dev_sda2 by running lsblk -fs
   pacman -S intel-ucode
   passwd
   exit
