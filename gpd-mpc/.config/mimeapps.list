@@ -1,0 +1,5 @@
+[Default Applications]
+image/*=imv.desktop;
+video/*=mpv.desktop;
+text/html=firefox.desktop
+text/plain=nvim.desktop;
