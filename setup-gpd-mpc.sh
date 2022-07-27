@@ -12,3 +12,7 @@ targets=(
 for target in "${targets[@]}"; do
     stow "$target"
 done
+
+doas pacman -Syu jq grim slurp cmus nnn wl-clipboard swappy
+
+mkdir ~/Pictures
