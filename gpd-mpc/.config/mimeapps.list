@@ -1,5 +1,4 @@
 [Default Applications]
-image/*=imv.desktop;
-video/*=mpv.desktop;
-text/html=firefox.desktop
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
+text/html=firefox.desktop;
 text/plain=nvim.desktop;
