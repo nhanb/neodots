@@ -113,3 +113,6 @@ abbr -a -g djmm ./manage.py makemigrations
 abbr -a -g djm ./manage.py migrate
 
 abbr -a -g pyt pytest --reuse-db -s
+
+abbr lwifi 'doas iwctl station wlan0 scan && doas iwctl station wlan0 get-networks | head -n20'
+abbr cwifi doas iwctl station wlan0 connect
