@@ -218,7 +218,7 @@ let g:ale_fixers = {
             \'css': ['prettier'],
             \'d': ['dfmt'],
             \'json': ['prettier'],
-            \'sql': [],
+            \'sql': ['pgpp'],
             \'vim': ['remove_trailing_lines', 'trim_whitespace'],
             \}
 
@@ -234,6 +234,13 @@ endfor
 
 " Initialize plugin system
 call plug#end()
+
+function! FormatPostgres(buffer) abort
+    return {
+    \   'command': 'pgpp -m 30 --comma-at-eoln --preserve-comments -e',
+    \}
+endfunction
+execute ale#fix#registry#Add('pgpp', 'FormatPostgres', ['sql'], 'PGLast pgpp for postgres SQL')
 
 " nvim-lspconfig {{{
 " ================================================================
