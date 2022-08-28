@@ -213,6 +213,7 @@ bindsym Ctrl+Mod1+l exec swaylock
 bindsym $mod+r mode "resize"
 bindsym $mod+n exec foot nnn
 bindsym $mod+m exec foot cmus
+bindsym $mod+i exec foot ~/binaries/iwpick
 bindsym $mod+g exec grim ~/Pictures/$(date +'shot_%F_%T.png')
 bindsym $mod+Ctrl+g exec grim -g "$(slurp)" ~/Pictures/$(date +'shot_%F_%T.png')
 bindsym $mod+Shift+g exec grim -g "$(slurp)" - | swappy -f -
