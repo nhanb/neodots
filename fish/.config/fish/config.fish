@@ -62,9 +62,8 @@ function testformat
 end
 
 function testip
-    echo "Using ipify.org"
-    echo (curl -s api.ipify.org)
-    echo (curl -s api6.ipify.org)
+    echo (curl -s4 https://icanhazip.com/)
+    echo (curl -s6 https://icanhazip.com/)
 end
 
 
