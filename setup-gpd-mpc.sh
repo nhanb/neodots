@@ -13,6 +13,6 @@ for target in "${targets[@]}"; do
     stow "$target"
 done
 
-doas pacman -Syu jq grim slurp cmus nnn wl-clipboard swappy
+doas pacman -Syu jq grim slurp cmus nnn wl-clipboard swappy mpv calc aria2
 
 mkdir ~/Pictures
