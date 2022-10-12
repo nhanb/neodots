@@ -141,6 +141,10 @@ nnoremap <leader>e :NERDTreeFind<cr>:NERDTreeRefresh<cr>
 
 let NERDTreeShowHidden=1
 
+" https://github.com/preservim/nerdtree/issues/1321#issuecomment-1234980190
+" Also I think I prefer this look anyway
+let g:NERDTreeMinimalMenu=1
+
 " Show git signs too because why not?
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " }}}
