@@ -279,11 +279,11 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   if vim.bo.filetype ~= 'python' then
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.format({async=false})<CR>', opts)
   end
 
   -- Autoformat on save - only apply on Go for now
-  vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync()]]
+  vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.formatting({async=false})]]
 end
 
 require('lspconfig').pyright.setup {
