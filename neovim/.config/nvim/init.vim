@@ -224,6 +224,10 @@ if has('clipboard')
     nnoremap <leader>p "+p
     nnoremap <leader>P "+P
 
+    " These go nicely with *gasp* mouse selection
+    vnoremap <c-c> "+ygv
+    vnoremap <c-v> "+p
+
 else
     function! NoClipboardWarning()
         echohl WarningMsg
