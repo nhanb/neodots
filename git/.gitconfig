@@ -4,9 +4,6 @@
 [includeIf "gitdir:~/neodots/"]
     path = ~/neodots/git/.gitconfig.oss
 
-[includeIf "gitdir:~/inspec/"]
-    path = ~/neodots/git/.gitconfig.inspec
-
 [pull]
     ff = only
 
