@@ -77,6 +77,7 @@ set extra_paths \
     "$HOME/.local/bin" \
     "$HOME/.nimble/bin" \
     "$HOME/.node_modules/bin" \
+    "$HOME/.luarocks/bin" \
     "$HOME/google-cloud-sdk/bin"
 for extra_path in $extra_paths
     if not contains $extra_path $PATH
