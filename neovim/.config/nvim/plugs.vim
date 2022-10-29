@@ -139,6 +139,19 @@ let NERDTreeIgnore = ['\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$',
 nnoremap <leader>d :NERDTreeToggle<cr>:NERDTreeRefresh<cr>
 nnoremap <leader>e :NERDTreeFind<cr>:NERDTreeRefresh<cr>
 
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ "Modified"  : "M",
+    \ "Staged"    : "S",
+    \ "Untracked" : "U",
+    \ "Renamed"   : "R",
+    \ "Unmerged"  : "=",
+    \ "Deleted"   : "X",
+    \ "Dirty"     : "D",
+    \ "Clean"     : "C",
+    \ 'Ignored'   : 'I',
+    \ "Unknown"   : "?"
+    \ }
+
 let NERDTreeShowHidden=1
 
 " https://github.com/preservim/nerdtree/issues/1321#issuecomment-1234980190
@@ -154,6 +167,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 let g:airline_theme='powerlineish'
+let g:airline_symbols_ascii = 1
 " }}}
 " emmet-vim {{{
 " ================================================================
