@@ -8,6 +8,10 @@ set -x EDITOR nvim
 set -x GIT_EDITOR nvim
 set -x VISUAL nvim
 
+# Exec-ing files in /tmp is forbidden in crostini,
+# so this unbreaks `go run`:
+set -x TMPDIR ~/tmp
+
 # python stuff
 abbr -a -g py3 python3
 abbr -a -g py python
