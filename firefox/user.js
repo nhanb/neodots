@@ -3,7 +3,7 @@
 
 // Windows-style scrollbar, which is wider than those dumb
 // "modern" qt/gtk abominations.
-user_pref("widget.non-native-theme.scrollbar.style", 4);
+//user_pref("widget.non-native-theme.scrollbar.style", 4);
 
 // Force animated loading tab icon
 user_pref("ui.prefersReducedMotion", 0);
