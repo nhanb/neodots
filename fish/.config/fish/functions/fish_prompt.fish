@@ -12,6 +12,12 @@ set __fish_git_prompt_showdirtystate
 set __fish_git_prompt_showuntrackedfiles
 set __fish_git_prompt_showstashstate
 
+set __fish_git_prompt_char_cleanstate "ok"
+set __fish_git_prompt_char_dirtystate "+"
+set __fish_git_prompt_char_invalidstate "#"
+set __fish_git_prompt_char_stagedstate "*"
+set __fish_git_prompt_char_stashstate '$'
+
 # If inside ssh, diplay light blue hostname, else yellow
 if set -q SSH_TTY
   set -g fish_color_host 0ff
