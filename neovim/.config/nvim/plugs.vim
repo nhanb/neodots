@@ -8,7 +8,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Soares/base16.nvim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'inside/vim-search-pulse'
 Plug 'airblade/vim-rooter'
@@ -248,6 +247,14 @@ for [key, value] in items(g:ale_fixers)
 endfor
 
 " }}}
+" base16 {{{
+" ================================================================
+Plug 'Soares/base16.nvim'
+" Make comments not italic (on crostini italics are sometimes cut off)
+" Also make them grey to make them less prominent, now that they're
+" no longer italic.
+let g:base16_color_overrides = {'Comment': 'fg=similar1 NONE'}
+"}}}
 
 
 " Initialize plugin system
