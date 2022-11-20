@@ -29,18 +29,18 @@ __prompt_command() {
 
     local RCol='\[\e[0m\]'
 
-    local Red='\[\e[0;31m\]'
+    local BRed='\[\e[1;31m\]'
     local Gre='\[\e[0;32m\]'
     local BYel='\[\e[1;33m\]'
     local BBlu='\[\e[1;34m\]'
     local Pur='\[\e[0;35m\]'
+    local Bold='\[\e[1m\]'
 
+    PS1+="${Pur}bash${RCol} "
     if [ $EXIT != 0 ]; then
-        PS1+="[${Red}${EXIT}${RCol}]"      # Add red if exit code non 0
-    else
-        PS1+="[0]"
+        PS1+="${BRed}${EXIT}${RCol} "      # Add red if exit code non 0
     fi
-    PS1+="▶ "
+    PS1+="${Bold}\$${RCol} "
     #PS1+="${RCol}@${BBlu}\h ${Pur}\W${BYel}$ ${RCol}"
 }
 
