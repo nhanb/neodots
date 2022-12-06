@@ -23,13 +23,18 @@ set textwidth=79
 set colorcolumn=+1       " draw colorcolumn 1 char after max textwidth
 let loaded_matchparen = 0 " matching paren highlighting is distracting
 
+if executable('open')
+    let g:opencmd = 'open'
+else
+    let g:opencmd = 'xdg-open'
+endif
 
 " Open http(s) url under cursor with xdg-open
 function! OpenURL()
-  let l:url = matchstr(expand("<cWORD>"), 'https\=:\/\/[^ >,;()]*')
+  let l:url = matchstr(expand("<cWORD>"), 'https\=:\/\/[^ >,;()'. "'" .']*')
   if l:url != ""
     let l:url = shellescape(l:url, 1)
-    let l:command = "!xdg-open ".l:url
+    let l:command = "!".g:opencmd." ".l:url
     echo l:command
     silent exec l:command
   else
@@ -42,7 +47,7 @@ nnoremap gl :call OpenURL()<cr>
 function! OpenJira()
   let l:jira_id = toupper(matchstr(expand("<cWORD>"), '\c\(id2\|sre\|csi\)-[0-9]\+'))
   if l:jira_id != ""
-    let l:command = "!xdg-open https://inspectorio.atlassian.net/browse/".l:jira_id
+    let l:command = "!".g:opencmd." https://inspectorio.atlassian.net/browse/".l:jira_id
     echo l:command
     silent exec l:command
   else
