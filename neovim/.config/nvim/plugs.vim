@@ -12,6 +12,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'inside/vim-search-pulse'
 Plug 'airblade/vim-rooter'
 Plug 'dag/vim-fish'
+Plug 'peterhoeg/vim-qml'
 Plug 'neovim/nvim-lspconfig' " actual conf comes after `call plug#end()` because lua
 " }}}
 
