@@ -196,12 +196,16 @@ let g:user_emmet_settings = {
 let g:ale_completion_enabled = 0 " must be set before ALE is loaded
 Plug 'dense-analysis/ale'
 
+" disable annoying inline diagnostic text on neovim:
+let g:ale_virtualtext_cursor = 0
+
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
             \'python': ['flake8'],
             \'elm': ['make'],
             \'qml': ['qmllint'],
             \'sh': ['shellcheck'],
+            \'fish': ['fish'],
             \'nim': ['nimcheck'],
             \'javascript': ['jshint'],
             \'d': ['dls'],
