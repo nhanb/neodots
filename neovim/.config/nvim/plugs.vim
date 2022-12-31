@@ -202,6 +202,7 @@ let g:ale_virtualtext_cursor = 0
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
             \'python': ['flake8'],
+            \'go': ['gopls'],
             \'elm': ['make'],
             \'qml': ['qmllint'],
             \'sh': ['shellcheck'],
@@ -252,6 +253,10 @@ Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer' }
 
 nnoremap gd :YcmCompleter GoTo<cr>
 nnoremap gr :YcmCompleter GoToReferences<cr>
+
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 0
 
 " TODO: YCM doesn't support gopls rename yet. I'll have to do some manual work.
 
