@@ -1,7 +1,8 @@
 [flake8]
-ignore =
-    E501 # long line - taken care of by black already
-    E266 # too many leading '#' for block comment - wtf?
-    C901 # mccabe - I'll judge how complex my code is thank you very much
-    W503 # line break before binary operator - Incompatible with black/pep8
-    E203 # space before `:` - https://github.com/PyCQA/pycodestyle/issues/373
+
+# C901: mccabe - I'll judge how complex my code is thank you very much
+# E203: space before `:` - https://github.com/PyCQA/pycodestyle/issues/373
+# E266: too many leading '#' for block comment - wtf?
+# E501: long line - taken care of by black already
+# W503: line break before binary operator - Incompatible with black/pep8
+extend-ignore = C901,E203,E266,E501,W503
