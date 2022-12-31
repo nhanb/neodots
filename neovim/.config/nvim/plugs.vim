@@ -13,7 +13,6 @@ Plug 'inside/vim-search-pulse'
 Plug 'airblade/vim-rooter'
 Plug 'dag/vim-fish'
 Plug 'peterhoeg/vim-qml'
-Plug 'neovim/nvim-lspconfig' " actual conf comes after `call plug#end()` because lua
 " }}}
 
 " local vimrc {{{
@@ -189,31 +188,17 @@ let g:user_emmet_settings = {
             \  },
             \}
 "}}}
-" isort & black {{{
-" ================================================================
-Plug 'nhanb/vim-isort'
-Plug 'psf/black', { 'branch': 'stable' }
-
-function! FormatPython()
-    Isort
-    Black
-endfunction
-autocmd BufWritePre ~/pj/**/*.py call FormatPython()
-" Currently only Python needs a custom format function. All other filetypes
-" that I use can utilize nvim-lspconfig's format function instead (see the
-" nvim-lspconfig section way below).
-autocmd FileType python nnoremap <buffer> <leader>f :call FormatPython()<cr>
-
-" }}}
 " ALE {{{
 " ================================================================
-" For file types that don't have established langservers (i.e. not readily
-" installable with pacman -S), fall back to using ALE for linting and
-" autoformatting. For me right now that means anything that's not Python or Go.
+" I use ALE for linting and autoformat, including autoformat-on-save.
+" Although YouCompleteMe has a Format feature, it's limited:
+" not letting me use goimports was a dealbreaker.
 let g:ale_completion_enabled = 0 " must be set before ALE is loaded
 Plug 'dense-analysis/ale'
+
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
+            \'python': ['flake8'],
             \'elm': ['make'],
             \'qml': ['qmllint'],
             \'sh': ['shellcheck'],
@@ -222,9 +207,11 @@ let g:ale_linters = {
             \'d': ['dls'],
             \'c': ['cc'],
             \}
+let g:ale_python_flake8_options = '--append-config ~/.flake8'
+
 let g:ale_fixers = {
-            \'python': [],
-            \'go': [],
+            \'python': ['isort', 'black'],
+            \'go': ['goimports'],
             \'rust': ['rustfmt'],
             \'elm': ['elm-format'],
             \'qml': ['qmlfmt'],
@@ -236,7 +223,6 @@ let g:ale_fixers = {
             \'css': ['prettier'],
             \'d': ['dfmt'],
             \'json': ['prettier'],
-            \'sql': ['pgpp'],
             \'vim': ['remove_trailing_lines', 'trim_whitespace'],
             \}
 
@@ -256,7 +242,16 @@ Plug 'Soares/base16.nvim'
 " no longer italic.
 let g:base16_color_overrides = {'Comment': 'fg=similar1 NONE'}
 "}}}
+" YouCompleteMe {{{
+" ================================================================
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer' }
 
+nnoremap gd :YcmCompleter GoTo<cr>
+nnoremap gr :YcmCompleter GoToReferences<cr>
+
+" TODO: YCM doesn't support gopls rename yet. I'll have to do some manual work.
+
+"}}}
 
 " Initialize plugin system
 call plug#end()
@@ -267,92 +262,6 @@ function! FormatPostgres(buffer) abort
     \}
 endfunction
 execute ale#fix#registry#Add('pgpp', 'FormatPostgres', ['sql'], 'PGLast pgpp for postgres SQL')
-
-" nvim-lspconfig {{{
-" ================================================================
-lua <<EOF
-require'lspconfig'.gopls.setup{}
--- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
-vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Mappings.
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  --vim.api.nvim_buf_set_keymap(bufnr, 'n', '<c-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  if vim.bo.filetype ~= 'python' then
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
-  end
-end
-
-require('lspconfig').pyright.setup {
-  on_attach = on_attach,
-  settings = {
-    python = {
-      analysis = {
-        -- I'm only using pyright as a faster pylsp, so I don't need any of
-        -- its typechecking shenanigans
-        typeCheckingMode = 'off',
-      },
-    },
-  },
-}
-
-require('lspconfig').gopls.setup {
-  on_attach = on_attach,
-}
-
--- gopls: autoformat & autoimport on save
--- This is getting ridiculous...
--- https://github.com/neovim/nvim-lspconfig/issues/115#issuecomment-1130373799
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.go" },
-    callback = function()
-        vim.lsp.buf.formatting_sync(nil, 3000)
-    end,
-})
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.go" },
-    callback = function()
-        local params = vim.lsp.util.make_range_params(nil, vim.lsp.util._get_offset_encoding())
-        params.context = {only = {"source.organizeImports"}}
-
-        local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
-        for _, res in pairs(result or {}) do
-            for _, r in pairs(res.result or {}) do
-                if r.edit then
-                    vim.lsp.util.apply_workspace_edit(r.edit, vim.lsp.util._get_offset_encoding())
-                else
-                    vim.lsp.buf.execute_command(r.command)
-                end
-            end
-        end
-    end,
-})
-
-EOF
-"}}}
 
 " `colorscheme` must come after plugin initialization to be available
 syntax enable
