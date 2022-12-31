@@ -92,9 +92,7 @@ end
 set -x npm_config_prefix "$HOME/.node_modules"
 
 # Pyenv is a bit more involved
-if test -d ~/.pyenv
-    source ~/neodots/fish/pyenv.fish
-end
+source ~/neodots/fish/pyenv.fish
 abbr -a -g pwhich pyenv which
 
 # Projects
