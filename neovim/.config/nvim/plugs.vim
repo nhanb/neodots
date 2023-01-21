@@ -229,14 +229,10 @@ let g:ale_fixers = {
             \'d': ['dfmt'],
             \'json': ['prettier'],
             \'vim': ['remove_trailing_lines', 'trim_whitespace'],
+            \'sql': ['pgpp'],
             \}
 
-" For filetypes with configured fixer(s), bind ALEFix to <leader>f
-for [key, value] in items(g:ale_fixers)
-    if value != []
-        execute 'autocmd FileType '.key.' nnoremap <buffer> <leader>f :ALEFix<cr>'
-    endif
-endfor
+nnoremap <leader>f :ALEFix<cr>
 
 " }}}
 " base16 {{{
