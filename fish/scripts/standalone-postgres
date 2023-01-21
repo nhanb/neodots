@@ -2,8 +2,8 @@
 # Inspired by https://jamey.thesharps.us/2019/05/29/per-project-postgres/
 #
 # This script creates:
-#   ./postgres/ - postgres data dir
-#   ./.envrc - sets PG* envars for psql etc. to automatically use that dir
+#   .postgres-data/ - postgres data dir
+#   .envrc - sets PG* envars for psql etc. to automatically use that dir
 #
 # Usage:
 #   cd project-dir
@@ -16,26 +16,26 @@ from getpass import getuser
 from pathlib import Path
 
 current_dir = Path(os.getcwd())
-pg_dir = current_dir / "postgres"
+pg_dir = current_dir / ".postgres-data"
 envrc = current_dir / ".envrc"
 
-should_abort = False
+existing = []
 if envrc.exists():
-    should_abort = True
-    print(".envrc already exists!")
+    existing.append(envrc.name)
 if pg_dir.exists():
-    should_abort = True
-    print("postgres dir already exists!")
-if should_abort:
-    print("Aborted.")
+    existing.append(pg_dir.name)
+if existing:
+    print(f"Found existing: {', '.join(existing)}\nAborted")
     sys.exit(1)
 
 with open(envrc, "w") as sf:
     sf.write(
         f"""\
 #!/usr/bin/env bash
-export PGDATA="{pg_dir}" # put data dir inside project dir
-export PGHOST="{pg_dir}" # put postgres unix socket inside data dir
+# put data dir inside project dir:
+export PGDATA="{pg_dir}"
+# put postgres unix socket inside data dir:
+export PGHOST="{pg_dir}"
 """
     )
 
