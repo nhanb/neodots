@@ -1,47 +1,55 @@
 #!/usr/bin/env python
 # Inspired by https://jamey.thesharps.us/2019/05/29/per-project-postgres/
 #
-# This script creates:
+# By default this script creates:
 #   .postgres-data/ - postgres data dir
 #   .envrc - sets PG* envars for psql etc. to automatically use that dir
+# both of which can be changed via cli args.
 #
 # Usage:
 #   cd project-dir
 #   standalone-postgres
+# The newly created .envrc can be picked up by [direnv](https://direnv.net/).
 
+import argparse
 import os
 import subprocess
 import sys
 from getpass import getuser
 from pathlib import Path
 
-current_dir = Path(os.getcwd())
-pg_dir = current_dir / ".postgres-data"
-envrc = current_dir / ".envrc"
+parser = argparse.ArgumentParser()
+parser.add_argument("-d", "--data-dir", default=".postgres-data", type=Path)
+parser.add_argument("-e", "--env-file", default=".envrc", type=Path)
+args = parser.parse_args()
+
+
+pg_dir: Path = args.data_dir
+env_file: Path = args.env_file
 
 existing = []
-if envrc.exists():
-    existing.append(envrc.name)
+if env_file.exists():
+    existing.append(str(env_file))
 if pg_dir.exists():
-    existing.append(pg_dir.name)
+    existing.append(str(pg_dir))
 if existing:
     print(f"Found existing: {', '.join(existing)}\nAborted")
     sys.exit(1)
 
-with open(envrc, "w") as sf:
+with open(env_file, "w") as sf:
     sf.write(
         f"""\
 #!/usr/bin/env bash
 # put data dir inside project dir:
-export PGDATA="{pg_dir}"
+export PGDATA="{pg_dir.absolute()}"
 # put postgres unix socket inside data dir:
-export PGHOST="{pg_dir}"
+export PGHOST="{pg_dir.absolute()}"
 """
     )
 
 # Initialize postgres data dir
-os.environ["PGDATA"] = str(pg_dir)
-os.environ["PGHOST"] = str(pg_dir)
+os.environ["PGDATA"] = str(pg_dir.absolute())
+os.environ["PGHOST"] = str(pg_dir.absolute())
 subprocess.run("initdb", shell=True)
 
 # Make this postgres instance listen only on the unix socket
@@ -49,11 +57,11 @@ with open(pg_dir / "postgresql.conf", "a") as confile:
     confile.write(
         f"""
 listen_addresses = ''
-unix_socket_directories = '{pg_dir}'
+unix_socket_directories = '{pg_dir.absolute()}'
 """
     )
 
-# Create db using default the name postgres defaults to, which is the current username
+# Create db using the name postgres defaults to, which is the current username
 p = subprocess.Popen(
     ["postgres", "--single", "-E", "postgres"],
     stdin=subprocess.PIPE,
