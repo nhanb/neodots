@@ -120,3 +120,7 @@ abbr lwifi 'doas iwctl station wlan0 scan && doas iwctl station wlan0 get-networ
 abbr cwifi doas iwctl station wlan0 connect
 
 alias mpv-drc='mpv --af="acompressor=ratio=4,loudnorm"'
+
+if type -q direnv
+    direnv hook fish | source
+end

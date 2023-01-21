@@ -3,12 +3,11 @@
 #
 # This script creates:
 #   ./postgres/ - postgres data dir
-#   ./setenv.sh - sets PG* envars for psql etc. to automatically use that dir
+#   ./.envrc - sets PG* envars for psql etc. to automatically use that dir
 #
 # Usage:
 #   cd project-dir
 #   standalone-postgres
-#   . setenv.sh
 
 import os
 import subprocess
@@ -18,12 +17,12 @@ from pathlib import Path
 
 current_dir = Path(os.getcwd())
 pg_dir = current_dir / "postgres"
-setenv_file = current_dir / "setenv.sh"
+envrc = current_dir / ".envrc"
 
 should_abort = False
-if setenv_file.exists():
+if envrc.exists():
     should_abort = True
-    print("setenv.sh already exists!")
+    print(".envrc already exists!")
 if pg_dir.exists():
     should_abort = True
     print("postgres dir already exists!")
@@ -31,10 +30,10 @@ if should_abort:
     print("Aborted.")
     sys.exit(1)
 
-# Create setenv script
-with open(setenv_file, "w") as sf:
+with open(envrc, "w") as sf:
     sf.write(
         f"""\
+#!/usr/bin/env bash
 export PGDATA="{pg_dir}" # put data dir inside project dir
 export PGHOST="{pg_dir}" # put postgres unix socket inside data dir
 """
