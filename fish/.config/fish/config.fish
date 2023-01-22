@@ -82,6 +82,7 @@ set extra_paths \
     # wayland stuff, and I've moved back to KDE on xorg for now.
     "$HOME/neodots/surface-go/scripts" \
     "$HOME/.local/bin" \
+    "$HOME/go/bin" \
     "$HOME/.nimble/bin" \
     "$HOME/.node_modules/bin" \
     "$HOME/.luarocks/bin" \
