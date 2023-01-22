@@ -269,7 +269,7 @@ let g:markdown_fenced_languages = ['python', 'sh', 'json', 'javascript',
 nnoremap q; q:
 
 " Trigger omnifunc
-inoremap <c-j> <c-x><c-o>
+"inoremap <c-j> <c-x><c-o>
 
 " Enable tab completion in addition to <C-n> / <C-p>
 inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
@@ -282,7 +282,7 @@ onoremap il :normal vil<CR>
 
 " Poor man's acme: execute current line, append result to current buffer
 nnoremap <leader><space> :exec ':read!'.getline('.')<cr>
-inoremap <c-space> <esc>:exec ':read!'.getline('.')<cr>
+"inoremap <c-space> <esc>:exec ':read!'.getline('.')<cr>
 " Visual mode is a bit more involved:
 function! ExecuteSelection()
     " Puts currently selected text into the @@ register, then `read!` it
