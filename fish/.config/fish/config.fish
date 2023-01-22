@@ -21,6 +21,11 @@ abbr -a -g pup pip install --upgrade pip
 abbr -a -g pr poetry run
 abbr -a -g prp poetry run python
 
+# Disable python-keyring.
+# Recently python-poetry and python-pgcli started using it,
+# throwing up warnings all over the place...
+set -x PYTHON_KEYRING_BACKEND keyring.backends.null.Keyring
+
 # git
 abbr -a -g g git
 abbr -a -g gac 'git add -A && git commit'
