@@ -275,9 +275,6 @@ inoremap <c-j> <c-x><c-o>
 inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
-" Sensible completion menu behavior
-set completeopt=menu,menuone,preview,noselect,noinsert
-
 " "inside line" motion
 " (https://vi.stackexchange.com/questions/6101/is-there-a-text-object-for-current-line)
 xnoremap il g_o^
