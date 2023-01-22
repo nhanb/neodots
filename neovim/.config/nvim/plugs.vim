@@ -1,5 +1,5 @@
 " vim:fdm=marker
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin()
 
 " Straightforward stuff (no custom config) {{{
 " ================================================================
@@ -12,7 +12,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'inside/vim-search-pulse'
 Plug 'airblade/vim-rooter'
 Plug 'dag/vim-fish'
-Plug 'peterhoeg/vim-qml'
 " }}}
 
 " local vimrc {{{
@@ -43,14 +42,7 @@ nnoremap <leader>gw :Gwrite<cr>
 nnoremap <leader>gr :Gread<cr>
 
 " Open git log in a new buffer
-nnoremap <leader>gll :Gtabedit! log<cr>
-nnoremap <leader>glo :Gtabedit! log --pretty=oneline<cr>
-nnoremap <leader>glg :Gtabedit! log --graph<cr>
-nnoremap <leader>glp :Gtabedit! log -p<cr>
-
-" Open git diff in a new buffer
-nnoremap <leader>gff :Gtabedit! diff<cr>
-nnoremap <leader>gfc :Gtabedit! diff --cached<cr>
+nnoremap <leader>gt :tab Git<space>
 
 " Open current file in master
 nnoremap <leader>got :Gtabedit master:%<cr>
@@ -235,14 +227,6 @@ let g:ale_fixers = {
 nnoremap <leader>f :ALEFix<cr>
 
 " }}}
-" base16 {{{
-" ================================================================
-Plug 'Soares/base16.nvim'
-" Make comments not italic (on crostini italics are sometimes cut off)
-" Also make them grey to make them less prominent, now that they're
-" no longer italic.
-let g:base16_color_overrides = {'Comment': 'fg=similar1 NONE'}
-"}}}
 " YouCompleteMe {{{
 " ================================================================
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer' }
@@ -253,6 +237,10 @@ nnoremap gr :YcmCompleter GoToReferences<cr>
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_enable_diagnostic_signs = 0
 let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_auto_hover = ''
+
+nnoremap K :YcmCompleter GetDoc<cr>
+nnoremap <leader>gf <Plug>(YCMFindSymbolInWorkspace)
 
 " TODO: YCM doesn't support gopls rename yet. I'll have to do some manual work.
 
@@ -268,10 +256,11 @@ function! FormatPostgres(buffer) abort
 endfunction
 execute ale#fix#registry#Add('pgpp', 'FormatPostgres', ['sql'], 'PGLast pgpp for postgres SQL')
 
-" `colorscheme` must come after plugin initialization to be available
+" `colorscheme` must come after plugin initialization to be available.
+" Currently I'm using a stock colorscheme though (habamax).
 syntax enable
-set termguicolors
-set background=dark
-colorscheme oceanicnext
-highlight Pmenu guibg='#444444'
-highlight ColorColumn guibg='#222222'
+colorscheme habamax
+" darker background
+hi Normal ctermbg=16
+" more distinguisable active line number
+hi LineNr ctermfg=grey cterm=bold

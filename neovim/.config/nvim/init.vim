@@ -23,6 +23,9 @@ set textwidth=79
 set colorcolumn=+1       " draw colorcolumn 1 char after max textwidth
 let loaded_matchparen = 0 " matching paren highlighting is distracting
 
+" Fixes slow esc from visual mode in vim
+set timeoutlen=1000 ttimeoutlen=0
+
 if executable('open')
     let g:opencmd = 'open'
 else
@@ -281,15 +284,15 @@ xnoremap il g_o^
 onoremap il :normal vil<CR>
 
 " Poor man's acme: execute current line, append result to current buffer
-nnoremap <leader><space> :exec ':read!'.getline('.')<cr>
+"nnoremap <leader><space> :exec ':read!'.getline('.')<cr>
 "inoremap <c-space> <esc>:exec ':read!'.getline('.')<cr>
 " Visual mode is a bit more involved:
-function! ExecuteSelection()
-    " Puts currently selected text into the @@ register, then `read!` it
-    normal! `<v`>y
-    exec 'read!' . @@
-endfunction
-vnoremap <leader><space> :<c-u>call ExecuteSelection()<cr>
+"function! ExecuteSelection()
+    "" Puts currently selected text into the @@ register, then `read!` it
+    "normal! `<v`>y
+    "exec 'read!' . @@
+"endfunction
+"vnoremap <leader><space> :<c-u>call ExecuteSelection()<cr>
 
 " ===== Plugins =====
 so $HOME/.config/nvim/plugs.vim

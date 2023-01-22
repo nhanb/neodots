@@ -2,11 +2,9 @@
 set fish_greeting
 
 # neovim all the things
-abbr -a -g vim nvim
-abbr -a -g vi nvim
-set -x EDITOR nvim
-set -x GIT_EDITOR nvim
-set -x VISUAL nvim
+set -x EDITOR vim
+set -x GIT_EDITOR vim
+set -x VISUAL vim
 
 # Exec-ing files in /tmp is forbidden in crostini,
 # so this unbreaks `go run`:
