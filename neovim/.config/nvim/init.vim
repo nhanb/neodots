@@ -130,7 +130,7 @@ nnoremap <left> <c-w><
 nnoremap <right> <c-w>>
 
 " Write file with sudo permission
-nnoremap <leader>wf :w<space>!sudo<space>tee<space>%<cr>
+"nnoremap <leader>wf :w<space>!sudo<space>tee<space>%<cr>
 
 " Moving around splits using Ctrl+h/j/k/l
 nnoremap <c-j> <c-w>j
@@ -206,7 +206,7 @@ nnoremap <leader>q :!chmod +x %<cr><cr>:echo 'File is now executable'<cr>
 
 " Shortcut to center cursor vertically.
 nnoremap <space> zz
-nnoremap <leader><space> zt
+"nnoremap <leader><space> zt
 
 " Close quickfix
 nnoremap <leader>x :cclose<cr>:lclose<cr>:pc<cr>
@@ -284,15 +284,17 @@ xnoremap il g_o^
 onoremap il :normal vil<CR>
 
 " Poor man's acme: execute current line, append result to current buffer
-"nnoremap <leader><space> :exec ':read!'.getline('.')<cr>
+nnoremap <leader><space> :exec ':read!'.getline('.')<cr>
 "inoremap <c-space> <esc>:exec ':read!'.getline('.')<cr>
 " Visual mode is a bit more involved:
-"function! ExecuteSelection()
-    "" Puts currently selected text into the @@ register, then `read!` it
-    "normal! `<v`>y
-    "exec 'read!' . @@
-"endfunction
-"vnoremap <leader><space> :<c-u>call ExecuteSelection()<cr>
+function! ExecuteSelection()
+    """ Puts currently selected text into the @@ register, then `read!` it
+    normal! `<v`>y
+    exec 'read!' . @@
+endfunction
+vnoremap <leader><space> :<c-u>call ExecuteSelection()<cr>
+
+nnoremap <leader><leader><space> :exec ':!'.getline('.')<cr>
 
 " ===== Plugins =====
 so $HOME/.config/nvim/plugs.vim
