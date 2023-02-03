@@ -217,8 +217,16 @@ map Y y$
 " Go to previously open file (basically like alt-tab toggle)
 nnoremap <leader><tab> <c-^>
 
-" Use '+' register to do system clipboard stuff {{{
-if has('clipboard')
+" The + clipboard doesn't work on crostini for some reason, so pipe to
+" wl-clipboard instead.
+if filereadable('/dev/.cros_milestone')
+    vnoremap <leader>y y:call system("wl-copy", @")<cr>
+    nnoremap <leader>y :silent .w !wl-copy<cr>
+    nnoremap <leader>p :read !wl-paste --no-newline<cr>
+    " TODO: pasting into a visual selection
+
+" Use '+' register to do system clipboard stuff
+elseif has('clipboard')
     vnoremap <leader>y "+y
                 \:echo 'Selection yanked to system clipboard'<cr>
     nnoremap <leader>y "+yy
@@ -247,7 +255,6 @@ else
     nnoremap <leader>p :call NoClipboardWarning()<cr>
     nnoremap <leader>P :call NoClipboardWarning()<cr>
 endif
-"}}}
 
 " Make tabs, trailing whitespace, and non-breaking spaces visible
 fun! MarkSpecialWhitespaces()
