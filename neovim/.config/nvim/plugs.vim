@@ -241,9 +241,7 @@ let g:ycm_auto_hover = ''
 
 nnoremap K :YcmCompleter GetDoc<cr>
 nnoremap <leader>gf <Plug>(YCMFindSymbolInWorkspace)
-
-" TODO: YCM doesn't support gopls rename yet. I'll have to do some manual work.
-
+nnoremap <leader><leader>r :YcmCompleter RefactorRename<space>
 "}}}
 
 " Initialize plugin system
