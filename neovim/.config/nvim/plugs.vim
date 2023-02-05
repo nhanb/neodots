@@ -238,6 +238,7 @@ let g:ycm_show_diagnostics_ui = 0
 let g:ycm_enable_diagnostic_signs = 0
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_auto_hover = ''
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 nnoremap K :YcmCompleter GetDoc<cr>
 nnoremap <leader>gf <Plug>(YCMFindSymbolInWorkspace)
