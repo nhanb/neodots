@@ -221,7 +221,7 @@ let g:ale_fixers = {
             \'d': ['dfmt'],
             \'json': ['prettier'],
             \'vim': ['remove_trailing_lines', 'trim_whitespace'],
-            \'sql': ['pgpp'],
+            \'sql': ['pgformatter'],
             \}
 
 nnoremap <leader>f :ALEFix<cr>
@@ -247,13 +247,6 @@ nnoremap <leader><leader>r :YcmCompleter RefactorRename<space>
 
 " Initialize plugin system
 call plug#end()
-
-function! FormatPostgres(buffer) abort
-    return {
-    \   'command': 'pgpp -m 30 --comma-at-eoln --preserve-comments -e',
-    \}
-endfunction
-execute ale#fix#registry#Add('pgpp', 'FormatPostgres', ['sql'], 'PGLast pgpp for postgres SQL')
 
 " `colorscheme` must come after plugin initialization to be available.
 " Currently I'm using a stock colorscheme though (habamax).
