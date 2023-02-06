@@ -66,8 +66,12 @@ autocmd BufNewFile,BufRead poetry.lock set filetype=toml
 let g:loaded_python_provider = 0
 
 " Set system python as py3 provider.
-" This assumes I have installed the Arch Linux `python-pynvim` package.
-let g:python3_host_prog = '/usr/bin/python'
+if has('macunix')
+    let g:python3_host_prog = '/opt/local/bin/python'
+else
+    " This assumes I have installed the Arch Linux `python-pynvim` package.
+    let g:python3_host_prog = '/usr/bin/python'
+endif
 
 " Keep temporary files in mybackupdir
 let mybackupdir=$HOME.'/.vim_backup'

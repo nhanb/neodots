@@ -76,17 +76,18 @@ end
 
 # PATH stuff
 set extra_paths \
-    "$HOME/binaries" \
-    "$HOME/scripts" \
-    # I don't wanna stow the whole surface-go dir yet because it contains
-    # wayland stuff, and I've moved back to KDE on xorg for now.
-    "$HOME/neodots/surface-go/scripts" \
+    "/opt/local/bin" \
     "$HOME/.local/bin" \
     "$HOME/go/bin" \
     "$HOME/.nimble/bin" \
     "$HOME/.node_modules/bin" \
     "$HOME/.luarocks/bin" \
-    "$HOME/google-cloud-sdk/bin"
+    "$HOME/google-cloud-sdk/bin" \
+    "$HOME/binaries" \
+    "$HOME/scripts" \
+    # I don't wanna stow the whole surface-go dir yet because it contains
+    # wayland stuff, and I've moved back to KDE on xorg for now.
+    "$HOME/neodots/surface-go/scripts"
 for extra_path in $extra_paths
     if not contains $extra_path $PATH
         set -x PATH $extra_path $PATH
