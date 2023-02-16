@@ -3,7 +3,6 @@ call plug#begin()
 
 " Straightforward stuff (no custom config) {{{
 " ================================================================
-Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
@@ -14,6 +13,12 @@ Plug 'airblade/vim-rooter'
 Plug 'dag/vim-fish'
 " }}}
 
+" delimitMate {{{
+" ================================================================
+Plug 'Raimondi/delimitMate'
+
+let delimitMate_expand_cr = 1
+"}}}
 " local vimrc {{{
 " ================================================================
 Plug 'MarcWeber/vim-addon-local-vimrc'
