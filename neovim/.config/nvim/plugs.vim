@@ -231,6 +231,8 @@ let g:ale_fixers = {
 
 nnoremap <leader>f :ALEFix<cr>
 
+let g:ale_c_clangformat_options = '--style=google'
+
 " }}}
 " YouCompleteMe {{{
 " ================================================================
