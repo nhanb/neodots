@@ -229,7 +229,7 @@ nnoremap <leader>f :ALEFix<cr>
 " }}}
 " YouCompleteMe {{{
 " ================================================================
-Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer' }
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer --clangd-completer' }
 
 nnoremap gd :YcmCompleter GoTo<cr>
 nnoremap gr :YcmCompleter GoToReferences<cr>
