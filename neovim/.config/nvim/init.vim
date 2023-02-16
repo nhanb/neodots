@@ -40,6 +40,7 @@ function! OpenURL()
     let l:command = "!".g:opencmd." ".l:url
     echo l:command
     silent exec l:command
+    redraw!
   else
     echo "No URL found under cursor."
   endif
