@@ -1,7 +1,6 @@
 # disable greeting line on startup
 set fish_greeting
 
-# neovim all the things
 set -x EDITOR vim
 set -x GIT_EDITOR vim
 set -x VISUAL vim

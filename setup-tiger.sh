@@ -5,7 +5,7 @@ set -e
 targets=(
     bash
     git
-    neovim
+    vim
     tmux
     fish
     tiger

@@ -7,7 +7,7 @@ targets=(
     git
     kde
     kitty
-    neovim
+    vim
     tmux
     fish
     mpv
@@ -15,5 +15,3 @@ targets=(
 for target in "${targets[@]}"; do
     stow "$target"
 done
-
-ln -s "$PWD/neovim/.config/nvim/init.vim" ~/.vimrc

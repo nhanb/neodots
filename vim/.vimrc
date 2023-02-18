@@ -309,4 +309,4 @@ vnoremap <leader><space> :<c-u>call ExecuteSelection()<cr>
 nnoremap <leader><leader><space> :exec ':!'.getline('.')<cr>
 
 " ===== Plugins =====
-so $HOME/.config/nvim/plugs.vim
+so $HOME/.vim/plugs.vim

@@ -4,7 +4,7 @@ set -e
 # Just stow stuff
 targets=(
     git
-    neovim
+    vim
     tmux
     fish
     gpd-mpc
