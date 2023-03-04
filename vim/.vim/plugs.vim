@@ -212,7 +212,7 @@ let g:ale_linters = {
 let g:ale_python_flake8_options = '--append-config ~/.flake8'
 
 let g:ale_fixers = {
-            \'python': ['isort', 'black'],
+            \'python': ['black', 'isort'],
             \'go': ['goimports'],
             \'rust': ['rustfmt'],
             \'elm': ['elm-format'],
@@ -232,6 +232,7 @@ let g:ale_fixers = {
 nnoremap <leader>f :ALEFix<cr>
 
 let g:ale_c_clangformat_options = '--style=google'
+let g:ale_python_isort_options = '--profile black'
 
 " }}}
 " YouCompleteMe {{{
