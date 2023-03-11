@@ -259,8 +259,11 @@ call plug#end()
 " `colorscheme` must come after plugin initialization to be available.
 " Currently I'm using a stock colorscheme though (habamax).
 syntax enable
-colorscheme habamax
+colorscheme lunaperche
+set background=dark
 " darker background
-hi Normal ctermbg=16
+"hi Normal ctermbg=16
 " more distinguisable active line number
 hi LineNr ctermfg=grey cterm=bold
+hi LineNrAbove ctermfg=darkgrey
+hi LineNrBelow ctermfg=darkgrey
