@@ -21,7 +21,6 @@ set title                " change the terminal's title
 set noerrorbells         " don't beep
 set textwidth=79
 set colorcolumn=+1       " draw colorcolumn 1 char after max textwidth
-"let loaded_matchparen = 0 " matching paren highlighting is distracting
 
 " Fixes slow esc from visual mode in vim
 set timeoutlen=1000 ttimeoutlen=0

@@ -263,7 +263,9 @@ colorscheme lunaperche
 set background=dark
 " darker background
 "hi Normal ctermbg=16
-" more distinguisable active line number
+" more distinguisable active line number:
 hi LineNr ctermfg=grey cterm=bold
 hi LineNrAbove ctermfg=darkgrey
 hi LineNrBelow ctermfg=darkgrey
+" Prevent incorrectly inverted cursor when highlighting matching parens:
+hi MatchParen ctermbg=227 ctermfg=0
