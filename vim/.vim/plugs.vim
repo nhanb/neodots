@@ -237,7 +237,7 @@ let g:ale_python_isort_options = '--profile black'
 " }}}
 " YouCompleteMe {{{
 " ================================================================
-Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer --clangd-completer' }
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer --clangd-completer --ts-completer' }
 
 nnoremap gd :YcmCompleter GoTo<cr>
 nnoremap gr :YcmCompleter GoToReferences<cr>
