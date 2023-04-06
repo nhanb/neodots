@@ -1,6 +1,6 @@
 [Desktop Entry]
 Comment=
-Exec=doas pacman -Syu && poweroff
+Exec=doas pacman -Syu && qdbus org.kde.ksmserver /KSMServer logout 0 2 2
 Icon=update-none
 Name=Update & Poweroff
 NoDisplay=false
