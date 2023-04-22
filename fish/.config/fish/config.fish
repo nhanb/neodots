@@ -7,7 +7,7 @@ set -x VISUAL vim
 
 # Exec-ing files in /tmp is forbidden in crostini,
 # so this unbreaks `go run`:
-set -x TMPDIR ~/tmp
+#set -x TMPDIR ~/tmp
 
 # python stuff
 abbr -a -g py3 python3
