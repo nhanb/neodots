@@ -11,6 +11,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'inside/vim-search-pulse'
 Plug 'airblade/vim-rooter'
 Plug 'dag/vim-fish'
+Plug 'jgm/djot', { 'rtp': 'editors/vim' }
 " }}}
 
 " delimitMate {{{
