@@ -5,6 +5,10 @@ set -x EDITOR vim
 set -x GIT_EDITOR vim
 set -x VISUAL vim
 
+# normally I wouldn't need this but gokrazy defaults to arm64
+# while I'm only tinkering with amd64 (read: normal pc) appliances.
+set -x GOARCH amd64
+
 # Exec-ing files in /tmp is forbidden in crostini,
 # so this unbreaks `go run`:
 #set -x TMPDIR ~/tmp
