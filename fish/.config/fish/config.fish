@@ -9,6 +9,8 @@ set -x VISUAL vim
 # while I'm only tinkering with amd64 (read: normal pc) appliances.
 set -x GOARCH amd64
 
+set -x GOKRAZY_PARENT_DIR $HOME/pj/gok-appliances
+
 # Exec-ing files in /tmp is forbidden in crostini,
 # so this unbreaks `go run`:
 #set -x TMPDIR ~/tmp
