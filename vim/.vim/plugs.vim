@@ -11,7 +11,6 @@ Plug 'inside/vim-search-pulse'
 Plug 'airblade/vim-rooter'
 Plug 'dag/vim-fish'
 Plug 'jgm/djot', { 'rtp': 'editors/vim' }
-Plug 'mhartington/oceanic-next'
 Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'}
 " don't need no tmux anymore!
 "Plug 'christoomey/vim-tmux-navigator'
@@ -261,9 +260,9 @@ nnoremap <leader><leader>r :YcmCompleter RefactorRename<space>
 call plug#end()
 
 " `colorscheme` must come after plugin initialization to be available.
-" Currently I'm using a stock colorscheme though (habamax).
+" Currently I'm using a stock colorscheme though.
 syntax enable
-colorscheme OceanicNext
+colorscheme lunaperche
 set background=dark
 " darker background
 "hi Normal ctermbg=16
@@ -273,3 +272,5 @@ hi LineNrAbove ctermfg=darkgrey
 hi LineNrBelow ctermfg=darkgrey
 " Prevent incorrectly inverted cursor when highlighting matching parens:
 hi MatchParen ctermbg=227 ctermfg=0
+" Some themes (lunaperche) make comments too bright, so let's fix it:
+hi Comment ctermfg=darkgrey
