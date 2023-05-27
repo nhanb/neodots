@@ -12,6 +12,7 @@ Plug 'inside/vim-search-pulse'
 Plug 'airblade/vim-rooter'
 Plug 'dag/vim-fish'
 Plug 'jgm/djot', { 'rtp': 'editors/vim' }
+Plug 'mhartington/oceanic-next'
 " }}}
 
 " delimitMate {{{
@@ -260,7 +261,7 @@ call plug#end()
 " `colorscheme` must come after plugin initialization to be available.
 " Currently I'm using a stock colorscheme though (habamax).
 syntax enable
-colorscheme lunaperche
+colorscheme OceanicNext
 set background=dark
 " darker background
 "hi Normal ctermbg=16
