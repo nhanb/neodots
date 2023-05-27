@@ -7,12 +7,14 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'scrooloose/nerdcommenter'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'inside/vim-search-pulse'
 Plug 'airblade/vim-rooter'
 Plug 'dag/vim-fish'
 Plug 'jgm/djot', { 'rtp': 'editors/vim' }
 Plug 'mhartington/oceanic-next'
+Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'}
+" don't need no tmux anymore!
+"Plug 'christoomey/vim-tmux-navigator'
 " }}}
 
 " delimitMate {{{
