@@ -23,6 +23,7 @@ abbr -a -g bpy bpython
 abbr -a -g pup pip install --upgrade pip
 abbr -a -g pr poetry run
 abbr -a -g prp poetry run python
+set -x PYTHONBREAKPOINT ipdb.set_trace
 
 # Disable python-keyring.
 # Recently python-poetry and python-pgcli started using it,
