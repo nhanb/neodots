@@ -9,6 +9,7 @@ targets=(
     tmux
     fish
     tiger
+    yay
 )
 for target in "${targets[@]}"; do
     stow "$target"

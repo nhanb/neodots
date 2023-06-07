@@ -8,6 +8,7 @@ targets=(
     tmux
     fish
     gpd-mpc
+    yay
 )
 for target in "${targets[@]}"; do
     stow "$target"

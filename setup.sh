@@ -11,6 +11,7 @@ targets=(
     tmux
     fish
     mpv
+    yay
 )
 for target in "${targets[@]}"; do
     stow "$target"
