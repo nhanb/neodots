@@ -4,8 +4,10 @@ set -x PYENV_VIRTUALENV_DISABLE_PROMPT 1
 set VENVS_DIR "$HOME/.venvs"
 
 # Activate virtualenv with the same name as current dir
-abbr -a -g pyact '. $VENVS_DIR/(basename $PWD)/bin/activate.fish'
-abbr -a -g pydeact pyenv deactivate
+# Using a function instead of abbr because the latter isn't usable in scripts.
+function pyact
+    . $VENVS_DIR/(basename $PWD)/bin/activate.fish
+end
 
 # Make pyenv virtualenv using current directory as name.
 # Takes 1 arg: python version, which will be installed if necessary.
