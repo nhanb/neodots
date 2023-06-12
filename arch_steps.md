@@ -81,7 +81,7 @@ arch-chroot /mnt
   efibootmgr --verbose --disk /dev/sda --part 1 --create --label "Arch Linux" \
     --loader /vmlinuz-linux \
     --unicode 'cryptdevice=UUID=uuid_of_dev_sda2:cryptroot root=/dev/mapper/cryptroot rw initrd=\intel-ucode.img initrd=\initramfs-linux.img'
-  # you can find uuid_of_dev_sda2 by running lsblk -fs
+  # you can find uuid_of_dev_sda2 with `ls -l /dev/disk/by-uuid`
   pacman -S intel-ucode
   passwd
   exit
