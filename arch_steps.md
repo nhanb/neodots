@@ -52,7 +52,7 @@ mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
 
 # Bootstrap
-pacstrap /mnt base-devel linux linux-firmware efibootmgr vim tmux networkmanager-qt
+pacstrap /mnt base base-devel linux linux-firmware efibootmgr vim tmux networkmanager-qt
 # Or when on the gpd micro pc:
 #   pacstrap /mnt base-devel linux linux-firmware linux-firmware-qlogic efibootmgr vim tmux iwd dhcpcd
 genfstab -U /mnt >> /mnt/etc/fstab
