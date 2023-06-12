@@ -109,7 +109,7 @@ pacman -Syu xorg-server xorg-apps xf86-video-intel mesa \
 vim /etc/sddm.conf.d/autologin.conf :
   [Autologin]
   User=john
-  Session=plasma.desktop
+  Session=plasma
 ```
 
 # Fluff
