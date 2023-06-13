@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Starts a _k_itty _s_ession.
+# Works great in krunner with the Command Line plugin.
+kitty --session "~/neodots/kitty/sessions/$1.conf"
