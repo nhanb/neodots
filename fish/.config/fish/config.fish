@@ -5,10 +5,13 @@ set -x EDITOR vim
 set -x GIT_EDITOR vim
 set -x VISUAL vim
 
+# I'll update Go myself thank you very much.
+# https://utcc.utoronto.ca/~cks/space/blog/programming/Go121ToolchainDownloads
+set -x GOTOOLCHAIN local
+
 # normally I wouldn't need this but gokrazy defaults to arm64
 # while I'm only tinkering with amd64 (read: normal pc) appliances.
 set -x GOARCH amd64
-
 set -x GOKRAZY_PARENT_DIR $HOME/pj/gok-appliances
 
 # Exec-ing files in /tmp is forbidden in crostini,
