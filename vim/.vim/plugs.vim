@@ -211,6 +211,7 @@ let g:ale_linters = {
             \'javascript': ['jshint'],
             \'d': ['dls'],
             \'c': ['cc'],
+            \'typescript': ['tsserver'],
             \}
 let g:ale_python_flake8_options = '--append-config ~/.flake8'
 
@@ -230,6 +231,7 @@ let g:ale_fixers = {
             \'json': ['prettier'],
             \'vim': ['remove_trailing_lines', 'trim_whitespace'],
             \'sql': ['pgformatter'],
+            \'typescript': ['prettier'],
             \}
 
 nnoremap <leader>f :ALEFix<cr>
