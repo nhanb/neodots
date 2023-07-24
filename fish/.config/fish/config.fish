@@ -136,6 +136,7 @@ alias mpv-drc='mpv --af="acompressor=ratio=4,loudnorm"'
 
 abbr -a -g kd kitty +kitten diff
 alias icat="kitty +kitten icat --align left"
+alias kssh="kitty +kitten ssh"
 
 if type -q direnv
     direnv hook fish | source
