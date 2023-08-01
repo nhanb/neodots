@@ -1,0 +1,17 @@
+/* Symlink this to
+ * ~/.mozilla/firefox/XXXXXXXX.your_profile_name/chrome/userChrome.css */
+
+@-moz-document url(chrome://browser/content/browser.xul),
+               url(chrome://browser/content/browser.xhtml)
+{
+  /* Grey address bar background to match the Windows Classic theme */
+  #urlbar-background {
+    background-color: #ccc !important;
+  }
+  .tab-background[selected] {
+    background: #ccc !important;
+  }
+  .tabbrowser-tab[selected] {
+    color: black !important;
+  }
+}
