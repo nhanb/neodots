@@ -10,7 +10,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'inside/vim-search-pulse'
 Plug 'airblade/vim-rooter'
 Plug 'dag/vim-fish'
-Plug 'jgm/djot', { 'rtp': 'editors/vim' }
 Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'}
 " don't need no tmux anymore!
 "Plug 'christoomey/vim-tmux-navigator'
