@@ -1,10 +1,11 @@
 /* Symlink this to
  * ~/.mozilla/firefox/XXXXXXXX.your_profile_name/chrome/userChrome.css */
 
+/*
+// Grey address bar background to match the Windows Classic theme
 @-moz-document url(chrome://browser/content/browser.xul),
                url(chrome://browser/content/browser.xhtml)
 {
-  /* Grey address bar background to match the Windows Classic theme */
   #urlbar-background {
     background-color: #ccc !important;
   }
@@ -15,3 +16,4 @@
     color: black !important;
   }
 }
+*/
