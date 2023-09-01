@@ -69,6 +69,8 @@ function mkcd
     cd $argv
 end
 
+set -x RIPGREP_CONFIG_PATH $HOME/.config/ripgreprc
+
 # test term formatting features
 function testformat
     echo -e "\e[1mbold\e[0m"
