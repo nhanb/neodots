@@ -106,10 +106,22 @@ echo 'permit nopass nhanb as root' > /etc/doas.conf
 # mesa is for modern intel graphics. Check Arch wiki to know what to install
 # for other setups.
 pacman -Syu xorg-server xorg-apps sddm sddm-kcm plasma-meta mesa
+
 vim /etc/sddm.conf.d/autologin.conf :
   [Autologin]
   User=john
   Session=plasma
+```
+
+Setup firefox -> tailscale -> syncthing -> ssh creds:
+
+```sh
+doas pacman -Syu firefox tailscale syncthing openssh spectacle
+# login firefox
+# login 1password
+# login google accounts
+# login tailscale
+# pair syncthing
 ```
 
 # Fluff
