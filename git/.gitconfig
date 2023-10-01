@@ -4,6 +4,9 @@
 [includeIf "gitdir:~/neodots/"]
     path = ~/neodots/git/.gitconfig.oss
 
+[includeIf "gitdir:~/work/"]
+    path = ~/work/gitconfig
+
 [pull]
     ff = only
 
