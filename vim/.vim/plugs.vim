@@ -191,7 +191,7 @@ let g:ale_virtualtext_cursor = 0
 
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
-            \'python': ['flake8', 'mypy'],
+            \'python': ['flake8'],
             \'go': ['gopls'],
             \'elm': ['make'],
             \'qml': ['qmllint'],
