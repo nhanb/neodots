@@ -243,7 +243,7 @@ let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_auto_hover = ''
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
-autocmd BufEnter *.go let b:ycm_enable_semantic_highlighting = 1
+"autocmd BufEnter *.go let b:ycm_enable_semantic_highlighting = 1
 
 nnoremap K :YcmCompleter GetDoc<cr>
 nnoremap <leader>gf <Plug>(YCMFindSymbolInWorkspace)
