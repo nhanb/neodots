@@ -157,6 +157,10 @@ Plug 'vim-airline/vim-airline-themes'
 
 let g:airline_theme='powerlineish'
 let g:airline_symbols_ascii = 1
+
+" https://github.com/vim-airline/vim-airline/issues/1716
+let g:airline#extensions#whitespace#skip_indent_check_ft = {'go': ['mixed-indent-file']}
+
 " }}}
 " emmet-vim {{{
 " ================================================================
