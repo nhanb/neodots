@@ -226,6 +226,7 @@ let g:ale_fixers = {
             \'vim': ['remove_trailing_lines', 'trim_whitespace'],
             \'sql': ['pgformatter'],
             \'typescript': ['prettier'],
+            \'java': ['clang-format'],
             \}
 
 nnoremap <leader>f :ALEFix<cr>
