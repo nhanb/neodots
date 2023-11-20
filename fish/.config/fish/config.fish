@@ -118,7 +118,7 @@ abbr -a -g mh manhoa-manage
 # Pipenv shit
 set -x PIPENV_VENV_IN_PROJECT 1
 
-abbr -a -g tsen doas tailscale up --exit-node= # tsen = tailscale exit node
+abbr -a -g tsen 'doas tailscale up --exit-node' # tsen = tailscale exit node
 abbr -a -g tscheck 'tailscale status | grep "exit node"'
 
 abbr -a -g wcfreq v4l2-ctl -c power_line_frequency=1
