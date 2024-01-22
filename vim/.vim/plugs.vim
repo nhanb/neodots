@@ -11,8 +11,7 @@ Plug 'inside/vim-search-pulse'
 Plug 'airblade/vim-rooter'
 Plug 'dag/vim-fish'
 Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'}
-" don't need no tmux anymore!
-"Plug 'christoomey/vim-tmux-navigator'
+Plug 'ziglang/zig.vim'
 " }}}
 
 " delimitMate {{{
@@ -206,6 +205,7 @@ let g:ale_linters = {
             \'d': ['dls'],
             \'c': ['cc'],
             \'typescript': ['tsserver'],
+            \'zig': ['zls'],
             \}
 let g:ale_python_flake8_options = '--append-config ~/.flake8'
 
