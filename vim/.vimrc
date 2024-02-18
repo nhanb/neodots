@@ -55,6 +55,9 @@ if &shell =~# 'fish$'
     set shell=sh
 endif
 
+set formatoptions-=t " don't auto-hardwrap
+set linebreak " wrap by word instead of char
+
 set tabstop=4 expandtab softtabstop=4
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
