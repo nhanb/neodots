@@ -278,9 +278,7 @@ map Y y$
 " Go to previously open file (basically like alt-tab toggle)
 nnoremap <leader><tab> <c-^>
 
-" The + clipboard doesn't work on crostini for some reason, so pipe to
-" wl-clipboard instead.
-if filereadable('/dev/.cros_milestone')
+if exists('$WAYLAND_DISPLAY')
     vnoremap <leader>y y:call system("wl-copy", @")<cr>
     nnoremap <leader>y :silent .w !wl-copy<cr>
     nnoremap <leader>p :read !wl-paste --no-newline<cr>
