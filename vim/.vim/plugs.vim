@@ -210,7 +210,7 @@ let g:ale_linters = {
 let g:ale_python_flake8_options = '--append-config ~/.flake8'
 
 let g:ale_fixers = {
-            \'python': ['autoimport', 'black', 'isort'],
+            \'python': ['ruff_format'],
             \'go': ['goimports'],
             \'rust': ['rustfmt'],
             \'elm': ['elm-format'],
