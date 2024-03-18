@@ -1,6 +1,6 @@
 [Desktop Entry]
 Comment=
-Exec=doas pacman -Syu && qdbus org.kde.Shutdown /Shutdown logoutAndShutdown
+Exec=/home/nhanb/scripts/update-and-shutdown.sh
 Icon=update-none
 Name=Update & Poweroff
 NoDisplay=false
