@@ -105,13 +105,6 @@ elseif executable('ag')
     nnoremap <leader>ge :Ag<space>
 endif
 "}}}
-" Tagbar {{{
-" ================================================================
-Plug 'majutsushi/tagbar'
-
-" F5 toggles tagbar
-nnoremap <f5> :TagbarToggle<cr>
-" }}}
 " NERDTree {{{
 " ================================================================
 Plug 'scrooloose/nerdtree'
