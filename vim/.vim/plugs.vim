@@ -179,15 +179,20 @@ let g:user_emmet_settings = {
 " I use ALE for linting and autoformat, including autoformat-on-save.
 " Although YouCompleteMe has a Format feature, it's limited:
 " not letting me use goimports was a dealbreaker.
-let g:ale_completion_enabled = 0 " must be set before ALE is loaded
+let g:ale_completion_enabled = 1 " must be set before ALE is loaded
 Plug 'dense-analysis/ale'
 
 " disable annoying inline diagnostic text:
 let g:ale_virtualtext_cursor = 0
 
+nnoremap gd :ALEGoToDefinition<cr>
+nnoremap gr :ALEFindReferences<cr>
+nnoremap gr :ALEFindReferences<cr>
+nnoremap <leader><leader>r :ALERename<cr>
+
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
-            \'python': ['ruff'],
+            \'python': ['ruff', 'pyright'],
             \'go': ['gopls'],
             \'elm': ['make'],
             \'qml': ['qmllint'],
@@ -237,23 +242,23 @@ let g:ale_python_ruff_options = '--no-fix'
 " }}}
 " YouCompleteMe {{{
 " ================================================================
-Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer --clangd-completer --ts-completer' }
-
-nnoremap gd :YcmCompleter GoTo<cr>
-nnoremap gr :YcmCompleter GoToReferences<cr>
-
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_enable_diagnostic_signs = 0
-let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_auto_hover = ''
-let g:ycm_autoclose_preview_window_after_insertion = 1
-
-"autocmd BufEnter *.go let b:ycm_enable_semantic_highlighting = 1
-
-nnoremap K :YcmCompleter GetDoc<cr>
-nnoremap <leader>gf <Plug>(YCMFindSymbolInWorkspace)
-nnoremap <leader><leader>r :YcmCompleter RefactorRename<space>
-"}}}
+"Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer --clangd-completer --ts-completer' }
+"
+"nnoremap gd :YcmCompleter GoTo<cr>
+"nnoremap gr :YcmCompleter GoToReferences<cr>
+"
+"let g:ycm_show_diagnostics_ui = 0
+"let g:ycm_enable_diagnostic_signs = 0
+"let g:ycm_enable_diagnostic_highlighting = 0
+"let g:ycm_auto_hover = ''
+"let g:ycm_autoclose_preview_window_after_insertion = 1
+"
+""autocmd BufEnter *.go let b:ycm_enable_semantic_highlighting = 1
+"
+"nnoremap K :YcmCompleter GetDoc<cr>
+"nnoremap <leader>gf <Plug>(YCMFindSymbolInWorkspace)
+"nnoremap <leader><leader>r :YcmCompleter RefactorRename<space>
+""}}}
 
 " Initialize plugin system
 call plug#end()
