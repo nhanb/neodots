@@ -1,0 +1,8 @@
+# Default ruff settings.
+# Note that this file is only in effect for projects that don't have their own
+# ruff settings in pyproject.toml. For projects that do, their settings will
+# not be merged with this file's settings.
+# <https://docs.astral.sh/ruff/configuration/#config-file-discovery>
+
+[tool.ruff.lint]
+extend-select = ["I"] # format import statements

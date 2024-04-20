@@ -194,7 +194,7 @@ let g:ale_virtualtext_cursor = 0
 
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
-            \'python': ['flake8'],
+            \'python': ['ruff'],
             \'go': ['gopls'],
             \'elm': ['make'],
             \'qml': ['qmllint'],
@@ -209,8 +209,11 @@ let g:ale_linters = {
             \}
 let g:ale_python_flake8_options = '--append-config ~/.flake8'
 
+" For python, we need to run both `ruff check --fix` (to rearrange imports)
+" and `ruff format` (to format code):
+" https://docs.astral.sh/ruff/formatter/#sorting-imports
 let g:ale_fixers = {
-            \'python': ['ruff_format'],
+            \'python': ['ruff', 'ruff_format'],
             \'go': ['goimports'],
             \'rust': ['rustfmt'],
             \'elm': ['elm-format'],
@@ -233,6 +236,10 @@ nnoremap <leader>f :ALEFix<cr>
 
 let g:ale_c_clangformat_options = '--style=google'
 let g:ale_python_isort_options = '--profile black'
+
+" ale-ruff integration temp workaround until they merge the actual fix:
+" https://github.com/dense-analysis/ale/issues/4756
+let g:ale_python_ruff_options = '--no-fix'
 
 " }}}
 " YouCompleteMe {{{
