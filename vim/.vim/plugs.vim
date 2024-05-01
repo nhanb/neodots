@@ -11,7 +11,6 @@ Plug 'tpope/vim-rhubarb'
 "Plug 'airblade/vim-rooter'
 Plug 'dag/vim-fish'
 Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'}
-Plug 'ziglang/zig.vim'
 " }}}
 
 " delimitMate {{{
