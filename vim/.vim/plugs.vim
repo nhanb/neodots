@@ -181,13 +181,14 @@ let g:user_emmet_settings = {
 let g:ale_completion_enabled = 1 " must be set before ALE is loaded
 Plug 'dense-analysis/ale'
 
-" disable annoying inline diagnostic text:
-let g:ale_virtualtext_cursor = 0
+let g:ale_virtualtext_cursor = 0 " disable annoying inline diagnostic text
+" let g:ale_hover_cursor = 1
 
 nnoremap gd :ALEGoToDefinition<cr>
 nnoremap gr :ALEFindReferences<cr>
 nnoremap gr :ALEFindReferences<cr>
 nnoremap <leader><leader>r :ALERename<cr>
+nnoremap K :ALEHover<cr>
 
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
