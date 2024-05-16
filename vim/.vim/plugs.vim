@@ -184,6 +184,10 @@ Plug 'dense-analysis/ale'
 let g:ale_virtualtext_cursor = 0 " disable annoying inline diagnostic text
 " let g:ale_hover_cursor = 1
 
+" ALE sometimes interferes with my jj imap. Let's see if this helps:
+" https://github.com/dense-analysis/ale/issues/1941
+let g:ale_lint_on_text_changed = 'never'
+
 nnoremap gd :ALEGoToDefinition<cr>
 nnoremap gr :ALEFindReferences<cr>
 nnoremap gr :ALEFindReferences<cr>
