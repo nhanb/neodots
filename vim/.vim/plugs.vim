@@ -199,10 +199,10 @@ let g:ale_linters = {
             \'sh': ['shellcheck'],
             \'fish': ['fish'],
             \'nim': ['nimcheck'],
-            \'javascript': ['jshint'],
+            \'javascript': ['tsserver'],
+            \'typescript': ['tsserver'],
             \'d': ['dls'],
             \'c': ['cc'],
-            \'typescript': ['tsserver'],
             \'zig': ['zls'],
             \}
 let g:ale_python_flake8_options = '--append-config ~/.flake8'
