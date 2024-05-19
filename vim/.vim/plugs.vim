@@ -239,10 +239,6 @@ nnoremap <leader>f :ALEFix<cr>
 let g:ale_c_clangformat_options = '--style=google'
 let g:ale_python_isort_options = '--profile black'
 
-" ale-ruff integration temp workaround until they merge the actual fix:
-" https://github.com/dense-analysis/ale/issues/4756
-let g:ale_python_ruff_options = '--no-fix'
-
 " }}}
 " YouCompleteMe {{{
 " ================================================================
