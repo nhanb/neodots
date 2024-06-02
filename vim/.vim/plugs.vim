@@ -13,6 +13,22 @@ Plug 'dag/vim-fish'
 Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'}
 " }}}
 
+" vim-test {{{
+" ================================================================
+Plug 'vim-test/vim-test'
+nnoremap <leader>t :TestNearest<cr>
+
+let test#python#runner = 'pytest'
+
+function! CopyStrategy(cmd)
+    let l:cmd = substitute(a:cmd, '^poetry run ', '', '') . ' --no-cov --reuse-db -s'
+    let @+ = l:cmd
+    echo l:cmd
+endfunction
+let g:test#custom_strategies = {'copy': function('CopyStrategy')}
+let g:test#strategy = 'copy'
+
+"}}}
 " delimitMate {{{
 " ================================================================
 Plug 'Raimondi/delimitMate'

@@ -278,23 +278,21 @@ map Y y$
 " Go to previously open file (basically like alt-tab toggle)
 nnoremap <leader><tab> <c-^>
 
-if exists('$WAYLAND_DISPLAY')
-    vnoremap <leader>y y:call system("wl-copy", @")<cr>
-    nnoremap <leader>y :silent .w !wl-copy<cr>
-    nnoremap <leader>p :read !wl-paste --no-newline<cr>
-    " TODO: pasting into a visual selection
-
-" Use '+' register to do system clipboard stuff
-elseif has('clipboard')
+"" Use '+' register to do system clipboard stuff
+if has('clipboard')
     vnoremap <leader>y "+y
                 \:echo 'Selection yanked to system clipboard'<cr>
     nnoremap <leader>y "+yy
                 \:echo '1 line yanked to system clipboard'<cr>
     nnoremap <leader>Y "+y$
                 \:echo 'Rest of line yanked to system clipboard'<cr>
-    vnoremap <leader>p "+p
-    nnoremap <leader>p "+p
-    nnoremap <leader>P "+P
+
+    " copying on wayland is already working, but pasting doesn't, so outsource
+    " to wl-paste instead:
+    nnoremap <leader>p :read !wl-paste --no-newline<cr>
+    "vnoremap <leader>p "+p
+    "nnoremap <leader>p "+p
+    "nnoremap <leader>P "+P
 
     " These go nicely with *gasp* mouse selection
     vnoremap <c-c> "+ygv

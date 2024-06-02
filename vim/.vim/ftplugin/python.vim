@@ -8,18 +8,6 @@ setlocal expandtab
 
 :iab iipdb __import__("ipdb").set_trace()
 :iab ipdbs __import__("ipdb").set_trace()
-:iab pdbs __import__("ipdb").set_trace()
+:iab pdbs __import__("pdb").set_trace()
 
 :iab ifmain if __name__ == '__main__'
-
-function! GetNearestPytestString()
-    let currenttag = substitute(tagbar#currenttag("%s", "", "f"), '\.', '::', '')
-    let currenttag = substitute(currenttag, '()', '', '')
-    let currentfile = expand("%")
-    if currenttag == ''
-        return currentfile
-    else
-        return currentfile .. '::' .. currenttag
-    endif
-endfunction
-nnoremap <buffer> <leader>t :let @+ = GetNearestPytestString()<cr>
