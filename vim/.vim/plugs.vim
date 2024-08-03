@@ -248,6 +248,7 @@ let g:ale_fixers = {
             \'sql': ['pgformatter'],
             \'typescript': ['prettier'],
             \'java': ['clang-format'],
+            \'zig': ['zigfmt'],
             \}
 
 nnoremap <leader>f :ALEFix<cr>
