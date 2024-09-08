@@ -149,6 +149,7 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ }
 
 let NERDTreeShowHidden=1
+let g:NERDTreeWinPos = "right"
 
 " https://github.com/preservim/nerdtree/issues/1321#issuecomment-1234980190
 " Also I think I prefer this look anyway
