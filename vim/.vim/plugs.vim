@@ -120,44 +120,6 @@ elseif executable('ag')
     nnoremap <leader>ge :Ag<space>
 endif
 "}}}
-" NERDTree {{{
-" ================================================================
-Plug 'scrooloose/nerdtree'
-
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
-" Ignore irrelevant files in NERDTree
-let NERDTreeIgnore = ['\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$',
-            \'\.so$', '\.egg$', '^\.git$', '\.gem$',  '\.rbc$', '\~$',
-            \ '^__pycache__$']
-
-nnoremap <leader>d :NERDTreeToggle<cr>:NERDTreeRefresh<cr>
-nnoremap <leader>e :NERDTreeFind<cr>:NERDTreeRefresh<cr>
-
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-    \ "Modified"  : "M",
-    \ "Staged"    : "S",
-    \ "Untracked" : "U",
-    \ "Renamed"   : "R",
-    \ "Unmerged"  : "=",
-    \ "Deleted"   : "X",
-    \ "Dirty"     : "D",
-    \ "Clean"     : "C",
-    \ 'Ignored'   : 'I',
-    \ "Unknown"   : "?"
-    \ }
-
-let NERDTreeShowHidden=1
-let g:NERDTreeWinPos = "right"
-
-" https://github.com/preservim/nerdtree/issues/1321#issuecomment-1234980190
-" Also I think I prefer this look anyway
-let g:NERDTreeMinimalMenu=1
-
-" Show git signs too because why not?
-Plug 'Xuyuanp/nerdtree-git-plugin'
-" }}}
 " Airline {{{
 " ================================================================
 Plug 'vim-airline/vim-airline'

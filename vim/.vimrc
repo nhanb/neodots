@@ -199,6 +199,16 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
+" Map to netrw mode too
+autocmd filetype netrw noremap <buffer> <c-j> <c-w>j
+autocmd filetype netrw noremap <buffer> <c-h> <c-w>h
+autocmd filetype netrw noremap <buffer> <c-k> <c-w>k
+autocmd filetype netrw noremap <buffer> <c-l> <c-w>l
+
+" More netrw mappings
+nnoremap <leader>d :e .<cr>
+nnoremap <leader>e :Ex<cr>
+
 " Moving around tabs using <leader>n/m
 nnoremap <leader>n <esc>:tabprevious<cr>
 nnoremap <leader>m <esc>:tabnext<cr>
