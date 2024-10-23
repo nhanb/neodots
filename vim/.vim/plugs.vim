@@ -218,6 +218,7 @@ nnoremap <leader>f :ALEFix<cr>
 
 let g:ale_c_clangformat_options = '--style=google'
 let g:ale_python_isort_options = '--profile black'
+let g:ale_sql_pgformatter_options = '--no-extra-line'
 
 " }}}
 " YouCompleteMe {{{
