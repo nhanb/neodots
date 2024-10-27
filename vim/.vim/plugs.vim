@@ -240,6 +240,11 @@ let g:ale_sql_pgformatter_options = '--no-extra-line'
 "nnoremap <leader>gf <Plug>(YCMFindSymbolInWorkspace)
 "nnoremap <leader><leader>r :YcmCompleter RefactorRename<space>
 ""}}}
+" zig.vim {{{
+" ================================================================
+Plug 'ziglang/zig.vim'
+let g:zig_fmt_autosave = 0
+"}}}
 
 " Initialize plugin system
 call plug#end()
