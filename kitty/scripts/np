@@ -1,0 +1,94 @@
+#!/usr/bin/env python3
+# PoC systemd-nspawn helper.
+# Requires root.
+import argparse
+import subprocess
+from pathlib import Path
+
+CACHE_DIR = Path("/home/nhanb/tmp/debootstrap-cache")
+DEB_MIRROR = "https://mirror.bizflycloud.vn/debian/"
+DEB_VERSION = "bookworm"
+
+CACHE_DIR.mkdir(exist_ok=True, parents=True)
+
+
+def run(*args):
+    return subprocess.run(args, check=True)
+
+
+def cmd_init(machine_name: str):
+    run(
+        "doas",
+        "debootstrap",
+        f"--cache-dir={CACHE_DIR}",
+        DEB_VERSION,
+        f"/var/lib/machines/{machine_name}",
+        DEB_MIRROR,
+    )
+
+    run(
+        "doas",
+        "systemd-nspawn",
+        "-D",
+        f"/var/lib/machines/{machine_name}",
+        "apt-get",
+        "install",
+        "-y",
+        "-q",
+        "systemd-container",
+    )
+
+    run(
+        "doas",
+        "bash",
+        "-c",
+        f"""\
+cat << EOF > "/etc/systemd/nspawn/{machine_name}.nspawn"
+[Exec]
+NotifyReady=yes
+EOF
+""",
+    )
+
+
+def cmd_shell(machine_name: str):
+    run(
+        "doas",
+        "systemd-nspawn",
+        "-D",
+        f"/var/lib/machines/{machine_name}",
+        "bash",
+    )
+
+
+def cmd_remove(machine_name: str):
+    assert len(machine_name.strip()) > 0
+    run(
+        "doas",
+        "rm",
+        "-rf",
+        f"/var/lib/machines/{machine_name}",
+    )
+    print("Removed container", machine_name)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    subparsers = parser.add_subparsers(title="commands", dest="subparser_name")
+
+    init_parser = subparsers.add_parser("init", help="create nspawn container")
+    init_parser.add_argument("name")
+
+    shell_parser = subparsers.add_parser("shell", help="open shell in container")
+    shell_parser.add_argument("name")
+
+    remove_parser = subparsers.add_parser("rm", help="remove container")
+    remove_parser.add_argument("name")
+
+    args = parser.parse_args()
+    if args.subparser_name == "init":
+        cmd_init(args.name)
+    elif args.subparser_name == "shell":
+        cmd_shell(args.name)
+    elif args.subparser_name == "rm":
+        cmd_remove(args.name)

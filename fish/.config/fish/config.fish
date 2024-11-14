@@ -141,6 +141,9 @@ abbr -a -g kd kitty +kitten diff
 alias icat="kitty +kitten icat --align left"
 alias kssh="kitty +kitten ssh"
 
+abbr -a -g mctl doas machinectl
+abbr -a -g nspawn doas systemd-nspawn
+
 if type -q direnv
     direnv hook fish | source
 end
