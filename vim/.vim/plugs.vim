@@ -175,7 +175,7 @@ nnoremap K :ALEHover<cr>
 
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
-            \'python': ['ruff', 'pyright'],
+            \'python': ['pyright'],
             \'go': ['gopls'],
             \'elm': ['make'],
             \'qml': ['qmllint'],
