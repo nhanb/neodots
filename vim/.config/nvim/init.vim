@@ -3,8 +3,8 @@
 
 " Mouse support
 set mouse=a
-set ttymouse=sgr
-set balloonevalterm
+"set ttymouse=sgr
+"set balloonevalterm
 " Styled and colored underline support
 let &t_AU = "\e[58:5:%dm"
 let &t_8u = "\e[58:2:%lu:%lu:%lum"

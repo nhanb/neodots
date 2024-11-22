@@ -1,9 +1,11 @@
 # disable greeting line on startup
 set fish_greeting
 
-set -x EDITOR vim
-set -x GIT_EDITOR vim
-set -x VISUAL vim
+set -x EDITOR nvim
+set -x GIT_EDITOR nvim
+set -x VISUAL nvim
+set -x DIFFPROG 'nvim -d $1'
+abbr -a -g vim nvim
 
 # I'll update Go myself thank you very much.
 # https://utcc.utoronto.ca/~cks/space/blog/programming/Go121ToolchainDownloads

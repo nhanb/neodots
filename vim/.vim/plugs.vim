@@ -6,29 +6,10 @@ call plug#begin()
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
-"Plug 'scrooloose/nerdcommenter'
-"Plug 'inside/vim-search-pulse'
-"Plug 'airblade/vim-rooter'
 Plug 'dag/vim-fish'
 Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'}
 " }}}
 
-" vim-test {{{
-" ================================================================
-Plug 'vim-test/vim-test'
-nnoremap <leader>t :TestNearest<cr>
-
-let test#python#runner = 'pytest'
-
-function! CopyStrategy(cmd)
-    let l:cmd = substitute(a:cmd, '^poetry run ', '', '') . ' --no-cov --reuse-db -s'
-    let @+ = l:cmd
-    echo l:cmd
-endfunction
-let g:test#custom_strategies = {'copy': function('CopyStrategy')}
-let g:test#strategy = 'copy'
-
-"}}}
 " delimitMate {{{
 " ================================================================
 Plug 'Raimondi/delimitMate'
@@ -152,102 +133,28 @@ let g:user_emmet_settings = {
             \  },
             \}
 "}}}
-" ALE {{{
-" ================================================================
-" I use ALE for linting and autoformat, including autoformat-on-save.
-" Although YouCompleteMe has a Format feature, it's limited:
-" not letting me use goimports was a dealbreaker.
-let g:ale_completion_enabled = 1 " must be set before ALE is loaded
-Plug 'dense-analysis/ale'
-
-let g:ale_virtualtext_cursor = 0 " disable annoying inline diagnostic text
-" let g:ale_hover_cursor = 1
-
-" ALE sometimes interferes with my jj imap. Let's see if this helps:
-" https://github.com/dense-analysis/ale/issues/1941
-let g:ale_lint_on_text_changed = 'never'
-
-nnoremap gd :ALEGoToDefinition<cr>
-nnoremap gr :ALEFindReferences<cr>
-nnoremap gr :ALEFindReferences<cr>
-nnoremap <leader><leader>r :ALERename<cr>
-nnoremap K :ALEHover<cr>
-
-let g:ale_linters_explicit = 1
-let g:ale_linters = {
-            \'python': ['pyright'],
-            \'go': ['gopls'],
-            \'elm': ['make'],
-            \'qml': ['qmllint'],
-            \'sh': ['shellcheck'],
-            \'fish': ['fish'],
-            \'nim': ['nimcheck'],
-            \'javascript': ['tsserver'],
-            \'typescript': ['tsserver'],
-            \'d': ['dls'],
-            \'c': ['cc'],
-            \'zig': ['zls'],
-            \}
-let g:ale_python_flake8_options = '--append-config ~/.flake8'
-
-" For python, we need to run both `ruff check --fix` (to rearrange imports)
-" and `ruff format` (to format code):
-" https://docs.astral.sh/ruff/formatter/#sorting-imports
-let g:ale_fixers = {
-            \'python': ['ruff', 'ruff_format'],
-            \'go': ['goimports'],
-            \'rust': ['rustfmt'],
-            \'elm': ['elm-format'],
-            \'qml': ['qmlfmt'],
-            \'html': ['prettier'],
-            \'javascript': ['prettier'],
-            \'sh': ['shfmt'],
-            \'nim': [],
-            \'c': ['clang-format'],
-            \'css': ['prettier'],
-            \'d': ['dfmt'],
-            \'json': ['prettier'],
-            \'vim': ['remove_trailing_lines', 'trim_whitespace'],
-            \'sql': ['pgformatter'],
-            \'typescript': ['prettier'],
-            \'java': ['clang-format'],
-            \'zig': ['zigfmt'],
-            \}
-
-nnoremap <leader>f :ALEFix<cr>
-
-let g:ale_c_clangformat_options = '--style=google'
-let g:ale_python_isort_options = '--profile black'
-let g:ale_sql_pgformatter_options = '--no-extra-line'
-
-" }}}
-" YouCompleteMe {{{
-" ================================================================
-"Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer --clangd-completer --ts-completer' }
-"
-"nnoremap gd :YcmCompleter GoTo<cr>
-"nnoremap gr :YcmCompleter GoToReferences<cr>
-"
-"let g:ycm_show_diagnostics_ui = 0
-"let g:ycm_enable_diagnostic_signs = 0
-"let g:ycm_enable_diagnostic_highlighting = 0
-"let g:ycm_auto_hover = ''
-"let g:ycm_autoclose_preview_window_after_insertion = 1
-"
-""autocmd BufEnter *.go let b:ycm_enable_semantic_highlighting = 1
-"
-"nnoremap K :YcmCompleter GetDoc<cr>
-"nnoremap <leader>gf <Plug>(YCMFindSymbolInWorkspace)
-"nnoremap <leader><leader>r :YcmCompleter RefactorRename<space>
-""}}}
 " zig.vim {{{
 " ================================================================
 Plug 'ziglang/zig.vim'
 let g:zig_fmt_autosave = 0
 "}}}
 
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+
+
 " Initialize plugin system
 call plug#end()
+
+:source $HOME/neodots/vim/.config/nvim/plugs.lua
 
 " `colorscheme` must come after plugin initialization to be available.
 " Currently I'm using a stock colorscheme though.
