@@ -90,3 +90,5 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         vim.cmd('silent %!ruff format --quiet -')
     end,
 })
+
+vim.cmd('nnoremap gd <c-]>')

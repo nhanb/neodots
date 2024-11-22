@@ -163,11 +163,11 @@ colorscheme lunaperche
 set background=dark
 " darker background
 "hi Normal ctermbg=16
-" more distinguisable active line number:
-hi LineNr ctermfg=grey cterm=bold
-hi LineNrAbove ctermfg=darkgrey
-hi LineNrBelow ctermfg=darkgrey
 " Prevent incorrectly inverted cursor when highlighting matching parens:
 hi MatchParen ctermbg=227 ctermfg=0
 " Some themes (lunaperche) make comments too bright, so let's fix it:
-hi Comment ctermfg=darkgrey
+lua vim.api.nvim_set_hl(0, "Comment", { fg = "#666666", italic=true })
+" more distinguisable active line number:
+lua vim.api.nvim_set_hl(0, "LineNr", { fg = "#33dd33", bold=true })
+lua vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#666666" })
+lua vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#666666" })
