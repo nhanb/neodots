@@ -77,6 +77,12 @@ local lspconfig = require('lspconfig')
 lspconfig.pyright.setup {
     capabilities = capabilities,
 }
+lspconfig.zls.setup {
+    capabilities = capabilities,
+    on_init = function(client, _)
+        client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
+    end,
+}
 lspconfig.lua_ls.setup {
     capabilities = capabilities,
     settings = {
@@ -97,7 +103,7 @@ lspconfig.lua_ls.setup {
 }
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.lua" },
+    pattern = { "*.lua", "*.zig" },
     callback = function()
         vim.lsp.buf.format { async = false }
     end
