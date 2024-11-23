@@ -118,5 +118,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end
 })
 
--- Go-to-definition
+-- Go-to-definition, go-to-references
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+vim.keymap.set('n', 'gr', vim.lsp.buf.references)
