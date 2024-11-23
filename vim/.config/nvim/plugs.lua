@@ -41,6 +41,22 @@ cmp.setup({
     })
 })
 
+-- Use tab / shift-tab to navigate between snippet inputs
+vim.keymap.set({ "i", "s" }, "<Tab>", function()
+    if vim.snippet.active({ direction = 1 }) then
+        return "<cmd>lua vim.snippet.jump(1)<cr>"
+    else
+        return "<Tab>"
+    end
+end, { expr = true })
+vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
+    if vim.snippet.active({ direction = -1 }) then
+        return "<cmd>lua vim.snippet.jump(-1)<cr>"
+    else
+        return "<S-Tab>"
+    end
+end, { expr = true })
+
 -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
 -- Set configuration for specific filetype.
 --[[ cmp.setup.filetype('gitcommit', {
@@ -102,6 +118,7 @@ lspconfig.lua_ls.setup {
     },
 }
 
+-- Enable format-on-save for languages with supporting language servers.
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = { "*.lua", "*.zig" },
     callback = function()
@@ -109,4 +126,5 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end
 })
 
+-- Go-to-definition
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
