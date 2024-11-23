@@ -3,7 +3,7 @@ call plug#begin()
 
 " Straightforward stuff (no custom config) {{{
 " ================================================================
-Plug 'tpope/vim-surround'
+"Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'dag/vim-fish'

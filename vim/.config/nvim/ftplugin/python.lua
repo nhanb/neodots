@@ -17,3 +17,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 vim.keymap.set('n', '<leader>f', ruff_format)
+
+vim.cmd [[
+    let g:python_indent = {}
+    let g:python_indent.open_paren = 'shiftwidth()'
+    let g:python_indent.continue = 'shiftwidth()'
+    let g:python_indent.nested_paren = 'shiftwidth()'
+    let g:python_indent.disable_parentheses_indenting = v:false
+    let g:python_indent.closed_paren_align_last_line = v:false
+    let g:python_indent.searchpair_timeout = 150
+]]
