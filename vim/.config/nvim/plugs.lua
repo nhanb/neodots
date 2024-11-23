@@ -5,11 +5,11 @@ cmp.setup({
     snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
-            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
             -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
             -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
             -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-            vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
+            -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
         end,
     },
     window = {
@@ -32,7 +32,7 @@ cmp.setup({
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        -- { name = 'vsnip' }, -- For vsnip users.
+        { name = 'vsnip' }, -- For vsnip users.
         -- { name = 'luasnip' }, -- For luasnip users.
         -- { name = 'ultisnips' }, -- For ultisnips users.
         -- { name = 'snippy' }, -- For snippy users.
@@ -41,21 +41,13 @@ cmp.setup({
     })
 })
 
--- Use tab / shift-tab to navigate between snippet inputs
-vim.keymap.set({ "i", "s" }, "<Tab>", function()
-    if vim.snippet.active({ direction = 1 }) then
-        return "<cmd>lua vim.snippet.jump(1)<cr>"
-    else
-        return "<Tab>"
-    end
-end, { expr = true })
-vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
-    if vim.snippet.active({ direction = -1 }) then
-        return "<cmd>lua vim.snippet.jump(-1)<cr>"
-    else
-        return "<S-Tab>"
-    end
-end, { expr = true })
+vim.cmd [[
+    " Navigate between snippet inputs using Tab / S-Tab
+    imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+    smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+    imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+    smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+]]
 
 -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
 -- Set configuration for specific filetype.
