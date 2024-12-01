@@ -121,3 +121,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- Go-to-definition, go-to-references
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'gr', vim.lsp.buf.references)
+
+
+-- nvim-lint
+require('lint').linters_by_ft = {
+    python = { 'ruff' },
+}
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    callback = function()
+        require("lint").try_lint()
+    end,
+})
