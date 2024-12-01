@@ -1,11 +1,39 @@
+local buf_to_string = function()
+    local content = vim.api.nvim_buf_get_lines(0, 0, vim.api.nvim_buf_line_count(0), false)
+    return table.concat(content, "\n")
+end
+
+local string_to_buf = function(str)
+    -- Trim off trailing newline if any
+    if string.sub(str, -1) == '\n' then
+        str = string.sub(str, 1, -2)
+    end
+
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(str, "\n"))
+end
+
 local function ruff_format()
     local winview = vim.fn.winsaveview()
 
     -- ruff doesn't have a single command to both format and fix imports
     -- for whatever reason, so we have to run 2.
     -- https://docs.astral.sh/ruff/formatter/#sorting-imports
-    vim.cmd('silent %!ruff check --fix-only --quiet -')
-    vim.cmd('silent %!ruff format --quiet -')
+
+    -- This fixes imports:
+    local check = vim.system(
+        { 'ruff', 'check', '--fix-only', '--quiet', '-' },
+        { text = true, stdin = buf_to_string() }
+    ):wait()
+    if check.code ~= 0 then return end
+
+    -- This formats the rest:
+    local format = vim.system(
+        { 'ruff', 'format', '--quiet', '-' },
+        { text = true, stdin = check.stdout }
+    ):wait()
+    if format.code ~= 0 then return end
+
+    string_to_buf(format.stdout)
 
     vim.fn.winrestview(winview)
 end
