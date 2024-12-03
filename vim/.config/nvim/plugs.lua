@@ -83,14 +83,20 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
 
 lspconfig.pyright.setup {
-    capabilities = capabilities,
+    capabilities = (function()
+        local caps = vim.lsp.protocol.make_client_capabilities()
+        caps.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
+        return caps
+    end)(),
 }
+
 lspconfig.zls.setup {
     capabilities = capabilities,
     on_init = function(client, _)
         client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
     end,
 }
+
 lspconfig.lua_ls.setup {
     capabilities = capabilities,
     settings = {
