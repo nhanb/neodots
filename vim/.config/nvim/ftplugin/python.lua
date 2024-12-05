@@ -21,14 +21,14 @@ local function ruff_format()
 
     -- This fixes imports:
     local check = vim.system(
-        { 'ruff', 'check', '--fix-only', '--quiet', '-' },
+        { 'ruff', 'check', '--fix-only', '--quiet', '--stdin-filename', vim.fn.expand("%:t"), '-' },
         { text = true, stdin = buf_to_string() }
     ):wait()
     if check.code ~= 0 then return end
 
     -- This formats the rest:
     local format = vim.system(
-        { 'ruff', 'format', '--quiet', '-' },
+        { 'ruff', 'format', '--quiet', '--stdin-filename', vim.fn.expand("%:t"), '-' },
         { text = true, stdin = check.stdout }
     ):wait()
     if format.code ~= 0 then return end
