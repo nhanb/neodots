@@ -7,16 +7,6 @@ local feedkey = function(key, mode)
 end
 
 cmp.setup({
-    snippet = {
-        -- REQUIRED - you must specify a snippet engine
-        expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-            -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-            -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
-        end,
-    },
     window = {
         -- completion = cmp.config.window.bordered(),
         -- documentation = cmp.config.window.bordered(),
@@ -34,43 +24,15 @@ cmp.setup({
                 fallback()
             end
         end,
-        ['<C-j>'] = function(fallback)
-            if vim.fn["vsnip#jumpable"](1) == 1 then
-                feedkey("<Plug>(vsnip-jump-next)", "")
-            else
-                fallback()
-            end
-        end,
-        ['<C-k>'] = function(fallback)
-            if vim.fn["vsnip#jumpable"](-1) == 1 then
-                feedkey("<Plug>(vsnip-jump-prev)", "")
-            else
-                fallback()
-            end
-        end,
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        { name = 'vsnip' }, -- For vsnip users.
-        -- { name = 'luasnip' }, -- For luasnip users.
-        -- { name = 'ultisnips' }, -- For ultisnips users.
-        -- { name = 'snippy' }, -- For snippy users.
+        { name = 'nvim_lsp_signature_help' },
     }, {
         { name = 'buffer' },
     })
 })
 
-
--- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
--- Set configuration for specific filetype.
---[[ cmp.setup.filetype('gitcommit', {
-  sources = cmp.config.sources({
-    { name = 'git' },
-  }, {
-    { name = 'buffer' },
-  })
-})
-require("cmp_git").setup() ]] --
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ '/', '?' }, {
@@ -92,12 +54,16 @@ cmp.setup.cmdline(':', {
 })
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- I prefer to use signature helpers instead of snippets - they're less intrusive.
+capabilities.textDocument.completion.completionItem.snippetSupport = false
+
 local lspconfig = require('lspconfig')
 
 lspconfig.pyright.setup {
     capabilities = (function()
         local caps = vim.lsp.protocol.make_client_capabilities()
         caps.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
+        capabilities.textDocument.completion.completionItem.snippetSupport = false
         return caps
     end)(),
 }
