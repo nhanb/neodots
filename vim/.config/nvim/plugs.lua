@@ -1,6 +1,11 @@
 -- Set up nvim-cmp.
 local cmp = require 'cmp'
 
+
+local feedkey = function(key, mode)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+end
+
 cmp.setup({
     snippet = {
         -- REQUIRED - you must specify a snippet engine
@@ -29,6 +34,20 @@ cmp.setup({
                 fallback()
             end
         end,
+        ['<C-j>'] = function(fallback)
+            if vim.fn["vsnip#jumpable"](1) == 1 then
+                feedkey("<Plug>(vsnip-jump-next)", "")
+            else
+                fallback()
+            end
+        end,
+        ['<C-k>'] = function(fallback)
+            if vim.fn["vsnip#jumpable"](-1) == 1 then
+                feedkey("<Plug>(vsnip-jump-prev)", "")
+            else
+                fallback()
+            end
+        end,
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
@@ -41,13 +60,6 @@ cmp.setup({
     })
 })
 
-vim.cmd [[
-    " Navigate between snippet inputs using Tab / S-Tab
-    imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-    smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-    imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-    smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-]]
 
 -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
 -- Set configuration for specific filetype.
