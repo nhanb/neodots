@@ -75,7 +75,7 @@ set undolevels=7777      " use many muchos levels of undo
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set title                " change the terminal's title
 set noerrorbells         " don't beep
-set textwidth=79
+set textwidth=80
 set colorcolumn=+1       " draw colorcolumn 1 char after max textwidth
 
 " Fixes slow esc from visual mode in vim
