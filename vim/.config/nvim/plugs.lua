@@ -2,10 +2,6 @@
 local cmp = require 'cmp'
 
 
-local feedkey = function(key, mode)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-end
-
 cmp.setup({
     window = {
         -- completion = cmp.config.window.bordered(),
@@ -105,6 +101,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- Go-to-definition, go-to-references
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'gr', vim.lsp.buf.references)
+vim.keymap.set('n', '<leader><leader>r', vim.lsp.buf.rename)
 
 
 -- nvim-lint
