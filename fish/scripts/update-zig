@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+import hashlib
+import subprocess
+
+import urllib3
+
+TMP_TARBALL = "/tmp/nhanb-zig.tar.xz"
+ZIG_DIR = "/home/nhanb/zig"
+ZLS_DIR = "/home/nhanb/oss/zls"
+
+
+def get(url):
+    resp = urllib3.request("GET", url, retries=2)
+    assert resp.status == 200
+    return resp
+
+
+def run(*cmd, **kwargs):
+    return subprocess.run(cmd, **kwargs, check=True, shell=False)
+
+
+print("Fetching latest build metadata")
+master = get("https://ziglang.org/download/index.json").json()["master"]["x86_64-linux"]
+
+expected_hash = master["shasum"]
+tar_url = master["tarball"]
+size_in_MiB = round(int(master["size"]) / (1024 * 1024), 1)
+
+print("Size:", size_in_MiB, "MiB")
+
+print(f"Downloading {tar_url}")
+tarball_bytes = get(tar_url).data
+
+print("Checksum... ", end="")
+actual_hash = hashlib.sha256(tarball_bytes).hexdigest()
+if expected_hash == actual_hash:
+    print("passed.")
+else:
+    print("failed.")
+    print("> expected:", expected_hash)
+    print("> got     :", actual_hash)
+
+with open(TMP_TARBALL, "wb") as file:
+    file.write(tarball_bytes)
+    print("Downloaded to", TMP_TARBALL)
+
+print("Extracting to", ZIG_DIR)
+assert ZIG_DIR
+run("rm", "-r", ZIG_DIR)
+run("mkdir", "-p", ZIG_DIR)
+run("tar", "-xf", TMP_TARBALL, "-C", ZIG_DIR, "--strip-components=1")
+run("rm", TMP_TARBALL)
+run("rm", "-r", "/home/nhanb/.cache/zig")
+
+print("Compiling zls")
+run("git", "pull", cwd=ZLS_DIR)
+run("zig", "build", "-Doptimize=ReleaseSafe", cwd=ZLS_DIR)
+
+print("All done.")
