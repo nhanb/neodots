@@ -364,5 +364,8 @@ vnoremap <leader><space> :<c-u>call ExecuteSelection()<cr>
 
 nnoremap <leader><leader><space> :exec ':!'.getline('.')<cr>
 
+" Make * not jump to next match
+nnoremap * :keepjumps normal! mi*`i<CR>
+
 " ===== Plugins =====
 so $HOME/.vim/plugs.vim
