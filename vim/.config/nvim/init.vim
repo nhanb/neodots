@@ -291,12 +291,9 @@ if has('clipboard')
     nnoremap <leader>Y "+y$
                 \:echo 'Rest of line yanked to system clipboard'<cr>
 
-    " copying on wayland is already working, but pasting doesn't, so outsource
-    " to wl-paste instead:
-    nnoremap <leader>p :read !wl-paste --no-newline<cr>
-    "vnoremap <leader>p "+p
-    "nnoremap <leader>p "+p
-    "nnoremap <leader>P "+P
+    vnoremap <leader>p "+p
+    nnoremap <leader>p "+p
+    nnoremap <leader>P "+P
 
     " These go nicely with *gasp* mouse selection
     vnoremap <c-c> "+ygv
@@ -305,7 +302,7 @@ if has('clipboard')
 else
     function! NoClipboardWarning()
         echohl WarningMsg
-        echo 'Cannnot use system clipboard! '.
+        echo 'Cannot use system clipboard! '.
                     \'Recompile vim with "+clipboard" to solve this.'
         echohl None
     endfunction
@@ -334,7 +331,7 @@ autocmd BufEnter * call MarkSpecialWhitespaces()
 " Hail tpope (again):
 " https://github.com/neovim/neovim/blob/ece19b459c082eae05b5c480f6ee91181f002c02/runtime/syntax/markdown.vim#L18-L28
 let g:markdown_fenced_languages = ['python', 'sh', 'json', 'javascript',
-            \'vim', 'sql', 'yaml', 'rust', 'd', 'toml', 'html']
+            \'vim', 'sql', 'yaml', 'rust', 'd', 'toml', 'html', 'zig']
 
 " Access command history without a Shift
 nnoremap q; q:
