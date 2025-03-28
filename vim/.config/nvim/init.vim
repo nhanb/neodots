@@ -175,9 +175,6 @@ inoremap jh <esc>:w<cr>a
 nnoremap <silent> <f2> :silent noh<cr>:echo<cr>
 nnoremap <silent> <f1> :silent noh<cr>:echo<cr>
 
-"" F3 toggles paste mode
-set pastetoggle=<F10>
-
 " F7 Clean ^M characters from Windows files
 nnoremap <f7> :%s/<c-v><c-m>//g<cr>
 
