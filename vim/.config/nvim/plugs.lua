@@ -1,95 +1,95 @@
--- Set up nvim-cmp.
-local cmp = require 'cmp'
-
-
-cmp.setup({
-    window = {
-        -- completion = cmp.config.window.bordered(),
-        -- documentation = cmp.config.window.bordered(),
-    },
-    mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ['<Tab>'] = function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            else
-                fallback()
-            end
-        end,
-    }),
-    sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'nvim_lsp_signature_help' },
-    }, {
-        { name = 'buffer' },
-    }),
-    preselect = cmp.PreselectMode.None,
-})
-
-
--- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-        { name = 'buffer' }
-    }
-})
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-        { name = 'path' }
-    }, {
-        { name = 'cmdline' }
-    }),
-    matching = { disallow_symbol_nonprefix_matching = false }
-})
-
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
--- I prefer to use signature helpers instead of snippets - they're less intrusive.
-capabilities.textDocument.completion.completionItem.snippetSupport = false
-
-local lspconfig = require('lspconfig')
-
-lspconfig.pyright.setup {
-    capabilities = (function()
-        local caps = vim.lsp.protocol.make_client_capabilities()
-        caps.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
-        capabilities.textDocument.completion.completionItem.snippetSupport = false
-        return caps
-    end)(),
-}
-
-lspconfig.zls.setup {
-    capabilities = capabilities,
-    on_init = function(client, _)
-        client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
-    end,
-}
-
-lspconfig.lua_ls.setup {
-    capabilities = capabilities,
-    settings = {
-        Lua = {
-            workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
-            },
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = {
-                    'vim',
-                    'bufnr',
-                },
-            },
-        },
-    },
-}
+-- -- Set up nvim-cmp.
+-- local cmp = require 'cmp'
+--
+--
+-- cmp.setup({
+--     window = {
+--         -- completion = cmp.config.window.bordered(),
+--         -- documentation = cmp.config.window.bordered(),
+--     },
+--     mapping = cmp.mapping.preset.insert({
+--         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+--         ['<C-f>'] = cmp.mapping.scroll_docs(4),
+--         ['<C-Space>'] = cmp.mapping.complete(),
+--         ['<C-e>'] = cmp.mapping.abort(),
+--         ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+--         ['<Tab>'] = function(fallback)
+--             if cmp.visible() then
+--                 cmp.select_next_item()
+--             else
+--                 fallback()
+--             end
+--         end,
+--     }),
+--     sources = cmp.config.sources({
+--         { name = 'nvim_lsp' },
+--         { name = 'nvim_lsp_signature_help' },
+--     }, {
+--         { name = 'buffer' },
+--     }),
+--     preselect = cmp.PreselectMode.None,
+-- })
+--
+--
+-- -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+-- cmp.setup.cmdline({ '/', '?' }, {
+--     mapping = cmp.mapping.preset.cmdline(),
+--     sources = {
+--         { name = 'buffer' }
+--     }
+-- })
+--
+-- -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+-- cmp.setup.cmdline(':', {
+--     mapping = cmp.mapping.preset.cmdline(),
+--     sources = cmp.config.sources({
+--         { name = 'path' }
+--     }, {
+--         { name = 'cmdline' }
+--     }),
+--     matching = { disallow_symbol_nonprefix_matching = false }
+-- })
+--
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- -- I prefer to use signature helpers instead of snippets - they're less intrusive.
+-- capabilities.textDocument.completion.completionItem.snippetSupport = false
+--
+-- local lspconfig = require('lspconfig')
+--
+-- lspconfig.pyright.setup {
+--     capabilities = (function()
+--         local caps = vim.lsp.protocol.make_client_capabilities()
+--         caps.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
+--         capabilities.textDocument.completion.completionItem.snippetSupport = false
+--         return caps
+--     end)(),
+-- }
+--
+-- lspconfig.zls.setup {
+--     capabilities = capabilities,
+--     on_init = function(client, _)
+--         client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
+--     end,
+-- }
+--
+-- lspconfig.lua_ls.setup {
+--     capabilities = capabilities,
+--     settings = {
+--         Lua = {
+--             workspace = {
+--                 -- Make the server aware of Neovim runtime files
+--                 library = vim.api.nvim_get_runtime_file("", true),
+--             },
+--             diagnostics = {
+--                 -- Get the language server to recognize the `vim` global
+--                 globals = {
+--                     'vim',
+--                     'bufnr',
+--                 },
+--             },
+--         },
+--     },
+-- }
 
 -- Enable format-on-save for languages with supporting language servers.
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -114,3 +114,66 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         require("lint").try_lint()
     end,
 })
+
+
+vim.lsp.config.zls = {
+    cmd = { 'zls' },
+    root_markers = { 'build.zig', '.git' },
+    filetypes = { 'zig' },
+}
+
+vim.lsp.config.pyright = {
+    cmd = { 'pyright-langserver', '--stdio' },
+    root_markers = { 'pyproject.toml', '.git' },
+    filetypes = { 'python' },
+}
+
+vim.lsp.config.luals = {
+    -- Command and arguments to start the server.
+    cmd = { 'lua-language-server' },
+    -- Filetypes to automatically attach to.
+    filetypes = { 'lua' },
+    -- Sets the "root directory" to the parent directory of the file in the
+    -- current buffer that contains either a ".luarc.json" or a
+    -- ".luarc.jsonc" file. Files that share a root directory will reuse
+    -- the connection to the same LSP server.
+    root_markers = { '.luarc.json', '.luarc.jsonc' },
+    -- Specific settings to send to the server. The schema for this is
+    -- defined by the server. For example the schema for lua-language-server
+    -- can be found here https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json
+    settings = {
+        Lua = {
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = {
+                    'vim',
+                    'bufnr',
+                },
+            },
+        },
+    },
+}
+
+vim.lsp.enable({ 'zls', 'luals', 'pyright' })
+
+vim.cmd [[set completeopt+=menuone,noselect,popup]]
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(ev)
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if client:supports_method('textDocument/completion') then
+            vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+        end
+    end,
+})
+
+vim.keymap.set('i', '<c-space>', function()
+    vim.lsp.completion.get()
+end)
+
+vim.keymap.set('i', '<c-h>', function()
+    vim.lsp.buf.signature_help()
+end)

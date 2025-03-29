@@ -116,24 +116,24 @@ let g:airline#extensions#whitespace#skip_indent_check_ft = {'go': ['mixed-indent
 " }}}
 " emmet-vim {{{
 " ================================================================
-Plug 'mattn/emmet-vim'
-let g:user_emmet_settings = {
-            \  'variables': {'lang': 'en', 'charset': 'utf-8'},
-            \  'html': {
-            \    'snippets': {
-            \      'html:5': "<!DOCTYPE html>\n"
-            \              ."<html lang=\"${lang}\">\n"
-            \              ."  <head>\n"
-            \              ."    <meta charset=\"${charset}\" />\n"
-            \              ."    <title></title>\n"
-            \              ."    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n"
-            \              ."  </head>\n"
-            \              ."  <body>${child}</body>\n"
-            \              ."</html>",
-            \    },
-            \  },
-            \}
-"}}}
+"Plug 'mattn/emmet-vim'
+"let g:user_emmet_settings = {
+"            \  'variables': {'lang': 'en', 'charset': 'utf-8'},
+"            \  'html': {
+"            \    'snippets': {
+"            \      'html:5': "<!DOCTYPE html>\n"
+"            \              ."<html lang=\"${lang}\">\n"
+"            \              ."  <head>\n"
+"            \              ."    <meta charset=\"${charset}\" />\n"
+"            \              ."    <title></title>\n"
+"            \              ."    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n"
+"            \              ."  </head>\n"
+"            \              ."  <body>${child}</body>\n"
+"            \              ."</html>",
+"            \    },
+"            \  },
+"            \}
+""}}}
 " zig.vim {{{
 " ================================================================
 Plug 'ziglang/zig.vim'
@@ -141,13 +141,13 @@ let g:zig_fmt_autosave = 0
 "}}}
 
 
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+"Plug 'neovim/nvim-lspconfig'
+"Plug 'hrsh7th/cmp-nvim-lsp'
+"Plug 'hrsh7th/cmp-buffer'
+"Plug 'hrsh7th/cmp-path'
+"Plug 'hrsh7th/cmp-cmdline'
+"Plug 'hrsh7th/nvim-cmp'
+"Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 
 Plug 'mfussenegger/nvim-lint'
 
