@@ -91,6 +91,10 @@ lspconfig.lua_ls.setup {
     },
 }
 
+lspconfig.clangd.setup {
+    capabilities = capabilities,
+}
+
 -- Enable format-on-save for languages with supporting language servers.
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = { "*.lua", "*.zig" },
