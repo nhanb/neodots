@@ -118,6 +118,7 @@ nnoremap gj :call OpenJira()<cr>
 " Help vim detect certain file types
 autocmd BufNewFile,BufRead poetry.lock set filetype=toml
 autocmd BufNewFile,BufRead *.envrc set filetype=sh
+autocmd BufNewFile,BufRead *.j2 setfiletype jinja
 
 " Disable py2 provider:
 let g:loaded_python_provider = 0
