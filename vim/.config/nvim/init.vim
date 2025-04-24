@@ -280,6 +280,9 @@ map Y y$
 " Go to previously open file (basically like alt-tab toggle)
 nnoremap <leader><tab> <c-^>
 
+" Restart language server so e.g. new python files' imports are recognized
+nnoremap <f5> :LspRestart<cr>
+
 "" Use '+' register to do system clipboard stuff
 if has('clipboard')
     vnoremap <leader>y "+y
