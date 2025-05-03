@@ -172,15 +172,29 @@ inoremap jk <esc>:w<cr>l
 " Save, stay in insert mode
 inoremap jh <esc>:w<cr>a
 
+" F1 shows LSP diagnostic floating window
+nnoremap <f1> :lua vim.diagnostic.open_float()<cr>
+
 " F2 clears search highlight & search message
 nnoremap <silent> <f2> :silent noh<cr>:echo<cr>
-nnoremap <silent> <f1> :silent noh<cr>:echo<cr>
 
 " F7 Clean ^M characters from Windows files
 nnoremap <f7> :%s/<c-v><c-m>//g<cr>
 
 " F8 to do a 'star search' (asterisk) without jumping to next match
 nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+
+" F12 to save with 1 keystroke
+inoremap <f12> <nop>
+inoremap <f12> <esc>:w<cr>
+nnoremap <f12> <esc>:w<cr>
+vnoremap <f12> <esc>:w<cr>
+inoremap <c-f12> <nop>
+inoremap <c-f12> <esc>:wq<cr>
+nnoremap <c-f12> <esc>:wq<cr>
+vnoremap <c-f12> <esc>:wq<cr>
+
+
 
 " Up Down Left Right to adjust current split size
 nnoremap <up> <c-w>+
@@ -245,27 +259,6 @@ nnoremap <leader>s :split<cr>
 
 " Quickly insert current date time
 :iab <expr> dts strftime("%Y-%m-%d %H:%M")
-
-" Save with 1 keystroke (why have I never thought about this?)
-inoremap <f9> <nop>
-inoremap <f9> <esc>:w<cr>
-nnoremap <f9> <esc>:w<cr>
-vnoremap <f9> <esc>:w<cr>
-inoremap <c-f9> <nop>
-inoremap <c-f9> <esc>:wq<cr>
-nnoremap <c-f9> <esc>:wq<cr>
-vnoremap <c-f9> <esc>:wq<cr>
-
-" Search visually selected text
-vnoremap // y/<c-r>"<cr>"
-
-" Convenient saving without leaving home row
-" http://reefpoints.dockyard.com/2013/09/11/vim-staying-on-home-row-via-map.html
-inoremap ;d <esc>:w<cr>
-inoremap ;s <c-o>:w<cr>
-
-" Run, Forrest, Run!
-nnoremap <leader>q :!chmod +x %<cr><cr>:echo 'File is now executable'<cr>
 
 " Shortcut to center cursor vertically.
 nnoremap <space> zz
@@ -359,7 +352,7 @@ function! ExecuteSelection()
     exec 'read!' . @@
 endfunction
 vnoremap <leader><space> :<c-u>call ExecuteSelection()<cr>
-
+" Run command but show result without pasting:
 nnoremap <leader><leader><space> :exec ':!'.getline('.')<cr>
 
 " Make * not jump to next match
