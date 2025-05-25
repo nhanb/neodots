@@ -105,7 +105,7 @@ echo 'permit nopass nhanb as root' > /etc/doas.conf
 # Xorg, SDDM, KDE
 # mesa is for modern intel graphics. Check Arch wiki to know what to install
 # for other setups.
-pacman -Syu xorg-server xorg-apps sddm sddm-kcm plasma-meta mesa
+pacman -Syu sddm sddm-kcm plasma-meta mesa pipewire
 
 vim /etc/sddm.conf.d/autologin.conf :
   [Autologin]
