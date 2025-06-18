@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import hashlib
 import subprocess
+from pathlib import Path
 
 import urllib3
 
@@ -47,7 +48,8 @@ with open(TMP_TARBALL, "wb") as file:
 print("Extracting to", ZIG_DIR)
 assert ZIG_DIR
 run("rm", "-rf", ZIG_DIR + "-backup")
-run("mv", ZIG_DIR, ZIG_DIR + "-backup")
+if Path(ZIG_DIR).exists():
+    run("mv", ZIG_DIR, ZIG_DIR + "-backup")
 run("mkdir", "-p", ZIG_DIR)
 run("tar", "-xf", TMP_TARBALL, "-C", ZIG_DIR, "--strip-components=1")
 run("rm", TMP_TARBALL)
@@ -55,7 +57,8 @@ run("rm", "-rf", "/home/nhanb/.cache/zig")
 
 print("Compiling zls")
 run("rm", "-f", "zig-out/bin/zls-backup", cwd=ZLS_DIR)
-run("mv", "zig-out/bin/zls", "zig-out/bin/zls-backup", cwd=ZLS_DIR)
+if (Path(ZLS_DIR) / "zig-out/bin/zls").exists():
+    run("mv", "zig-out/bin/zls", "zig-out/bin/zls-backup", cwd=ZLS_DIR)
 run("git", "pull", cwd=ZLS_DIR)
 run("zig", "build", "-Doptimize=ReleaseSafe", cwd=ZLS_DIR)
 
