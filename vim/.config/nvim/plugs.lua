@@ -95,6 +95,11 @@ lspconfig.clangd.setup {
     capabilities = capabilities,
 }
 
+-- Go-to-definition, go-to-references
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+vim.keymap.set('n', 'gr', vim.lsp.buf.references)
+vim.keymap.set('n', '<leader><leader>r', vim.lsp.buf.rename)
+
 -- Enable format-on-save for languages with supporting language servers.
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = { "*.lua", "*.zig" },
@@ -103,10 +108,40 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end
 })
 
--- Go-to-definition, go-to-references
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
-vim.keymap.set('n', 'gr', vim.lsp.buf.references)
-vim.keymap.set('n', '<leader><leader>r', vim.lsp.buf.rename)
+-- Format on save for other languages without language servers:
+
+local function buf_get_full_text(bufnr)
+    local text = table.concat(vim.api.nvim_buf_get_lines(bufnr, 0, -1, true), "\n")
+    if vim.api.nvim_buf_get_option(bufnr, "eol") then
+        text = text .. "\n"
+    end
+    return text
+end
+
+local function format_whole_file(cmd)
+    local bufnr = vim.fn.bufnr("%")
+    local input = buf_get_full_text(bufnr)
+    local output = vim.fn.system(cmd, input)
+    if vim.v.shell_error ~= 0 then
+        print(output)
+        return
+    end
+    if output ~= input then
+        local new_lines = vim.fn.split(output, "\n")
+        vim.api.nvim_buf_set_lines(0, 0, -1, false, new_lines)
+    end
+end
+
+local function prettier_format()
+    local filepath = vim.fn.shellescape(vim.fn.expand('%:p'))
+    local cmd = "prettier --ignore-path '' --stdin-filepath " .. filepath
+    format_whole_file(cmd)
+end
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = { "*.json", "*.js", "*.jsx", "*.ts", "*.tsx", "*.html", "*.css" },
+    callback = prettier_format
+})
 
 
 -- nvim-lint
