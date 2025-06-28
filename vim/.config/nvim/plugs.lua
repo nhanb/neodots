@@ -95,6 +95,13 @@ lspconfig.clangd.setup {
     capabilities = capabilities,
 }
 
+lspconfig.ts_ls.setup {
+    filetypes = {
+        "javascript",
+        "typescript",
+    },
+}
+
 -- Go-to-definition, go-to-references
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'gr', vim.lsp.buf.references)
