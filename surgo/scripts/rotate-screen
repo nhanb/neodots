@@ -1,0 +1,11 @@
+#!/usr/bin/env python3
+import subprocess
+from sys import argv
+
+orientation_choices = ('none', 'inverted', 'left', 'right')
+
+if len(argv) != 2 or argv[1] not in orientation_choices:
+    print("Usage: rotate-screen " + '|'.join(orientation_choices))
+    exit(1)
+
+subprocess.run(['kscreen-doctor', f'output.eDP-1.rotation.{argv[1]}'], check=True)
