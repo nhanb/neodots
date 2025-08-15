@@ -60,7 +60,7 @@ function mgc
     git clone git@mygit:{$argv}.git
 end
 
-abbr -a -g ddd doas dd bs=4M status=progress oflag=sync
+abbr -a -g ddd sudo dd bs=4M status=progress oflag=sync
 
 abbr -a -g dc docker compose
 
@@ -121,7 +121,7 @@ abbr -a -g mh manhoa-manage
 # Pipenv shit
 set -x PIPENV_VENV_IN_PROJECT 1
 
-abbr -a -g tsen 'doas tailscale up --exit-node' # tsen = tailscale exit node
+abbr -a -g tsen 'sudo tailscale up --exit-node' # tsen = tailscale exit node
 abbr -a -g tscheck 'tailscale status | grep "exit node"'
 abbr -a -g tsonline 'tailscale status --json | jq -r ".Peer[] | select(.Online == true) | .DNSName" | cut -d . -f1 | sort'
 
@@ -135,8 +135,8 @@ abbr -a -g djm ./manage.py migrate
 
 abbr -a -g pyt pytest --reuse-db -s
 
-abbr lwifi 'doas iwctl station wlan0 scan && doas iwctl station wlan0 get-networks | head -n20'
-abbr cwifi doas iwctl station wlan0 connect
+abbr lwifi 'sudo iwctl station wlan0 scan && sudo iwctl station wlan0 get-networks | head -n20'
+abbr cwifi sudo iwctl station wlan0 connect
 
 alias mpv-drc='mpv --af="acompressor=ratio=4,loudnorm"'
 
@@ -144,8 +144,10 @@ abbr -a -g kd kitty +kitten diff
 alias icat="kitty +kitten icat --align left"
 alias kssh="kitty +kitten ssh"
 
-abbr -a -g mctl doas machinectl
-abbr -a -g nspawn doas systemd-nspawn
+abbr -a -g nsp sudo systemd-nspawn
+abbr -a -g mctl sudo machinectl
+abbr -a -g jctl sudo journalctl
+abbr -a -g sctl sudo systemctl
 
 if type -q direnv
     direnv hook fish | source

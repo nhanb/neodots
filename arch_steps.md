@@ -97,10 +97,12 @@ reboot
 
 ```sh
 # Main user
-pacman -Syu fish git opendoas
+pacman -Syu fish git sudo
 useradd -m -s `which fish` nhanb
 passwd nhanb
-echo 'permit nopass nhanb as root' > /etc/doas.conf
+gpasswd -a nhanb wheel
+EDITOR=nvim visudo  # uncomment `%wheel ALL=(ALL:ALL) NOPASSWD: ALL`
+
 
 # Xorg, SDDM, KDE
 # mesa is for modern intel graphics. Check Arch wiki to know what to install
@@ -116,7 +118,7 @@ vim /etc/sddm.conf.d/autologin.conf :
 Setup firefox -> tailscale -> syncthing -> ssh creds:
 
 ```sh
-doas pacman -Syu firefox tailscale syncthing openssh spectacle
+sudo pacman -Syu firefox tailscale syncthing openssh spectacle
 # login firefox
 # login 1password
 # login google accounts
@@ -129,7 +131,7 @@ doas pacman -Syu firefox tailscale syncthing openssh spectacle
 ```sh
 # These fonts cover sans-serif, serif, lots of monospace/programming fonts,
 # cjk, emoji and kaomoji
-doas pacman -S ttf-dejavu ttf-croscore ttf-ibm-plex ttf-liberation \
+sudo pacman -S ttf-dejavu ttf-croscore ttf-ibm-plex ttf-liberation \
   ttf-fira-mono ttf-hack ttf-inconsolata ttf-jetbrains-mono \
   adobe-source-code-pro-fonts adobe-source-sans-pro-fonts \
   adobe-source-serif-pro-fonts adobe-source-han-sans-otc-fonts \
