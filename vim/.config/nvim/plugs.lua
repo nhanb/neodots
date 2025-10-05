@@ -54,25 +54,26 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- I prefer to use signature helpers instead of snippets - they're less intrusive.
 capabilities.textDocument.completion.completionItem.snippetSupport = false
 
-local lspconfig = require('lspconfig')
-
-lspconfig.pyright.setup {
+vim.lsp.enable('pyright')
+vim.lsp.config('pyright', {
     capabilities = (function()
         local caps = vim.lsp.protocol.make_client_capabilities()
         caps.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
         capabilities.textDocument.completion.completionItem.snippetSupport = false
         return caps
     end)(),
-}
+})
 
-lspconfig.zls.setup {
+vim.lsp.enable('zls');
+vim.lsp.config('zls', {
     capabilities = capabilities,
     on_init = function(client, _)
         client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
     end,
-}
+})
 
-lspconfig.lua_ls.setup {
+vim.lsp.enable('lua_ls');
+vim.lsp.config('lua_ls', {
     capabilities = capabilities,
     settings = {
         Lua = {
@@ -89,18 +90,20 @@ lspconfig.lua_ls.setup {
             },
         },
     },
-}
+})
 
-lspconfig.clangd.setup {
+vim.lsp.enable('clangd')
+vim.lsp.config('clangd', {
     capabilities = capabilities,
-}
+})
 
-lspconfig.ts_ls.setup {
+vim.lsp.enable('ts_ls')
+vim.lsp.config('ts_ls', {
     filetypes = {
         "javascript",
         "typescript",
     },
-}
+})
 
 -- Go-to-definition, go-to-references
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
