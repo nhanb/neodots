@@ -259,6 +259,7 @@ nnoremap <leader>s :split<cr>
 
 " Quickly insert current date time
 :iab <expr> dts strftime("%Y-%m-%d %H:%M")
+:iab <expr> dti trim(system('date -Iseconds'))
 
 " Shortcut to center cursor vertically.
 nnoremap <space> zz
