@@ -149,7 +149,7 @@ local function prettier_format()
 end
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.json", "*.js", "*.jsx", "*.ts", "*.tsx", "*.html", "*.css" },
+    pattern = { "*.json", "*.js", "*.jsx", "*.ts", "*.tsx", "*.html", "*.css", "*.yml", "*.yaml" },
     callback = prettier_format
 })
 
