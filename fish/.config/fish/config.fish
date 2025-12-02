@@ -54,6 +54,9 @@ abbr -a -g gco git checkout
 abbr -a -g gb git branch
 abbr -a -g gm git merge
 
+# zig
+abbr -a -g zb zig build
+
 # mygit
 abbr -a -g mg ssh mygit
 function mgc
