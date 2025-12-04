@@ -97,11 +97,13 @@ vim.lsp.config('clangd', {
     capabilities = capabilities,
 })
 
-vim.lsp.enable('ts_ls')
-vim.lsp.config('ts_ls', {
+vim.lsp.enable('vtsls')
+vim.lsp.config('vtsls', {
     filetypes = {
         "javascript",
+        "javascriptreact",
         "typescript",
+        "typescriptreact",
     },
 })
 
