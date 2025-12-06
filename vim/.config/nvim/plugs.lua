@@ -150,9 +150,27 @@ local function prettier_format()
     format_whole_file(cmd)
 end
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.json", "*.js", "*.jsx", "*.ts", "*.tsx", "*.html", "*.css", "*.yml", "*.yaml" },
-    callback = prettier_format
+vim.api.nvim_create_autocmd('BufWritePre', {
+    desc = 'format on write using Prettier on supported filetypes',
+    group = vim.api.nvim_create_augroup('prettier_on_save', { clear = true }),
+    callback = function(opts)
+        local ft = vim.bo[opts.buf].filetype
+        for _, supported_type in ipairs({
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
+            "json",
+            "html",
+            "css",
+            "yaml",
+        }) do
+            if ft == supported_type then
+                prettier_format()
+                break
+            end
+        end
+    end,
 })
 
 
