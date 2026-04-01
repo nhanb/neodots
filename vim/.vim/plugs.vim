@@ -7,7 +7,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'dag/vim-fish'
-Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'}
+Plug 'knubie/vim-kitty-navigator'
 Plug 'jgm/djot', {'rtp': 'editors/vim'}
 " }}}
 
