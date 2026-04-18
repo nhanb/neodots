@@ -54,3 +54,15 @@ userland
 execve
 fmt
 fg
+GTD
+gtdone
+localhost
+dev
+autoreload
+vendored
+py
+vendor
+devserver
+Makefile
+TODO
+gunicorn
