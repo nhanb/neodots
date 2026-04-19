@@ -124,7 +124,7 @@ abbr -a -g mh manhoa-manage
 # Pipenv shit
 set -x PIPENV_VENV_IN_PROJECT 1
 
-abbr -a -g tsen 'sudo tailscale up --exit-node' # tsen = tailscale exit node
+abbr -a -g tsen 'sudo tailscale up --operator=nhanb --exit-node' # tsen = tailscale exit node
 abbr -a -g tscheck 'tailscale status | grep "exit node"'
 abbr -a -g tsonline 'tailscale status --json | jq -r ".Peer[] | select(.Online == true) | .DNSName" | cut -d . -f1 | sort'
 
