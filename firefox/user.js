@@ -1,5 +1,5 @@
 // Symlink this to
-// ~/.mozilla/firefox/XXXXXXXX.your_profile_name/user.js
+// ~/.config/mozilla/firefox/XXXXXXXX.your_profile_name/user.js
 
 // Windows-style scrollbar, which is wider than those dumb
 // "modern" qt/gtk abominations.
