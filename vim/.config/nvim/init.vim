@@ -359,8 +359,8 @@ nnoremap <leader><leader><space> :exec ':!'.getline('.')<cr>
 " Make * not jump to next match
 nnoremap * :keepjumps normal! mi*`i<CR>
 
-" Spell check
-set spell spelllang=en_us
+" Spell check is off by default. Run :set spell to enable when needed.
+set spelllang=en_us
 set spelloptions=camel
 
 
