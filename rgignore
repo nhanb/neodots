@@ -17,3 +17,4 @@ dist/
 zig-cache/
 .zig-cache/
 zig-out/
+zig-pkg/
