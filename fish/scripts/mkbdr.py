@@ -23,7 +23,7 @@ import shlex
 import shutil
 import subprocess
 import sys
-from argparse import ArgumentParser
+from argparse import ArgumentParser, ArgumentTypeError
 from pathlib import Path
 
 SCRIPT_NAME = Path(__file__).name
@@ -34,6 +34,13 @@ def main():
     # CLI arg parsing
     arg_parser = ArgumentParser(prog=SCRIPT_NAME, description="BD-R archival utility")
     arg_parser.add_argument("input_dir", type=Path)
+    arg_parser.add_argument(
+        "-r",
+        "--redundancy",
+        default=15,
+        type=percentage,
+        help="redundancy percentage. Will be passed to par2 -r",
+    )
     args = arg_parser.parse_args()
 
     # for arg_name in vars(args):
@@ -75,6 +82,7 @@ def main():
     print(f"Writing {instructions_path}")
     with open(instructions_path, "w") as ifile:
         ifile.write(INSTRUCTIONS_TEXT)
+        ifile.write(f"\nPAR2 redundancy: {args.redundancy}%\n")
 
     # Create par2 recovery files
     par2_file_path = metadata_dir / "recovery.par2"
@@ -86,7 +94,7 @@ def main():
         # (must provide same arg on verify/repair command):
         "-B",
         str(data_dir),
-        "-r15",  # redundancy percentage
+        f"-r{args.redundancy}",  # redundancy percentage
         "-n1",  # put all recovery blocks in 1 file
         "-R",  # recurse
         str(par2_file_path),  # output
@@ -115,6 +123,8 @@ def main():
         disc_name,
         "-J",
         "-r",
+        "-iso-level",
+        "4",  # need at least 3 to raise the 2GB file size limit - might as well do 4.
         "-o",
         str(iso_path),
         str(output_dir.absolute()),  # get path expansion for free
@@ -164,6 +174,13 @@ def run(*cmd):
     print(f"Running: {escaped_cmd}")
 
     subprocess.run(cmd, check=True)
+
+
+def percentage(string) -> int:
+    n = int(string)
+    if n < 1:
+        raise ArgumentTypeError("redundancy percentage must be at least 1")
+    return n
 
 
 if __name__ == "__main__":
