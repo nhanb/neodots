@@ -24,6 +24,7 @@ import shutil
 import subprocess
 import sys
 from argparse import ArgumentParser, ArgumentTypeError
+from datetime import datetime
 from pathlib import Path
 
 SCRIPT_NAME = Path(__file__).name
@@ -82,7 +83,9 @@ def main():
     print(f"Writing {instructions_path}")
     with open(instructions_path, "w") as ifile:
         ifile.write(INSTRUCTIONS_TEXT)
-        ifile.write(f"\nPAR2 redundancy: {args.redundancy}%\n")
+        ifile.write("\n---\n")
+        ifile.write(f"PAR2 redundancy: {args.redundancy}%\n")
+        ifile.write(f"Generated at: {datetime.now().astimezone()}\n")
 
     # Create par2 recovery files
     par2_file_path = metadata_dir / "recovery.par2"
