@@ -107,7 +107,7 @@ def main():
     checksums_path = metadata_dir / CHECKSUMS_FILENAME
     print("Generating", checksums_path)
     with open(checksums_path, "w") as cfile:
-        for file_path in data_dir.rglob("*"):
+        for file_path in sorted(data_dir.rglob("*")):
             if file_path.is_file():
                 with open(file_path, "rb") as f:
                     digest = hashlib.file_digest(f, "sha256").hexdigest()
