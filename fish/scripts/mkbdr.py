@@ -2,7 +2,8 @@
 """
 Tested on python 3.14.
 Dependencies:
-    - cdrtools (mkisofs, growisofs)
+    - libisoburn (xorrisofs)
+    - dvd+rw-tools (growisofs)
     - par2cmdline (par2)
 
 This script creates par2 recovery files and sha256 checksums for a target dir
@@ -130,7 +131,7 @@ def main():
 
     # Generate iso!
     run(
-        "mkisofs",
+        "xorrisofs",
         "-V",
         disc_name,
         "-J",
