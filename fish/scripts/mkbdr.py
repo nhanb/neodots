@@ -2,23 +2,22 @@
 """
 Tested on python 3.14.
 Dependencies:
-    - mkisofs, growisofs (Arch linux package: cdrtools)
-    - dd
-    - sha256sum
-    - par2 (par2cmdline)
+    - cdrtools (mkisofs, growisofs)
+    - par2cmdline (par2)
 
 This script creates par2 recovery files and sha256 checksums for a target dir
 then rolls everything into an ISO image ready to be burned to physical media
 for archival purposes.
 
 To create an archival image from "~/my-data" with the label "DATA_01":
-    mkdir DATA_01 && cd DATA_01
-    mkbdr.py ~/my-data
-    # there should now be a DATA_01.iso file in the same dir.
+    mkbdr.py ~/my-data DATA_01
+which should create a new DATA_01 dir containing the final .iso file with
+15% redundancy built in. This ratio is configurable. See source code for details.
 """
 
 import hashlib
 import os
+import re
 import shlex
 import shutil
 import subprocess
@@ -35,6 +34,7 @@ def main():
     # CLI arg parsing
     arg_parser = ArgumentParser(prog=SCRIPT_NAME, description="BD-R archival utility")
     arg_parser.add_argument("input_dir", type=Path)
+    arg_parser.add_argument("label", type=label)
     arg_parser.add_argument(
         "-r",
         "--redundancy",
@@ -47,10 +47,19 @@ def main():
     # for arg_name in vars(args):
     #     print(f"arg: {arg_name}: {getattr(args, arg_name)}")
 
-    # Sanity check
+    # Sanity checks:
+
     if not args.input_dir.is_dir():
         print(f"{args.input_dir} is not an existing dir. Aborted.")
         sys.exit()
+
+    work_dir = Path(args.label)
+    if work_dir.exists():
+        print(f"{args.label} already exists. Aborted.")
+        sys.exit()
+    work_dir.mkdir()
+
+    os.chdir(work_dir)
 
     output_dir = Path("disc_output")
     data_dir = output_dir / "data"
@@ -179,11 +188,19 @@ def run(*cmd):
     subprocess.run(cmd, check=True)
 
 
-def percentage(string) -> int:
-    n = int(string)
+def percentage(arg: str) -> int:
+    n = int(arg)
     if n < 1:
         raise ArgumentTypeError("redundancy percentage must be at least 1")
     return n
+
+
+def label(arg: str) -> str:
+    if not re.match(r"^[A-Z0-9_]{1,32}$", arg):
+        raise ArgumentTypeError(
+            "label must contain only uppercase alphanumerics and underscore (max length 32)"
+        )
+    return arg
 
 
 if __name__ == "__main__":
