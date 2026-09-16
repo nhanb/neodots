@@ -152,6 +152,10 @@ def main():
         # to be compatible with `sha256sum --check`
         file.write(f"{digest} {iso_path}\n")
 
+    # Having generated the complete iso image, we no longer need output_dir:
+    print(f"Removing {output_dir}")
+    shutil.rmtree(output_dir)
+
 
 INSTRUCTIONS_TEXT = f"""\
 This disc was created using the "{SCRIPT_NAME}" script bundled
