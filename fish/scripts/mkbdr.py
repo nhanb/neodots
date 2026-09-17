@@ -41,7 +41,7 @@ def main():
         "--redundancy",
         default=15,
         type=percentage,
-        help="redundancy percentage. Will be passed to par2 -r",
+        help="redundancy percentage to be passed to par2 -r. You can also disable it with -r0.",
     )
     args = arg_parser.parse_args()
 
@@ -93,26 +93,31 @@ def main():
     print(f"Writing {instructions_path}")
     with open(instructions_path, "w") as ifile:
         ifile.write(INSTRUCTIONS_TEXT)
+        if args.redundancy > 0:
+            ifile.write(RECOVERY_INSTRUCTION)
         ifile.write("\n---\n")
         ifile.write(f"PAR2 redundancy: {args.redundancy}%\n")
         ifile.write(f"Generated at: {datetime.now().astimezone()}\n")
 
-    # Create par2 recovery files
-    par2_file_path = metadata_dir / "recovery.par2"
-    print(f"Generating recovery file: {par2_file_path!s}")
-    run(
-        "par2",
-        "create",
-        # set basepath to disc's root path
-        # (must provide same arg on verify/repair command):
-        "-B",
-        str(data_dir),
-        f"-r{args.redundancy}",  # redundancy percentage
-        "-n1",  # put all recovery blocks in 1 file
-        "-R",  # recurse
-        str(par2_file_path),  # output
-        str(data_dir),  # input
-    )
+    # Create par2 recovery files if enabled
+    if args.redundancy > 0:
+        par2_file_path = metadata_dir / "recovery.par2"
+        print(f"Generating recovery file: {par2_file_path!s}")
+        run(
+            "par2",
+            "create",
+            # set basepath to disc's root path
+            # (must provide same arg on verify/repair command):
+            "-B",
+            str(data_dir),
+            f"-r{args.redundancy}",  # redundancy percentage
+            "-n1",  # put all recovery blocks in 1 file
+            "-R",  # recurse
+            str(par2_file_path),  # output
+            str(data_dir),  # input
+        )
+    else:
+        print("Skipping recovery file generation.")
 
     # Create sha256 checksums: 1 line per file.
     # Each line's format goes like this: <sha256 hex><space><data file path>
@@ -163,26 +168,25 @@ This disc was created using the "{SCRIPT_NAME}" script bundled
 in this same folder for future reference.
 
 Real data is in the "data" folder.
+You can verify said data using SHA-256 checksums:
+    cd data
+    sha256sum -c ../metadata/sha256-checksums.txt
+"""
 
+RECOVERY_INSTRUCTION = """
 If any data file is corrupted, it may still be recovered
 using redundant data stored in this folder (if the damaged
 portion isn't too large):
+    # Assuming you use Arch linux:
+    sudo pacman -S coreutils cdrtools par2cmdline
 
-```
-# Assuming you use Arch linux:
-sudo pacman -S coreutils cdrtools par2cmdline
+    # Goes without saying, but please copy the whole disc into
+    # a local writable location first, then you can do:
+    cd data
+    par2 repair -B . ../metadata/recovery.par2
 
-# Goes without saying, but please copy the whole disc into
-# a local writable location first, then you can do:
-cd data
-par2 repair -B . ../metadata/recovery.par2
-
-# Or if you just want to verify nothing broke:
-par2 verify -B . ../metadata/recovery.par2
-
-# Alternatively, verify using SHA-256 checksums:
-sha256sum -c ../metadata/sha256-checksums.txt
-```
+    # Or if you just want to verify nothing broke:
+    par2 verify -B . ../metadata/recovery.par2
 """
 
 
@@ -195,8 +199,8 @@ def run(*cmd):
 
 def percentage(arg: str) -> int:
     n = int(arg)
-    if n < 1:
-        raise ArgumentTypeError("redundancy percentage must be at least 1")
+    if n < 0:
+        raise ArgumentTypeError("redundancy percentage must be at least 0")
     return n
 
 
