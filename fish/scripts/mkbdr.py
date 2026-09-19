@@ -3,7 +3,6 @@
 Tested on python 3.14.
 Dependencies:
     - libisoburn (xorrisofs)
-    - dvd+rw-tools (growisofs)
     - par2cmdline (par2)
 
 This script creates par2 recovery files and sha256 checksums for a target dir
@@ -14,6 +13,24 @@ To create an archival image from "~/my-data" with the label "DATA_01":
     mkbdr.py ~/my-data DATA_01
 which should create a new DATA_01 dir containing the final .iso file with
 15% redundancy built in. This ratio is configurable. See source code for details.
+
+---
+
+To burn then verify without having to eject (tested on an I-O Data slim drive):
+    # find out which usb bus & port our drive (/dev/sr0) is:
+    udevadm info -q path -n /dev/sr0
+    # sample output:
+    # /devices/pci0000:00/0000:00:08.3/0000:67:00.0/usb4/4-2/4-2:1.0/host0/target0:0:0/0:0:0:0/block/sr0
+    # This part - /usb4/4-2/ - means our drive is at bus 4 port 2 (4-2).
+
+    # Now burn, then soft-reset the drive, then verify:
+    cd DATA_01
+    xorriso -as cdrecord -v -sao dev=/dev/sr0 DATA_01.iso -speed=2b &&
+        echo 0 | sudo tee /sys/bus/usb/devices/4-2/authorized &&
+        sleep 5 &&
+        echo 1 | sudo tee /sys/bus/usb/devices/4-2/authorized &&
+        sleep 10 &&
+        pv DATA_01.iso | cmp - /dev/sr0
 """
 
 import hashlib
