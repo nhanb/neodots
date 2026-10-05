@@ -59,6 +59,7 @@ print("Compiling zls")
 run("rm", "-f", "zig-out/bin/zls-backup", cwd=ZLS_DIR)
 if (Path(ZLS_DIR) / "zig-out/bin/zls").exists():
     run("mv", "zig-out/bin/zls", "zig-out/bin/zls-backup", cwd=ZLS_DIR)
+run("git", "checkout", "master", cwd=ZLS_DIR)
 run("git", "pull", cwd=ZLS_DIR)
 run("zig", "build", "-Doptimize=ReleaseSafe", cwd=ZLS_DIR)
 
