@@ -2,6 +2,7 @@
 import hashlib
 import subprocess
 from pathlib import Path
+from sys import argv
 
 import urllib3
 
@@ -16,12 +17,13 @@ def get(url):
     return resp
 
 
-def run(*cmd, **kwargs):
-    return subprocess.run(cmd, **kwargs, check=True, shell=False)
+def run(*cmd, check=True, **kwargs ):
+    return subprocess.run(cmd, **kwargs, check=check, shell=False)
 
+version = argv[1] if len(argv) == 2 else 'master'
 
 print("Fetching latest build metadata")
-master = get("https://ziglang.org/download/index.json").json()["master"]["x86_64-linux"]
+master = get("https://ziglang.org/download/index.json").json()[version]["x86_64-linux"]
 
 expected_hash = master["shasum"]
 tar_url = master["tarball"]
@@ -59,8 +61,8 @@ print("Compiling zls")
 run("rm", "-f", "zig-out/bin/zls-backup", cwd=ZLS_DIR)
 if (Path(ZLS_DIR) / "zig-out/bin/zls").exists():
     run("mv", "zig-out/bin/zls", "zig-out/bin/zls-backup", cwd=ZLS_DIR)
-run("git", "checkout", "master", cwd=ZLS_DIR)
+run("git", "checkout", version, cwd=ZLS_DIR, check=False)
 run("git", "pull", cwd=ZLS_DIR)
-run("zig", "build", "-Doptimize=ReleaseSafe", cwd=ZLS_DIR)
+run(ZIG_DIR + "/zig", "build", "-Doptimize=ReleaseSafe", cwd=ZLS_DIR)
 
 print("All done.")
